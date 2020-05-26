@@ -1,0 +1,34 @@
+apply plugin: 'liberty'
+apply plugin: 'war'
+
+version '1.0-SNAPSHOT'
+group '${groupName}'
+
+sourceCompatibility = ${javaVersion}
+targetCompatibility = ${javaVersion}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+// configure liberty-gradle-plugin
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.openliberty.tools:liberty-gradle-plugin:3.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // provided dependencies
+    providedCompile '${jakartaEEGroupId}:${jakartaEEArtifactId}:${jakartaEEVersion}'
+    providedCompile 'org.eclipse.microprofile:microprofile:${microProfileVersion}'
+
+}
+
+clean.dependsOn 'libertyStop'
