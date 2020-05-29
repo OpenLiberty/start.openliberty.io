@@ -14,15 +14,23 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipOutputStream;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbConfig;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import io.openliberty.website.starter.metadata.MetadataVisibilityStrategy;
+import io.openliberty.website.starter.metadata.StartMetadata;
 import io.openliberty.website.starter.validation.JakartaEEVersion;
 import io.openliberty.website.starter.validation.JavaVersion;
 import io.openliberty.website.starter.validation.MicroProfileVersion;
@@ -31,6 +39,21 @@ import io.openliberty.website.starter.validation.MicroProfileVersion;
 @Path("/")
 @RequestScoped
 public class StartResource extends Application {
+
+    @Inject
+    private StartMetadata md;
+    private String metadataJson;
+
+    @PostConstruct
+    public void init() {
+        JsonbConfig cfg = new JsonbConfig();
+        cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
+        try (Jsonb json = JsonbBuilder.create(cfg)) {
+            metadataJson = json.toJson(md);
+        } catch (Exception e) {
+            // ignore this
+        }
+    }
 
     @GET
     @Produces("application/zip")
@@ -63,5 +86,12 @@ public class StartResource extends Application {
         } else {
             return Response.status(500).build();
         }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("start/info")
+    public Response getInfo() {
+        return Response.ok(metadataJson).build();
     }
 }

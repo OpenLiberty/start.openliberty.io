@@ -4,5 +4,6 @@
 		<feature>cdi-2.0</feature>
 		<feature>jsonb-1.0</feature>
 		<feature>beanValidation-2.0</feature>
+		<feature>el-3.0</feature>
 	</featureManager>
 </server>

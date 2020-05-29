@@ -10,21 +10,19 @@
  *******************************************************************************/
 package io.openliberty.website.starter.validation.validator;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
+import io.openliberty.website.starter.metadata.StartMetadata;
 import io.openliberty.website.starter.validation.MicroProfileVersion;
 
-public class MicroProfileVersionValidator implements ConstraintValidator<MicroProfileVersion, String> {
+@Dependent
+public class MicroProfileVersionValidator extends AbstractEnumValidator<MicroProfileVersion, String> {
 
-    private List<String> supportedVersion = Arrays.asList("1.0", "1.1", "1.2", "1.3", "1.4", "2.0", "2.1", "2.2", "3.0", "3.2", "3.3");
+    @Inject
+    private StartMetadata metaData;
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        return supportedVersion.contains(value);
+    public void initialize(MicroProfileVersion constraintAnnotation) {
+        super.init(constraintAnnotation.message(), metaData.getMicroProfileVersion().values);
     }
-
 }

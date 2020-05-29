@@ -26,7 +26,7 @@ import io.openliberty.website.starter.validation.validator.MicroProfileVersionVa
 @Documented
 @Constraint(validatedBy = MicroProfileVersionValidator.class)
 public @interface MicroProfileVersion {
-    String message() default "Eclipse MicroProfile version must be one of 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, 2.1, 2.2, 3.0, 3.2, 3.3";
+    String message() default "Eclipse MicroProfile version requested was ${validatedValue} but must be one of: {permittedValues}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

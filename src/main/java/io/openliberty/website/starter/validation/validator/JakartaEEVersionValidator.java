@@ -10,27 +10,19 @@
  *******************************************************************************/
 package io.openliberty.website.starter.validation.validator;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
+import io.openliberty.website.starter.metadata.StartMetadata;
 import io.openliberty.website.starter.validation.JakartaEEVersion;
 
-public class JakartaEEVersionValidator implements ConstraintValidator<JakartaEEVersion, String> {
+@Dependent
+public class JakartaEEVersionValidator extends AbstractEnumValidator<JakartaEEVersion, String> {
 
-    private List<Integer> supportedVersion = Arrays.asList(7, 8);
+    @Inject
+    private StartMetadata metaData;
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        try {
-            int version = Integer.valueOf(value);
-
-            return supportedVersion.contains(version);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
+    public void initialize(JakartaEEVersion constraintAnnotation) {
+        super.init(constraintAnnotation.message(), metaData.getJakartaEEVersion().values);
     }
-
 }

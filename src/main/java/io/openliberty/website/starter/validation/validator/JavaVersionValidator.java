@@ -10,27 +10,19 @@
  *******************************************************************************/
 package io.openliberty.website.starter.validation.validator;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
+import io.openliberty.website.starter.metadata.StartMetadata;
 import io.openliberty.website.starter.validation.JavaVersion;
 
-public class JavaVersionValidator implements ConstraintValidator<JavaVersion, String> {
+@Dependent
+public class JavaVersionValidator extends AbstractEnumValidator<JavaVersion, String> {
 
-    private List<Integer> supportedVersion = Arrays.asList(8, 11, 14);
+    @Inject
+    private StartMetadata metaData;
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        try {
-            int version = Integer.valueOf(value);
-
-            return supportedVersion.contains(version);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
+    public void initialize(JavaVersion constraintAnnotation) {
+        super.init(constraintAnnotation.message(), metaData.getJavaVersion().values);
     }
-
 }
