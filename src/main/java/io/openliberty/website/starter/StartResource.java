@@ -12,7 +12,6 @@ package io.openliberty.website.starter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.zip.ZipOutputStream;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -28,6 +27,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 
 import io.openliberty.website.starter.metadata.MetadataVisibilityStrategy;
 import io.openliberty.website.starter.metadata.StartMetadata;
@@ -67,7 +68,7 @@ public class StartResource extends Application {
             throws IOException {
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
-        ZipOutputStream zipOut = new ZipOutputStream(bytesOut);
+        ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
 
         boolean result = buildSystem.create().appName(appName)
                                     .groupName(groupId)

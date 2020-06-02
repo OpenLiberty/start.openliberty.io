@@ -28,6 +28,11 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.20</version>
+          </dependency>
         <!-- Junit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

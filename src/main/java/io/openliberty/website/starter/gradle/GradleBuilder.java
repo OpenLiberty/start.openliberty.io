@@ -11,7 +11,8 @@
 package io.openliberty.website.starter.gradle;
 
 import java.io.IOException;
-import java.util.zip.ZipOutputStream;
+
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 
 import io.openliberty.website.starter.AbstractBaseStarterBuilder;
 
@@ -26,10 +27,10 @@ public class GradleBuilder extends AbstractBaseStarterBuilder {
     }
 
     @Override
-    public boolean build(ZipOutputStream zipOut) {
+    public boolean build(ZipArchiveOutputStream zipOut) {
         try {
             addDirectory(zipOut, "src/main/java/" + groupId.replaceAll("\\.", "/"));
-            addFile(zipOut, "gradlew", GradleBuilder.class.getResourceAsStream("gradlew"));
+            addExecutableFile(zipOut, "gradlew", GradleBuilder.class.getResourceAsStream("gradlew"));
             addFile(zipOut, "gradlew.bat", GradleBuilder.class.getResourceAsStream("gradlew.bat"));
             addFile(zipOut, "gradle/wrapper/gradle-wrapper.jar", GradleBuilder.class.getResourceAsStream("gradle-wrapper.jar"));
             addFile(zipOut, "gradle/wrapper/gradle-wrapper.properties", GradleBuilder.class.getResourceAsStream("gradle-wrapper.properties"));

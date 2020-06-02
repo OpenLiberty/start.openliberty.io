@@ -10,7 +10,7 @@
  *******************************************************************************/
 package io.openliberty.website.starter;
 
-import java.util.zip.ZipOutputStream;
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 
 public interface StarterBuilder {
 
@@ -24,6 +24,6 @@ public interface StarterBuilder {
 
     StarterBuilder microProfileVersion(String microProfileVersion);
 
-    boolean build(ZipOutputStream zipOut);
+    boolean build(ZipArchiveOutputStream zipOut);
 
 }

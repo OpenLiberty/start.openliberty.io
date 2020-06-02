@@ -11,7 +11,8 @@
 package io.openliberty.website.starter.maven;
 
 import java.io.IOException;
-import java.util.zip.ZipOutputStream;
+
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 
 import io.openliberty.website.starter.AbstractBaseStarterBuilder;
 
@@ -24,10 +25,10 @@ public class MavenBuilder extends AbstractBaseStarterBuilder {
     }
 
     @Override
-    public boolean build(ZipOutputStream zipOut) {
+    public boolean build(ZipArchiveOutputStream zipOut) {
         try {
             addDirectory(zipOut, "src/main/java/" + groupId.replaceAll("\\.", "/"));
-            addFile(zipOut, "mvnw", MavenBuilder.class.getResourceAsStream("mvnw"));
+            addExecutableFile(zipOut, "mvnw", MavenBuilder.class.getResourceAsStream("mvnw"));
             addFile(zipOut, "mvnw.cmd", MavenBuilder.class.getResourceAsStream("mvnw.cmd"));
             addFile(zipOut, ".mvn/wrapper/maven-wrapper.jar", MavenBuilder.class.getResourceAsStream("maven-wrapper.jar"));
             addFile(zipOut, ".mvn/wrapper/maven-wrapper.properties", MavenBuilder.class.getResourceAsStream("maven-wrapper.properties"));

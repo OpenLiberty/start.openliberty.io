@@ -18,10 +18,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
-public class MockZipOutputStream extends ZipOutputStream {
+import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
+
+public class MockZipOutputStream extends ZipArchiveOutputStream {
 
     private List<String> fileNames = new ArrayList<>();
     private Map<String, ByteArrayOutputStream> capturedFiles = new HashMap<>();
@@ -33,7 +34,7 @@ public class MockZipOutputStream extends ZipOutputStream {
     }
 
     @Override
-    public void putNextEntry(ZipEntry e) {
+    public void putArchiveEntry(ArchiveEntry e) {
         String name = e.getName();
         fileNames.add(name);
         if (filesToCapture.contains(name)) {
@@ -45,7 +46,7 @@ public class MockZipOutputStream extends ZipOutputStream {
     }
 
     @Override
-    public void closeEntry() throws IOException {
+    public void closeArchiveEntry() throws IOException {
         bytesOut = null;
     }
 

@@ -16,12 +16,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
+
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 
 import io.openliberty.website.starter.StarterBuilder;
 
-public abstract class AbstractBaseStarterBuilder implements StarterBuilder{
+public abstract class AbstractBaseStarterBuilder implements StarterBuilder {
     protected String appName;
     protected String groupId;
     protected String javaVersion;
@@ -95,33 +96,46 @@ public abstract class AbstractBaseStarterBuilder implements StarterBuilder{
         return this;
     }
 
-    protected static void addDirectory(ZipOutputStream zipOut, String dirName) throws IOException {
-        ZipEntry entry = new ZipEntry("/src/main/java/");
-        zipOut.putNextEntry(entry);
-        zipOut.closeEntry();
+    protected static void addDirectory(ZipArchiveOutputStream zipOut, String dirName) throws IOException {
+        ZipArchiveEntry entry = new ZipArchiveEntry("/src/main/java/");
+        zipOut.putArchiveEntry(entry);
+        zipOut.closeArchiveEntry();
     }
 
-    protected static void addFile(ZipOutputStream zipOut, String fileName, InputStream in) throws IOException {
-        ZipEntry entry = new ZipEntry(fileName);
-        zipOut.putNextEntry(entry);
+    protected static void addExecutableFile(ZipArchiveOutputStream zipOut, String fileName, InputStream in) throws IOException {
+        ZipArchiveEntry entry = new ZipArchiveEntry(fileName);
+        // rwxrw-r-- - 111110100 - 500
+        entry.setUnixMode(500);
+        addFile(zipOut, entry, in);
+    }
+
+    protected static void addFile(ZipArchiveOutputStream zipOut, String fileName, InputStream in) throws IOException {
+        ZipArchiveEntry entry = new ZipArchiveEntry(fileName);
+        // rw-rw-r-- - 110110100 - 436
+        entry.setUnixMode(436);
+        addFile(zipOut, entry, in);
+    }
+
+    private static void addFile(ZipArchiveOutputStream zipOut, ZipArchiveEntry entry, InputStream in) throws IOException {
+        zipOut.putArchiveEntry(entry);
         byte[] bytes = new byte[1024 * 4];
         int len;
         while ((len = in.read(bytes)) > 0) {
             zipOut.write(bytes, 0, len);
         }
-        zipOut.closeEntry();
+        zipOut.closeArchiveEntry();
     }
 
-    protected void addFileWithPropertyReplacement(ZipOutputStream zipOut, String fileName, String fileContent) throws IOException{
-        ZipEntry entry = new ZipEntry(fileName);
-        zipOut.putNextEntry(entry);
+    protected void addFileWithPropertyReplacement(ZipArchiveOutputStream zipOut, String fileName, String fileContent) throws IOException{
+        ZipArchiveEntry entry = new ZipArchiveEntry(fileName);
+        zipOut.putArchiveEntry(entry);
 
         for (Map.Entry<String, String> propEntry : properties.entrySet()) {
             fileContent = fileContent.replaceAll("\\$\\{" + propEntry.getKey() + "\\}", propEntry.getValue());
         }
 
         zipOut.write(fileContent.getBytes("utf-8"));
-        zipOut.closeEntry();
+        zipOut.closeArchiveEntry();
     }
 
     protected static String readFile(InputStream in) {
