@@ -8,20 +8,11 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package io.openliberty.website.starter;
+package io.openliberty.website.starter.metadata;
 
-import io.openliberty.website.starter.impl.StarterBuilderImpl;
-
-public enum BuildSystemType {
-    maven {
-        public StarterBuilder create() {
-            return new StarterBuilderImpl().template("maven");
-        }
-    }, gradle {
-        public StarterBuilder create() {
-            return new StarterBuilderImpl().template("gradle");
-        }
-    }; 
-
-    public abstract StarterBuilder create();
+public class TemplateMetadata {
+    public String template;
+    public String fileName;
+    public boolean executable = false;
+    public boolean process = false;
 }

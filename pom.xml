@@ -33,6 +33,11 @@
             <artifactId>commons-compress</artifactId>
             <version>1.20</version>
           </dependency>
+          <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.30</version>
+          </dependency>
         <!-- Junit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

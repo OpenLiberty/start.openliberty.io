@@ -8,20 +8,13 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package io.openliberty.website.starter;
+package io.openliberty.website.starter.metadata;
 
-import io.openliberty.website.starter.impl.StarterBuilderImpl;
+import java.util.HashMap;
+import java.util.List;
 
-public enum BuildSystemType {
-    maven {
-        public StarterBuilder create() {
-            return new StarterBuilderImpl().template("maven");
-        }
-    }, gradle {
-        public StarterBuilder create() {
-            return new StarterBuilderImpl().template("gradle");
-        }
-    }; 
+public class Templates extends HashMap<String, List<TemplateMetadata>> {
 
-    public abstract StarterBuilder create();
+    private static final long serialVersionUID = 6114202541074083313L;
+    
 }

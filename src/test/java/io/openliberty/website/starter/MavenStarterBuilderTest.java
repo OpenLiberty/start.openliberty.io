@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 public class MavenStarterBuilderTest {
+
     @Test
     public void testJakartaEE8() throws UnsupportedEncodingException, IOException, XmlPullParserException {
         MockZipOutputStream mockZip = MockZipOutputStream.create().capture("pom.xml").capture("src/main/liberty/config/server.xml");

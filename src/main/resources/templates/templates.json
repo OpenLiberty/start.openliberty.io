@@ -1,0 +1,76 @@
+{
+    "gradle": [
+            {
+                "template": "gradle/build.gradle",
+                "fileName": "build.gradle",
+                "process": true
+            },
+            {
+                "template": "gradle/gradlew",
+                "fileName": "gradlew",
+                "executable": true
+            },
+            {
+                "template": "gradle/gradlew.bat",
+                "fileName": "gradlew.bat"
+            },
+            {
+                "template": "gradle/settings.gradle",
+                "fileName": "settings.gradle",
+                "process": true
+            },
+            {
+                "template": "gradle/gradle-wrapper.jar",
+                "fileName": "gradle/wrapper/gradle-wrapper.jar"
+            },
+            {
+                "template": "gradle/gradle-wrapper.properties",
+                "fileName": "gradle/wrapper/gradle-wrapper.properties"
+            }
+        ],
+    "maven": [
+        {
+            "template": "maven/maven-wrapper.jar",
+            "fileName": ".mvn/wrapper/maven-wrapper.jar"
+        },
+        {
+            "template": "maven/maven-wrapper.properties",
+            "fileName": ".mvn/wrapper/maven-wrapper.properties"
+        },
+        {
+            "template": "maven/mvnw",
+            "fileName": "mvnw",
+            "executable": true
+        },
+        {
+            "template": "maven/mvnw.cmd",
+            "fileName": "mvnw.cmd"
+        },
+        {
+            "template": "maven/pom.xml",
+            "fileName": "pom.xml",
+            "process": true
+        }
+
+    ],
+    "docker": [
+        {
+            "template": "docker/Dockerfile",
+            "fileName": "Dockerfile",
+            "process": true
+        },
+           {
+            "template": "docker/dockerignore",
+            "fileName": ".dockerignore",
+            "process": true
+        }
+    ],
+    "server": [
+        {
+            "template": "server/server.xml",
+            "fileName": "src/main/liberty/config/server.xml",
+            "process": true
+        }
+    ]
+}
+
