@@ -61,6 +61,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     public StarterBuilderImpl() {
         requestedTemplates.add("server");
         requestedTemplates.add("docker");
+        requestedTemplates.add("rest");
     }
 
     @Override
@@ -74,6 +75,8 @@ public class StarterBuilderImpl implements StarterBuilder {
     public final StarterBuilder groupName(String groupId) {
         this.groupId = groupId;
         properties.put("groupName", groupId);
+        properties.put("basePackageName", groupId);
+        properties.put("basePackagePath", groupId.replaceAll("\\.", "/"));
         return this;
     }
 
@@ -119,16 +122,17 @@ public class StarterBuilderImpl implements StarterBuilder {
     @Override 
     public final boolean build(ZipArchiveOutputStream zipOut) {
         try {
-            addDirectory(zipOut, groupId.replaceAll("\\.", "/"));
+            addDirectory(zipOut, properties.get("basePackagePath") + "/");
             for (String templateName : requestedTemplates) {
                 List<TemplateMetadata> templateFiles = templates.get(templateName);
                 for (TemplateMetadata template : templateFiles) {
+                    String resolvedFileName = resolve(template.fileName);
                     if (template.process) {
-                        addFileWithPropertyReplacement(zipOut, template.template, template.fileName);
+                        addFileWithPropertyReplacement(zipOut, template.template, resolvedFileName);
                     } else if (template.executable) {
-                        addExecutableFile(zipOut, template.template, template.fileName);
+                        addExecutableFile(zipOut, template.template, resolvedFileName);
                     } else {
-                        addFile(zipOut, template.template, template.fileName);
+                        addFile(zipOut, template.template, resolvedFileName);
                     }
                 }
             }
@@ -139,6 +143,34 @@ public class StarterBuilderImpl implements StarterBuilder {
         return false;
     }
 
+
+    private String resolve(String fileName) {
+        String resolvedFileName = fileName;
+        if (fileName.contains("${")) {
+            StringBuilder builder = new StringBuilder();
+            String[] parts = fileName.split("\\$\\{");
+            for (String part : parts) {
+                int index = part.indexOf('}');
+                if (index == -1) {
+                    builder.append(part);
+                } else {
+                    String key = part.substring(0, index);
+                    String remainder = part.substring(index + 1);
+                    String replacement = properties.get(key);
+                    if (replacement == null) {
+                        builder.append("${");
+                        builder.append(key);
+                        builder.append("}");
+                    } else {
+                        builder.append(properties.get(key));
+                    }
+                    builder.append(remainder);
+                }
+            }
+            resolvedFileName = builder.toString();
+        }
+        return resolvedFileName;
+    }
 
     private void addFile(ZipArchiveOutputStream zipOut, String template, String fileName) throws IOException {
         addFile(zipOut, new ZipArchiveEntry(fileName), openTemplateFile(template));

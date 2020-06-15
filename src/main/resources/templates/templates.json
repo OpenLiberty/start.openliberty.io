@@ -71,6 +71,13 @@
             "fileName": "src/main/liberty/config/server.xml",
             "process": true
         }
+    ],
+    "rest": [
+        {
+            "template": "rest/RestApplication.java.template",
+            "fileName": "src/main/java/${basePackagePath}/rest/RestApplication.java",
+            "process": true
+        }
     ]
 }
 
