@@ -17,12 +17,12 @@ import io.openliberty.website.starter.BuildSystemType;
 
 @ApplicationScoped
 public class StartMetadata {
-    private SimpleStringMetadata appName = new SimpleStringMetadata("appName", "string", "appName");
-    private SimpleStringMetadata groupName = new SimpleStringMetadata("groupName", "string", "com.demo");
-    private EnumStringMetadata javaVersion = new EnumStringMetadata("javaVersion", "11", Constants.SUPPORTED_JAVA_VERSIONS);
-    private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>("buildSystem", BuildSystemType.maven, BuildSystemType.values());
-    private EnumStringMetadata jakartaEEVersion = new EnumStringMetadata("jakartaEEVersion", "8", Constants.SUPPORTED_JAKARTAEE_VERSIONS);
-    private EnumStringMetadata microProfileVersion  = new EnumStringMetadata("microProfileVersion", "3.3", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
+    private SimpleStringMetadata appName = new SimpleStringMetadata("App Name", "string", "appName");
+    private SimpleStringMetadata groupName = new SimpleStringMetadata("Base Package", "string", "com.demo");
+    private EnumStringMetadata javaVersion = new EnumStringMetadata("Java SE Version", "11", Constants.SUPPORTED_JAVA_VERSIONS);
+    private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>("Build System", BuildSystemType.maven, BuildSystemType.values());
+    private EnumStringMetadata jakartaEEVersion = new EnumStringMetadata("Java EE / Jakarta EE Version", "8", Constants.SUPPORTED_JAKARTAEE_VERSIONS);
+    private EnumStringMetadata microProfileVersion  = new EnumStringMetadata("MicroProfile Version", "3.3", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
 
     @JsonbProperty("a")
     public SimpleStringMetadata getAppName() { return appName; }
