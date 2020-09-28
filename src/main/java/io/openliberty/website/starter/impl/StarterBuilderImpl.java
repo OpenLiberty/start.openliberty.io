@@ -29,6 +29,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import io.openliberty.website.starter.BuildSystemType;
 import io.openliberty.website.starter.StarterBuilder;
 import io.openliberty.website.starter.metadata.TemplateMetadata;
 
@@ -118,6 +119,17 @@ public class StarterBuilderImpl implements StarterBuilder {
         requestedTemplates.add(templateName);
         return this;
     }
+    
+	@Override
+	public final StarterBuilder buildPath(String buildSystem) {
+		if("maven" == buildSystem) {
+	  		properties.put("buildPath", "target/");
+		} else if ("gradle" == buildSystem) {
+	  		properties.put("buildPath", "build/libs/");
+		}
+		return this;
+	}   
+    
 
     @Override 
     public final boolean build(ZipArchiveOutputStream zipOut) {

@@ -28,4 +28,6 @@ public interface StarterBuilder {
 
     boolean build(ZipArchiveOutputStream zipOut);
 
+	StarterBuilder buildPath(String buildSystem);
+
 }
