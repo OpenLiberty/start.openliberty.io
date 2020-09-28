@@ -75,7 +75,7 @@ public class StartResource extends Application {
                                     .javaVersion(javaVersion)
                                     .jakartaEEVersion(jakartaEEVersion)
                                     .microProfileVersion(microProfileVersion)
-                                    .buildPath(buildSystem.toString())
+                                    .buildType(buildSystem.toString())
                                     .build(zipOut); 
 
         zipOut.close();
