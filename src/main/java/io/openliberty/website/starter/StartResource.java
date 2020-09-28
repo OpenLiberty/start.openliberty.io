@@ -59,12 +59,12 @@ public class StartResource extends Application {
     @GET
     @Produces("application/zip")
     @Path("start")
-    public Response createAppZip(@QueryParam("appName") String appName,
-                                 @QueryParam("groupName") String groupId, 
-                                 @JavaVersion @QueryParam("javaVersion") String javaVersion,
-                                 @QueryParam("buildSystem") BuildSystemType buildSystem,
-                                 @JakartaEEVersion @QueryParam("jakartaEEVersion") String jakartaEEVersion,
-                                 @MicroProfileVersion @QueryParam("microProfileVersion") String microProfileVersion) 
+    public Response createAppZip(@QueryParam("a") String appName,
+                                 @QueryParam("g") String groupId, 
+                                 @JavaVersion @QueryParam("j") String javaVersion,
+                                 @QueryParam("b") BuildSystemType buildSystem,
+                                 @JakartaEEVersion @QueryParam("e") String jakartaEEVersion,
+                                 @MicroProfileVersion @QueryParam("m") String microProfileVersion) 
             throws IOException {
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();

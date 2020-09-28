@@ -24,16 +24,16 @@ public class StartMetadata {
     private EnumStringMetadata jakartaEEVersion = new EnumStringMetadata("jakartaEEVersion", "8", Constants.SUPPORTED_JAKARTAEE_VERSIONS);
     private EnumStringMetadata microProfileVersion  = new EnumStringMetadata("microProfileVersion", "3.3", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
 
-    @JsonbProperty("appName")
+    @JsonbProperty("a")
     public SimpleStringMetadata getAppName() { return appName; }
-    @JsonbProperty("groupName")
+    @JsonbProperty("g")
     public SimpleStringMetadata getGroupName() { return groupName; }
-    @JsonbProperty("buildSystem")
+    @JsonbProperty("b")
     public EnumMetadata<BuildSystemType> getBuildSystem() { return buildSystem; }
-    @JsonbProperty("javaVersion")
+    @JsonbProperty("j")
     public EnumStringMetadata getJavaVersion() { return javaVersion; }
-    @JsonbProperty("jakartaEEVersion")
+    @JsonbProperty("e")
     public EnumStringMetadata getJakartaEEVersion() { return jakartaEEVersion; }
-    @JsonbProperty("microProfileVersion")
+    @JsonbProperty("m")
     public EnumStringMetadata getMicroProfileVersion() { return microProfileVersion; }
 }

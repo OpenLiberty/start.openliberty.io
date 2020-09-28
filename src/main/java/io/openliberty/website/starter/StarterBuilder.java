@@ -23,6 +23,8 @@ public interface StarterBuilder {
     StarterBuilder jakartaEEVersion(String jakartaEEVersion);
 
     StarterBuilder microProfileVersion(String microProfileVersion);
+    
+    StarterBuilder template(String templateName);
 
     boolean build(ZipArchiveOutputStream zipOut);
 
