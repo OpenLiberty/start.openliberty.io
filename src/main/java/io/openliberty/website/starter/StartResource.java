@@ -29,6 +29,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import io.openliberty.website.starter.metadata.MetadataVisibilityStrategy;
 import io.openliberty.website.starter.metadata.StartMetadata;
@@ -59,12 +60,12 @@ public class StartResource extends Application {
     @GET
     @Produces("application/zip")
     @Path("start")
-    public Response createAppZip(@QueryParam("a") String appName,
-                                 @QueryParam("g") String groupId, 
-                                 @JavaVersion @QueryParam("j") String javaVersion,
-                                 @QueryParam("b") BuildSystemType buildSystem,
-                                 @JakartaEEVersion @QueryParam("e") String jakartaEEVersion,
-                                 @MicroProfileVersion @QueryParam("m") String microProfileVersion) 
+    public Response createAppZip(@QueryParam("a") @Parameter(description="App Name") String appName,
+                                 @QueryParam("g") @Parameter(description="Base Package") String groupId, 
+                                 @JavaVersion @QueryParam("j") @Parameter(description="Java SE Version") String javaVersion,
+                                 @QueryParam("b") @Parameter(description="Build System") BuildSystemType buildSystem,
+                                 @JakartaEEVersion @QueryParam("e") @Parameter(description="Java EE / Jakarta EE Version") String jakartaEEVersion,
+                                 @MicroProfileVersion @QueryParam("m") @Parameter(description="MicroProfile Version") String microProfileVersion) 
             throws IOException {
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
