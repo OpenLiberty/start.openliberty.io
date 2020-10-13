@@ -25,4 +25,5 @@ public class JavaVersionValidator extends AbstractEnumValidator<JavaVersion, Str
     public void initialize(JavaVersion constraintAnnotation) {
         super.init(constraintAnnotation.message(), metaData.getJavaVersion().values);
     }
+    
 }

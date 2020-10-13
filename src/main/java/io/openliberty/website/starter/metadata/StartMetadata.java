@@ -14,15 +14,25 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.json.bind.annotation.JsonbProperty;
 
 import io.openliberty.website.starter.BuildSystemType;
+import io.openliberty.website.starter.NLS;
 
 @ApplicationScoped
 public class StartMetadata {
-    private SimpleStringMetadata appName = new SimpleStringMetadata("App Name", "string", "appName");
-    private SimpleStringMetadata groupName = new SimpleStringMetadata("Base Package", "string", "com.demo");
-    private EnumStringMetadata javaVersion = new EnumStringMetadata("Java SE Version", "11", Constants.SUPPORTED_JAVA_VERSIONS);
-    private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>("Build System", BuildSystemType.maven, BuildSystemType.values());
-    private EnumStringMetadata jakartaEEVersion = new EnumStringMetadata("Java EE / Jakarta EE Version", "8", Constants.SUPPORTED_JAKARTAEE_VERSIONS);
-    private EnumStringMetadata microProfileVersion  = new EnumStringMetadata("MicroProfile Version", "3.3", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
+    private SimpleStringMetadata appName = new SimpleStringMetadata(NLS.getMessage("appName"), "string", "appName");
+    private SimpleStringMetadata groupName = new SimpleStringMetadata(NLS.getMessage("basePackage"), "string", "com.demo");
+    private EnumStringMetadata javaVersion = new EnumStringMetadata(NLS.getMessage("javaVersion"), "11", Constants.SUPPORTED_JAVA_VERSIONS);
+    private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>(NLS.getMessage("buildSystem"), BuildSystemType.maven, BuildSystemType.values());
+    private EnumStringMetadata jakartaEEVersion = new EnumStringMetadata(NLS.getMessage("jakartaEEVersion"), "8", Constants.SUPPORTED_JAKARTAEE_VERSIONS);
+    private EnumStringMetadata microProfileVersion  = new EnumStringMetadata(NLS.getMessage("microProfileVersion"), "3.3", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
+    
+    public void updateDisplayStrings() {
+    	appName.updateString(NLS.getMessage("appName"));
+    	groupName.updateString(NLS.getMessage("basePackage"));
+        javaVersion.updateString(NLS.getMessage("javaVersion"));
+        buildSystem.updateString(NLS.getMessage("buildSystem"));
+        jakartaEEVersion.updateString(NLS.getMessage("jakartaEEVersion"));
+        microProfileVersion.updateString(NLS.getMessage("microProfileVersion"));
+    }
 
     @JsonbProperty("a")
     public SimpleStringMetadata getAppName() { return appName; }

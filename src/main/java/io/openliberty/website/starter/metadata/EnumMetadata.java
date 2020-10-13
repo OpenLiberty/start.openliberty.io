@@ -31,4 +31,8 @@ public class EnumMetadata<T extends Enum<T>> {
         defaultValue = dv.toString();
         values = Arrays.asList(v).stream().map(t -> t.toString()).collect(Collectors.toList());
     }
+    
+    public void updateString(String n) {
+    	name = n;
+    }
 }

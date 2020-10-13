@@ -30,4 +30,8 @@ public class EnumStringMetadata {
         defaultValue = dv;
         values = Arrays.asList(v);
     }
+    
+    public void updateString(String n) {
+    	name = n;
+    }
 }

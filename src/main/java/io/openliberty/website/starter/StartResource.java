@@ -12,6 +12,7 @@ package io.openliberty.website.starter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -19,12 +20,14 @@ import javax.inject.Inject;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -42,59 +45,75 @@ import io.openliberty.website.starter.validation.MicroProfileVersion;
 @RequestScoped
 public class StartResource extends Application {
 
-    @Inject
-    private StartMetadata md;
-    private String metadataJson;
+	@Inject
+	private StartMetadata md;
+	private String metadataJson;
 
-    @PostConstruct
-    public void init() {
-        JsonbConfig cfg = new JsonbConfig();
-        cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
-        try (Jsonb json = JsonbBuilder.create(cfg)) {
-            metadataJson = json.toJson(md);
-        } catch (Exception e) {
-            // ignore this
-        }
-    }
+	@PostConstruct
+	public void init() {
+		JsonbConfig cfg = new JsonbConfig();
+		cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
+		try (Jsonb json = JsonbBuilder.create(cfg)) {
+			metadataJson = json.toJson(md);
+		} catch (Exception e) {
+			// ignore this
+		}
+	}
+	
+	public void updateNLSStrings(Locale locale) {
+		NLS.loadBundle(locale);
+		md.updateDisplayStrings();
+		
+		JsonbConfig cfg = new JsonbConfig();
+		cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
+		try (Jsonb json = JsonbBuilder.create(cfg)) {
+			metadataJson = json.toJson(md);
+		} catch (Exception e) {
+			// ignore this
+		}
+	}
 
-    @GET
-    @Produces("application/zip")
-    @Path("start")
-    public Response createAppZip(@QueryParam("a") @Parameter(description="App Name") String appName,
-                                 @QueryParam("g") @Parameter(description="Base Package") String groupId, 
-                                 @JavaVersion @QueryParam("j") @Parameter(description="Java SE Version") String javaVersion,
-                                 @QueryParam("b") @Parameter(description="Build System") BuildSystemType buildSystem,
-                                 @JakartaEEVersion @QueryParam("e") @Parameter(description="Java EE / Jakarta EE Version") String jakartaEEVersion,
-                                 @MicroProfileVersion @QueryParam("m") @Parameter(description="MicroProfile Version") String microProfileVersion) 
-            throws IOException {
+	@GET
+	@Produces("application/zip")
+	@Path("start")
+	public Response createAppZip(@Context HttpServletRequest req, @QueryParam("a") @Parameter(description = "App Name") String appName,
+			@QueryParam("g") @Parameter(description = "Base Package") String groupId,
+			@JavaVersion @QueryParam("j") @Parameter(description = "Java SE Version") String javaVersion,
+			@QueryParam("b") @Parameter(description = "Build System") BuildSystemType buildSystem,
+			@JakartaEEVersion @QueryParam("e") @Parameter(description = "Java EE / Jakarta EE Version") String jakartaEEVersion,
+			@MicroProfileVersion @QueryParam("m") @Parameter(description = "MicroProfile Version") String microProfileVersion)
+			throws IOException {
+		
+		updateNLSStrings(req.getLocale());			
+		
+		ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
+		ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
 
-        ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
-        ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
+		boolean result = buildSystem.create().appName(appName)
+				.groupName(groupId)
+				.javaVersion(javaVersion)
+				.jakartaEEVersion(jakartaEEVersion)
+				.microProfileVersion(microProfileVersion)
+				.buildType(buildSystem.toString())
+				.build(zipOut);
 
-        boolean result = buildSystem.create().appName(appName)
-                                    .groupName(groupId)
-                                    .javaVersion(javaVersion)
-                                    .jakartaEEVersion(jakartaEEVersion)
-                                    .microProfileVersion(microProfileVersion)
-                                    .buildType(buildSystem.toString())
-                                    .build(zipOut); 
+		zipOut.close();
 
-        zipOut.close();
+		if (result) {
+			return Response.ok(bytesOut.toByteArray())
+					.header("Content-Disposition", "attachment; filename=\"" + appName + ".zip\"")
+					.header("Content-Transfer-Encoding", "binary")
+					.build();
+		} else {
+			return Response.status(500).build();
+		}
+	}
 
-        if (result) {
-            return Response.ok(bytesOut.toByteArray())
-                           .header("Content-Disposition", "attachment; filename=\"" + appName + ".zip\"")
-                           .header("Content-Transfer-Encoding", "binary")
-                           .build();
-        } else {
-            return Response.status(500).build();
-        }
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("start/info")
-    public Response getInfo() {
-        return Response.ok(metadataJson).build();
-    }
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("start/info")
+	public Response getInfo(@Context HttpServletRequest req) {
+		updateNLSStrings(req.getLocale());
+		return Response.ok(metadataJson).build();
+	}
 }

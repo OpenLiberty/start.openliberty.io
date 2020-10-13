@@ -29,6 +29,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import io.openliberty.website.starter.NLS;
 import io.openliberty.website.starter.StarterBuilder;
 import io.openliberty.website.starter.metadata.TemplateMetadata;
 
@@ -223,7 +224,7 @@ public class StarterBuilderImpl implements StarterBuilder {
         try {
             template.process(properties, write);
         } catch (TemplateException te) {
-            throw new IOException("Failed to process template", te);
+            throw new IOException(NLS.getMessage("templateProcessError"), te);
         }
 
         ZipArchiveEntry entry = new ZipArchiveEntry(fileName);

@@ -26,4 +26,8 @@ public class SimpleStringMetadata {
         type = t;
         defaultValue = dv;
     }
+    
+    public void updateString(String n) {
+    	name = n;
+    }
 }
