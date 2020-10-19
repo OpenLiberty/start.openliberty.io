@@ -32,6 +32,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${appName}</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
