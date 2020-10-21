@@ -6,10 +6,10 @@ import java.util.ResourceBundle;
 
 public class NLS {
     
-    public static ResourceBundle messages = ResourceBundle.getBundle("io.openliberty.website.starter.metadata.nls.resources.Messages", new Locale("en_US"));
+    public static ResourceBundle messages = ResourceBundle.getBundle("io.openliberty.website.starter.metadata.nls.resources.Messages");
 
     public static void loadBundle(Locale locale) {
-    	messages = ResourceBundle.getBundle("io.openliberty.website.starter.metadata.nls.resources.Messages", locale); 
+    	messages = ResourceBundle.getBundle("io.openliberty.website.starter.metadata.nls.resources.Messages", locale);
     }
    
     public static String getMessage(String key, Object... args) {
