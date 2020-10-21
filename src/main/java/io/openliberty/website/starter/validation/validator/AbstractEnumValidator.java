@@ -16,20 +16,26 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import io.openliberty.website.starter.NLS;
+
 public abstract class AbstractEnumValidator<A extends Annotation, T> implements ConstraintValidator<A, T> {
 
     private List<T> values;
+    private String messageKey;
     private String template;
 
     @Override
     public boolean isValid(T value, ConstraintValidatorContext context) {
+    	// Updates validation string with the right NLS resource bundle
+    	this.template = NLS.getMessage(messageKey).replaceAll("\\{permittedValues\\}",values.toString());
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(template).addConstraintViolation();
         return values.contains(value);
     }
 
-    public void init(String msg, List<T> values) { 
+    public void init(String messageKey, List<T> values) {
+    	this.messageKey = messageKey;
         this.values = values;
-        template = msg.replaceAll("\\{permittedValues\\}",values.toString());
+        this.template = NLS.getMessage(messageKey).replaceAll("\\{permittedValues\\}",values.toString());
     }
 }

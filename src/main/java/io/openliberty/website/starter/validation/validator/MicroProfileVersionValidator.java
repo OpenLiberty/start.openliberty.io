@@ -13,6 +13,7 @@ package io.openliberty.website.starter.validation.validator;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
+import io.openliberty.website.starter.NLS;
 import io.openliberty.website.starter.metadata.StartMetadata;
 import io.openliberty.website.starter.validation.MicroProfileVersion;
 
@@ -23,6 +24,6 @@ public class MicroProfileVersionValidator extends AbstractEnumValidator<MicroPro
     private StartMetadata metaData;
 
     public void initialize(MicroProfileVersion constraintAnnotation) {
-        super.init(constraintAnnotation.message(), metaData.getMicroProfileVersion().values);
+        super.init(NLS.getMessage(constraintAnnotation.messageKey()), metaData.getMicroProfileVersion().values);
     }
 }

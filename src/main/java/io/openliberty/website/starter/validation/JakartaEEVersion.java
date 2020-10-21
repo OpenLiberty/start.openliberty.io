@@ -26,7 +26,7 @@ import io.openliberty.website.starter.validation.validator.JakartaEEVersionValid
 @Documented
 @Constraint(validatedBy = JakartaEEVersionValidator.class)
 public @interface JakartaEEVersion {
-    String message() default "Jakarta EE version requested was ${validatedValue} but must be one of: {permittedValues}";
+    String messageKey() default "jakartaEEValidationMessage";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

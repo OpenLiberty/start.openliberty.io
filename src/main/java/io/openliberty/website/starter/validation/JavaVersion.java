@@ -26,7 +26,7 @@ import io.openliberty.website.starter.validation.validator.JavaVersionValidator;
 @Documented
 @Constraint(validatedBy = JavaVersionValidator.class)
 public @interface JavaVersion {
-    String message() default "Java version requested was ${validatedValue} but must be one of: {permittedValues}";
+	String messageKey() default "javaValidationMessage";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

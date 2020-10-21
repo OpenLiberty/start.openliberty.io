@@ -13,6 +13,7 @@ package io.openliberty.website.starter.validation.validator;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
+import io.openliberty.website.starter.NLS;
 import io.openliberty.website.starter.metadata.StartMetadata;
 import io.openliberty.website.starter.validation.JavaVersion;
 
@@ -23,7 +24,6 @@ public class JavaVersionValidator extends AbstractEnumValidator<JavaVersion, Str
     private StartMetadata metaData;
 
     public void initialize(JavaVersion constraintAnnotation) {
-        super.init(constraintAnnotation.message(), metaData.getJavaVersion().values);
+        super.init(NLS.getMessage(constraintAnnotation.messageKey()), metaData.getJavaVersion().values);
     }
-    
 }
