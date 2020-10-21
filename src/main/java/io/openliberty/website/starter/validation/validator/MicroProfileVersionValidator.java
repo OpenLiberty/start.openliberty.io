@@ -24,6 +24,6 @@ public class MicroProfileVersionValidator extends AbstractEnumValidator<MicroPro
     private StartMetadata metaData;
 
     public void initialize(MicroProfileVersion constraintAnnotation) {
-        super.init(NLS.getMessage(constraintAnnotation.messageKey()), metaData.getMicroProfileVersion().values);
+        super.init(constraintAnnotation.messageKey(), metaData.getMicroProfileVersion().values);
     }
 }

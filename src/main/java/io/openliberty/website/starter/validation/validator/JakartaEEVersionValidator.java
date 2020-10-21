@@ -24,6 +24,6 @@ public class JakartaEEVersionValidator extends AbstractEnumValidator<JakartaEEVe
     private StartMetadata metaData;
 
     public void initialize(JakartaEEVersion constraintAnnotation) {
-        super.init(NLS.getMessage(constraintAnnotation.messageKey()), metaData.getJakartaEEVersion().values);
+        super.init(constraintAnnotation.messageKey(), metaData.getJakartaEEVersion().values);
     }
 }
