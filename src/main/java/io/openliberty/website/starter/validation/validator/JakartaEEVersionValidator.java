@@ -13,7 +13,6 @@ package io.openliberty.website.starter.validation.validator;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
-import io.openliberty.website.starter.NLS;
 import io.openliberty.website.starter.metadata.StartMetadata;
 import io.openliberty.website.starter.validation.JakartaEEVersion;
 
@@ -24,6 +23,6 @@ public class JakartaEEVersionValidator extends AbstractEnumValidator<JakartaEEVe
     private StartMetadata metaData;
 
     public void initialize(JakartaEEVersion constraintAnnotation) {
-        super.init(constraintAnnotation.messageKey(), metaData.getJakartaEEVersion().values);
+    	super.init(constraintAnnotation.message(), metaData.getJakartaEEVersion().values);
     }
 }
