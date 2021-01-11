@@ -21,6 +21,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -76,15 +77,15 @@ public class StartResource extends Application {
 	@GET
 	@Produces("application/zip")
 	@Path("start")
-	public Response createAppZip(@Context HttpServletRequest req, @QueryParam("a") @Parameter(description = "App Name") String appName,
-			@QueryParam("g") @Parameter(description = "Base Package") String groupId,
+	public Response createAppZip(@Context HttpServletRequest req, @QueryParam("a") @Pattern(regexp = "^[A-Za-z0-9]+$", message="Use alphanumeric characters only") @Parameter(description = "App Name") String appName,
+			@QueryParam("g") @Pattern(regexp = "^[a-z\\.]*[a-z]$", message = "Group name must be lowercase letters separated by periods.") @Parameter(description = "Base Package") String groupId,
 			@JavaVersion @QueryParam("j") @Parameter(description = "Java SE Version") String javaVersion,
 			@QueryParam("b") @Parameter(description = "Build System") BuildSystemType buildSystem,
 			@JakartaEEVersion @QueryParam("e") @Parameter(description = "Java EE / Jakarta EE Version") String jakartaEEVersion,
 			@MicroProfileVersion @QueryParam("m") @Parameter(description = "MicroProfile Version") String microProfileVersion)
 			throws IOException {
 		
-		updateNLSStrings(req.getLocale());			
+		updateNLSStrings(req.getLocale());
 		
 		ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
 		ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
