@@ -1,0 +1,12 @@
+memory: 384M
+instances: 1
+disk_quota: 1024M
+path: target/openliberty-starter-1.0-SNAPSHOT.war
+timeout: 180
+
+applications:
+# US South
+- name: openliberty-starter
+  memory: 256M
+  routes:
+    - route: openliberty-starter.us-east.mybluemix.net
