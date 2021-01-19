@@ -5,8 +5,21 @@ path: target/openliberty-starter-1.0-SNAPSHOT.war
 timeout: 180
 
 applications:
-# US South
-- name: openliberty-starter
+# US East
+- name: start-openliberty-blue-east
   memory: 256M
   routes:
     - route: openliberty-starter.us-east.mybluemix.net
+- name: start-openliberty-green-east
+  memory: 256M
+  routes:
+    - route: openliberty-starter.us-east.mybluemix.net
+# Germany
+- name: start-openliberty-blue-germany
+  memory: 256M
+  routes:
+    - route: openliberty-starter.eu-de.mybluemix.net
+- name: start-openliberty-green-germany
+  memory: 256M
+  routes:
+    - route: openliberty-starter.eu-de.mybluemix.net
