@@ -58,19 +58,20 @@ public class StartResource extends Application {
 			metadataJson = json.toJson(md);
 		} catch (Exception e) {
 			// ignore this
+			e.printStackTrace();
 		}
 	}
 	
-	public void updateNLSStrings(Locale locale) {
-		NLS.loadBundle(locale);
-		md.updateDisplayStrings();
-		
+	public void updateNLSStrings(Locale locale) {		
 		JsonbConfig cfg = new JsonbConfig();
 		cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
 		try (Jsonb json = JsonbBuilder.create(cfg)) {
+			NLS.loadBundle(locale);	
+			md.updateDisplayStrings();
 			metadataJson = json.toJson(md);
-		} catch (Exception e) {
+		} catch (Exception e) {			
 			// ignore this
+			e.printStackTrace();
 		}
 	}
 
