@@ -25,13 +25,9 @@ public abstract class AbstractEnumValidator<A extends Annotation, T> implements 
 
 	@Override
 	public boolean isValid(T value, ConstraintValidatorContext context) {
-		boolean isValid = values.contains(value);
-		if (!isValid) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate(template).addConstraintViolation();
-		}
-
-		return isValid;
+		context.disableDefaultConstraintViolation();
+        context.buildConstraintViolationWithTemplate(template).addConstraintViolation();
+        return values.contains(value);
 	}
 
 	public void init(String message, List<T> values) {

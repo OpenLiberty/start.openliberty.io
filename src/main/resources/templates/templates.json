@@ -28,7 +28,7 @@
 			"fileName": "gradle/wrapper/gradle-wrapper.properties"
 		},
 		{
-			"template": "gradle/.gitignore",
+			"template": "gradle/gitignore",
 			"fileName": ".gitignore"
 		}
 	],
@@ -56,7 +56,7 @@
 			"process": true
 		},
 		{
-			"template": "maven/.gitignore",
+			"template": "maven/gitignore",
 			"fileName": ".gitignore"
 		}
 	],

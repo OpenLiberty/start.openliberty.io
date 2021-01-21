@@ -185,7 +185,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     }
 
     private void addFile(ZipArchiveOutputStream zipOut, String template, String fileName) throws IOException {
-        addFile(zipOut, new ZipArchiveEntry(fileName), openTemplateFile(template));
+    	addFile(zipOut, new ZipArchiveEntry(fileName), openTemplateFile(template));
     }
 
     private void addExecutableFile(ZipArchiveOutputStream zipOut, String template, String fileName) throws IOException {
@@ -207,7 +207,7 @@ public class StarterBuilderImpl implements StarterBuilder {
 
     private static void addFile(ZipArchiveOutputStream zipOut, ZipArchiveEntry entry, InputStream in) throws IOException {
         zipOut.putArchiveEntry(entry);
-        byte[] bytes = new byte[1024 * 4];
+    	byte[] bytes = new byte[1024 * 4];
         int len;
         while ((len = in.read(bytes)) > 0) {
             zipOut.write(bytes, 0, len);

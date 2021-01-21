@@ -49,10 +49,12 @@ public class StartResource extends Application {
 	@Inject
 	private StartMetadata md;
 	private String metadataJson;
+	private JsonbConfig cfg;
 
 	@PostConstruct
 	public void init() {
-		JsonbConfig cfg = new JsonbConfig();
+		System.out.println("Initialize data");
+		cfg = new JsonbConfig();
 		cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
 		try (Jsonb json = JsonbBuilder.create(cfg)) {
 			metadataJson = json.toJson(md);
@@ -62,12 +64,12 @@ public class StartResource extends Application {
 		}
 	}
 	
-	public void updateNLSStrings(Locale locale) {		
-		JsonbConfig cfg = new JsonbConfig();
-		cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
-		try (Jsonb json = JsonbBuilder.create(cfg)) {
-			NLS.loadBundle(locale);	
+	public void updateNLSStrings(Locale locale) {	
+		System.out.println("Updating NLS Strings for locale: " + locale);		
+		try (Jsonb json = JsonbBuilder.create(cfg)) {			
+			NLS.loadBundle(locale);
 			md.updateDisplayStrings();
+			cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
 			metadataJson = json.toJson(md);
 		} catch (Exception e) {			
 			// ignore this
@@ -86,7 +88,7 @@ public class StartResource extends Application {
 			@MicroProfileVersion @QueryParam("m") @Parameter(description = "MicroProfile Version") String microProfileVersion)
 			throws IOException {
 		
-		updateNLSStrings(req.getLocale());
+//		updateNLSStrings(req.getLocale());
 		
 		ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
 		ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
@@ -115,7 +117,9 @@ public class StartResource extends Application {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("start/info")
 	public Response getInfo(@Context HttpServletRequest req) {
-		updateNLSStrings(req.getLocale());
+		System.out.println("Get info");
+		System.out.println(metadataJson);
+//		updateNLSStrings(req.getLocale());
 		return Response.ok(metadataJson).build();
 	}
 }

@@ -144,7 +144,7 @@
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
                 <configuration>
-                    <configFile>src/main/wlp/server.xml</configFile>
+                    <configFile>src/main/liberty/config/server.xml</configFile>
                     <bootstrapProperties>
                         <appLocation>../../../../../${project.build.finalName}</appLocation>
                         <libertyRuntimeVersion>20.0.0.3</libertyRuntimeVersion>
