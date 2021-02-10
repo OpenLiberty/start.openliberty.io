@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: openliberty.start.openliberty.io
+  labels:
+    app: start.openliberty.io
+spec:
+  triggers:
+    - type: GitHub
+      github:
+        secret: secret101
+  source:
+    git:
+      uri: 'https://github.com/OpenLiberty/start.openliberty.io.git'
+      ref: main
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: Jenkinsfile
+      env:
+        - name: CLOUD_NAME
+          value: openshift
+        - name: NAMESPACE
+          value: project15-production
+        - name: BRANCH
+          value: main
