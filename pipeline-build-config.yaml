@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: BuildConfig
 metadata:
-  name: openliberty.start.openliberty.io
+  name: openliberty.start.openliberty.io.austin-cloud-native-test
   labels:
     app: start.openliberty.io
 spec:
@@ -12,7 +12,7 @@ spec:
   source:
     git:
       uri: 'https://github.com/OpenLiberty/start.openliberty.io.git'
-      ref: main
+      ref: austin-cloud-native-test
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfilePath: Jenkinsfile
@@ -22,4 +22,4 @@ spec:
         - name: NAMESPACE
           value: project15-production
         - name: BRANCH
-          value: main
+          value: austin-cloud-native-test
