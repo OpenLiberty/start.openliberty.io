@@ -88,7 +88,7 @@ public class StartResource extends Application {
 			@MicroProfileVersion @QueryParam("m") @Parameter(description = "MicroProfile Version") String microProfileVersion)
 			throws IOException {
 		
-//		updateNLSStrings(req.getLocale());
+		updateNLSStrings(req.getLocale());
 		
 		ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
 		ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
@@ -119,7 +119,7 @@ public class StartResource extends Application {
 	public Response getInfo(@Context HttpServletRequest req) {
 		System.out.println("Get info");
 		System.out.println(metadataJson);
-//		updateNLSStrings(req.getLocale());
+		updateNLSStrings(req.getLocale());
 		return Response.ok(metadataJson).build();
 	}
 }
