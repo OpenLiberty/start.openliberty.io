@@ -10,20 +10,21 @@ applications:
   memory: 256M
   routes:
     - route: openliberty-starter.us-east.mybluemix.net
-- name: start-openliberty-green-east
-  memory: 256M
-  routes:
-    - route: openliberty-starter.us-east.mybluemix.net
-# Germany
-- name: start-openliberty-blue-germany
-  memory: 256M
-  routes:
-    - route: openliberty-starter.eu-de.mybluemix.net
-- name: start-openliberty-green-germany
-  memory: 256M
-  routes:
-    - route: openliberty-starter.eu-de.mybluemix.net
+# - name: start-openliberty-green-east
+#   memory: 256M
+#   routes:
+#     - route: openliberty-starter.us-east.mybluemix.net
+# # Germany
+# - name: start-openliberty-blue-germany
+#   memory: 256M
+#   routes:
+#     - route: openliberty-starter.eu-de.mybluemix.net
+# - name: start-openliberty-green-germany
+#   memory: 256M
+#   routes:
+#     - route: openliberty-starter.eu-de.mybluemix.net
     
 env:
   JBP_CONFIG_LIBERTY: 'app_archive: {features: ["jaxrs-2.1","cdi-2.0","jsonb-1.0","beanValidation-2.0","transportSecurity-1.0"], implicit_cdi: true}'
+  
             

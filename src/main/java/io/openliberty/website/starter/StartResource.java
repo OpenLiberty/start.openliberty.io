@@ -118,7 +118,6 @@ public class StartResource extends Application {
 	@Path("start/info")
 	public Response getInfo(@Context HttpServletRequest req) {
 		System.out.println("Get info");
-		System.out.println(metadataJson);
 		updateNLSStrings(req.getLocale());
 		return Response.ok(metadataJson).build();
 	}
