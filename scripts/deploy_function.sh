@@ -1,6 +1,6 @@
 #!/bin/bash
 function pushApp {
-  cf push "${CF_APP}" --no-start
+  cf push "${CF_APP}" -p starter.zip --no-start
   if [[ -z $CURRENT_STATE ]]
   then
     cf bind-service "${CF_APP}" "${AVAILABILITY_SERVICE}"
