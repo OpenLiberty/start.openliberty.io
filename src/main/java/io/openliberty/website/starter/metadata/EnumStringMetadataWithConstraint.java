@@ -13,17 +13,17 @@ package io.openliberty.website.starter.metadata;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import javax.json.Json;
+import javax.json.JsonObject;
 
 import javax.json.bind.annotation.JsonbProperty;
 
 public class EnumStringMetadataWithConstraint extends EnumStringMetadata {
     @JsonbProperty("constraints")
-    public HashMap<String, HashMap<String, ArrayList<String>>> constraints = new HashMap<String, HashMap<String, ArrayList<String>>>();
+    public JsonObject constraints;
 
     public EnumStringMetadataWithConstraint() {}
-    public EnumStringMetadataWithConstraint(String n, String dv, HashMap<String, HashMap<String, ArrayList<String>>> c, String ... v) {
+    public EnumStringMetadataWithConstraint(String n, String dv, JsonObject c, String ... v) {
         super(n, dv, v);
         constraints = c;
     }
