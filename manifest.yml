@@ -4,12 +4,12 @@ disk_quota: 1024M
 path: target/openliberty-starter-1.0-SNAPSHOT.war
 timeout: 180
 
-applications:
+# applications:
 # US East
-- name: start-openliberty-blue-east
-  memory: 256M
-  routes:
-    - route: openliberty-starter.us-east.mybluemix.net
+# - name: start-openliberty-blue-east
+#   memory: 256M
+#   routes:
+#     - route: openliberty-starter.us-east.mybluemix.net
 # - name: start-openliberty-green-east
 #   memory: 256M
 #   routes:
