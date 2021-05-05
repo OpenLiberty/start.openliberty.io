@@ -20,12 +20,12 @@ import javax.json.bind.annotation.JsonbProperty;
 
 public class EnumStringMetadataWithConstraint extends EnumStringMetadata {
     @JsonbProperty("constraints")
-    public Map<String, ArrayList<String>> constraints = new HashMap<String, ArrayList<String>>();
+    public HashMap<String, HashMap<String, ArrayList<String>>> constraints = new HashMap<String, HashMap<String, ArrayList<String>>>();
 
     public EnumStringMetadataWithConstraint() {}
-    public EnumStringMetadataWithConstraint(String n, String dv, Map<String, ArrayList<String>> c, String ... v) {
+    public EnumStringMetadataWithConstraint(String n, String dv, HashMap<String, HashMap<String, ArrayList<String>>> c, String ... v) {
         super(n, dv, v);
-        constraints = c;       
+        constraints = c;
     }
     
     public void updateString(String n) {

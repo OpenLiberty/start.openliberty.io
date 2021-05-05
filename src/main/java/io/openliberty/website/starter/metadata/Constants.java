@@ -20,8 +20,10 @@ public class Constants {
     public static final String[] SUPPORTED_JAKARTAEE_VERSIONS = new String[] {"7", "8"};
     public static final String[] SUPPORTED_MICROPROFILE_VERSIONS = new String[] {"1.0", "1.1", "1.2", "1.3", "1.4", "2.0", "2.1", "2.2", "3.0", "3.2", "3.3"};
     // Versions of MicroProfile that each Jakarta EE version will with.
-    public static final Map<String, ArrayList<String>> JAKARTA_EE_MICROPROFILE_COMPATIBILITIES = new HashMap<String, ArrayList<String>> () {{
-        put("7", new ArrayList<String>(Arrays.asList("1.1", "1.2", "1.3", "1.4")));
-        put("8", new ArrayList<String>(Arrays.asList("2.0", "2.1", "2.2", "2.2", "3.0", "3.2", "3.3")));
+    public static final HashMap<String, HashMap<String, ArrayList<String>>> JAKARTA_EE_MICROPROFILE_COMPATIBILITIES = new HashMap<String, HashMap<String, ArrayList<String>>> () {{
+        put("m", new HashMap<String, ArrayList<String>>() {{
+            put("7", new ArrayList<String>(Arrays.asList("1.1", "1.2", "1.3", "1.4")));
+            put("8", new ArrayList<String>(Arrays.asList("2.0", "2.1", "2.2", "2.2", "3.0", "3.2", "3.3")));
+        }});        
     }};
 }
