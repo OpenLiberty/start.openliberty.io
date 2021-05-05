@@ -22,7 +22,7 @@ public class StartMetadata {
     private SimpleStringMetadata groupName = new SimpleStringMetadata(NLS.getMessage("basePackage"), "string", "com.demo");
     private EnumStringMetadata javaVersion = new EnumStringMetadata(NLS.getMessage("javaVersion"), "11", Constants.SUPPORTED_JAVA_VERSIONS);
     private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>(NLS.getMessage("buildSystem"), BuildSystemType.maven, BuildSystemType.values());
-    private EnumStringMetadata jakartaEEVersion = new EnumStringMetadata(NLS.getMessage("jakartaEEVersion"), "8", Constants.SUPPORTED_JAKARTAEE_VERSIONS);
+    private EnumStringMetadata jakartaEEVersion = new EnumStringMetadataWithConstraint(NLS.getMessage("jakartaEEVersion"), "8", Constants.JAKARTA_EE_MICROPROFILE_COMPATIBILITIES, Constants.SUPPORTED_JAKARTAEE_VERSIONS);
     private EnumStringMetadata microProfileVersion  = new EnumStringMetadata(NLS.getMessage("microProfileVersion"), "3.3", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
     
     public void updateDisplayStrings() {
