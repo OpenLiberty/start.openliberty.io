@@ -80,8 +80,8 @@ public class StartResource extends Application {
 	@GET
 	@Produces("application/zip")
 	@Path("start")
-	public Response createAppZip(@Context HttpServletRequest req, @QueryParam("a") @Pattern(regexp = "^[A-Za-z0-9]+$", message="Use alphanumeric characters only") @Parameter(description = "App Name") String appName,
-			@QueryParam("g") @Pattern(regexp = "^[a-z\\.]*[a-z]$", message = "Group name must be lowercase letters separated by periods.") @Parameter(description = "Base Package") String groupId,
+	public Response createAppZip(@Context HttpServletRequest req, @QueryParam("a") @Pattern(regexp = "^[a-z][a-z\\-]*(?<!\\-)$", message="App name must be a-z characters separated by dashes") @Parameter(description = "App Name") String appName,
+			@QueryParam("g") @Pattern(regexp = "^[a-z][a-z\\.]*[a-z]$", message = "Group name must be a-z separated by periods") @Parameter(description = "Base Package") String groupId,
 			@JavaVersion @QueryParam("j") @Parameter(description = "Java SE Version") String javaVersion,
 			@QueryParam("b") @Parameter(description = "Build System") BuildSystemType buildSystem,
 			@JakartaEEVersion @QueryParam("e") @Parameter(description = "Java EE / Jakarta EE Version") String jakartaEEVersion,
