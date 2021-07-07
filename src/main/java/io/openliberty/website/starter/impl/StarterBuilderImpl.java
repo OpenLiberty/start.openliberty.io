@@ -110,6 +110,11 @@ public class StarterBuilderImpl implements StarterBuilder {
     @Override
     public final StarterBuilder microProfileVersion(String microProfileVersion) {
         this.microProfileVersion = microProfileVersion;
+        if("4.0".equals(microProfileVersion)) {
+            properties.put("microProfilePomVersion", "4.0.1");
+        } else {
+            properties.put("microProfilePomVersion", microProfileVersion);
+        }
         properties.put("microProfileVersion", microProfileVersion);
         return this;
     }
