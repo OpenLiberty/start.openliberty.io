@@ -63,15 +63,15 @@ public class StartResource extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	public void updateNLSStrings(Locale locale) {	
-		System.out.println("Updating NLS Strings for locale: " + locale);		
-		try (Jsonb json = JsonbBuilder.create(cfg)) {			
+
+	public void updateNLSStrings(Locale locale) {
+		System.out.println("Updating NLS Strings for locale: " + locale);
+		try (Jsonb json = JsonbBuilder.create(cfg)) {
 			NLS.loadBundle(locale);
 			md.updateDisplayStrings();
 			cfg.withPropertyVisibilityStrategy(new MetadataVisibilityStrategy());
 			metadataJson = json.toJson(md);
-		} catch (Exception e) {			
+		} catch (Exception e) {
 			// ignore this
 			e.printStackTrace();
 		}
@@ -80,34 +80,30 @@ public class StartResource extends Application {
 	@GET
 	@Produces("application/zip")
 	@Path("start")
-	public Response createAppZip(@Context HttpServletRequest req, @QueryParam("a") @Pattern(regexp = "([a-z]+\\-)*[a-z]+", message="App name must be a-z characters separated by dashes") @Parameter(description = "App Name") String appName,
+	public Response createAppZip(@Context HttpServletRequest req,
+			@QueryParam("a") @Pattern(regexp = "([a-z]+\\-)*[a-z]+", message = "App name must be a-z characters separated by dashes") @Parameter(description = "App Name") String appName,
 			@QueryParam("g") @Pattern(regexp = "([a-z]+\\.)*[a-z]+", message = "Group name must be a-z separated by periods") @Parameter(description = "Base Package") String groupId,
 			@JavaVersion @QueryParam("j") @Parameter(description = "Java SE Version") String javaVersion,
 			@QueryParam("b") @Parameter(description = "Build System") BuildSystemType buildSystem,
 			@JakartaEEVersion @QueryParam("e") @Parameter(description = "Java EE / Jakarta EE Version") String jakartaEEVersion,
 			@MicroProfileVersion @QueryParam("m") @Parameter(description = "MicroProfile Version") String microProfileVersion)
 			throws IOException {
-		
+
 		updateNLSStrings(req.getLocale());
-		
+
 		ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
 		ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
 
-		boolean result = buildSystem.create().appName(appName)
-				.groupName(groupId)
-				.javaVersion(javaVersion)
-				.jakartaEEVersion(jakartaEEVersion)
-				.microProfileVersion(microProfileVersion)
-				.buildType(buildSystem.toString())
-				.build(zipOut);
+		boolean result = buildSystem.create().appName(appName).groupName(groupId).javaVersion(javaVersion)
+				.jakartaEEVersion(jakartaEEVersion).microProfileVersion(microProfileVersion)
+				.buildType(buildSystem.toString()).build(zipOut);
 
 		zipOut.close();
 
 		if (result) {
 			return Response.ok(bytesOut.toByteArray())
 					.header("Content-Disposition", "attachment; filename=\"" + appName + ".zip\"")
-					.header("Content-Transfer-Encoding", "binary")
-					.build();
+					.header("Content-Transfer-Encoding", "binary").build();
 		} else {
 			return Response.status(500).build();
 		}

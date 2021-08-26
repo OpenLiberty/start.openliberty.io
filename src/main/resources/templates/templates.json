@@ -85,6 +85,12 @@
 			"fileName": "src/main/java/${basePackagePath}/rest/RestApplication.java",
 			"process": true
 		}
+	],
+	"readme": [
+		{
+			"template": "readme/README.md",
+			"fileName": "README.md"
+		}
 	]
 }
 
