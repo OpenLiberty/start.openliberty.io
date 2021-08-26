@@ -5,7 +5,7 @@ The Open Liberty starter gives you a simple, quick way to get the necessary file
 If you plan on developing and/or deploying your app in a containerized environment, the included Dockerfile will make it easier to create your application image on top of the Open Liberty Docker image.
 
 1) Once you download the starter project, unpackage the .zip file on your machine.
-2) If you selected Maven as your build tool, then open a command line session, navigate to the installation directory, and run `mvnw liberty:run`. This will install all required dependencies and start the default server. If successful, you will see the necessary features installed and the message "server is ready to run a smarter planet."
+2) If you selected Maven as your build tool, then open a command line session, navigate to the installation directory, and run `mvnw liberty:run`. This will install all required dependencies and start the default server. When complete, you will see the necessary features installed and the message "server is ready to run a smarter planet."
 
 A starter project using Maven is generated for you with the following files:
 * mvnw
@@ -16,7 +16,7 @@ A starter project using Maven is generated for you with the following files:
 * Dockerfile
 * .dockerignore
 
-3) If you selected Gradle as your build tool, then open a command line session, navigate to the installation directory, and run `gradlew libertyStart` to start the default server. If successful, you will see the necessary features installed from the installFeature task and the message "server is ready to run a smarter planet."
+3) If you selected Gradle as your build tool, then open a command line session, navigate to the installation directory, and run `gradlew libertyStart` to start the default server. When complete, you will see the necessary features installed from the installFeature task and the message "server is ready to run a smarter planet."
 
 A starter project using Gradle is generated for you with the following files:
 * build.gradle
