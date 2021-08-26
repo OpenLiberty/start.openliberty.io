@@ -32,6 +32,8 @@ For information on developing your application in dev mode using either Maven or
 
 For further help on getting started actually developing your application, see some of our [Microprofile guides](https://openliberty.io/guides/?search=microprofile&key=tag) and [Jakarta EE guides](https://openliberty.io/guides/?search=jakarta%20ee&key=tag).
 
-If you have problems building the starter project, make sure the Java SE version on your machine matches the Java SE version you picked from the Open Liberty starter on the [downloads page](https://openliberty.io/downloads/). You can test this with the command "java -version".
+If you have problems building the starter project, make sure the Java SE version on your machine matches the Java SE version you picked from the Open Liberty starter on the [downloads page](https://openliberty.io/downloads/). You can test this with the command `java -version`.
+
+Open Liberty performs at its best when running using Open J9 which can be obtained via [IBM Semeru](https://developer.ibm.com/languages/java/semeru-runtimes/downloads/). For a full list of supported Java SE versions and where to obtain them, reference the [Java SE support page](https://openliberty.io/docs/21.0.0.8/java-se.html).
 
 If you find any issues with the starter project or have recommendations to improve it, open an issue in the [starter Github repo](https://github.com/OpenLiberty/start.openliberty.io).
