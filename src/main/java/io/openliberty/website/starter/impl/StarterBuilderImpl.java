@@ -56,13 +56,17 @@ public class StarterBuilderImpl implements StarterBuilder {
         cfg.setWrapUncheckedExceptions(true);
         cfg.setFallbackOnNullLoopVariable(false);
 
-        templates = JsonbBuilder.create().fromJson(StarterBuilderImpl.class.getResourceAsStream("/templates/templates.json"), new HashMap<String, List<TemplateMetadata>>(){}.getClass().getGenericSuperclass());
+        templates = JsonbBuilder.create().fromJson(
+                StarterBuilderImpl.class.getResourceAsStream("/templates/templates.json"),
+                new HashMap<String, List<TemplateMetadata>>() {
+                }.getClass().getGenericSuperclass());
     }
 
     public StarterBuilderImpl() {
         requestedTemplates.add("server");
         requestedTemplates.add("docker");
         requestedTemplates.add("rest");
+        requestedTemplates.add("readme");
     }
 
     @Override
@@ -110,7 +114,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     @Override
     public final StarterBuilder microProfileVersion(String microProfileVersion) {
         this.microProfileVersion = microProfileVersion;
-        if("4.0".equals(microProfileVersion)) {
+        if ("4.0".equals(microProfileVersion)) {
             properties.put("microProfilePomVersion", "4.0.1");
         } else {
             properties.put("microProfilePomVersion", microProfileVersion);
@@ -124,19 +128,18 @@ public class StarterBuilderImpl implements StarterBuilder {
         requestedTemplates.add(templateName);
         return this;
     }
-    
-	@Override
-	public final StarterBuilder buildType(String buildSystem) {
-		if("maven" == buildSystem) {
-	  		properties.put("buildPath", "target/");
-		} else if ("gradle" == buildSystem) {
-	  		properties.put("buildPath", "build/libs/");
-		}
-		return this;
-	}   
-    
 
-    @Override 
+    @Override
+    public final StarterBuilder buildType(String buildSystem) {
+        if ("maven" == buildSystem) {
+            properties.put("buildPath", "target/");
+        } else if ("gradle" == buildSystem) {
+            properties.put("buildPath", "build/libs/");
+        }
+        return this;
+    }
+
+    @Override
     public final boolean build(ZipArchiveOutputStream zipOut) {
         try {
             addDirectory(zipOut, properties.get("basePackagePath") + "/");
@@ -159,7 +162,6 @@ public class StarterBuilderImpl implements StarterBuilder {
         }
         return false;
     }
-
 
     private String resolve(String fileName) {
         String resolvedFileName = fileName;
@@ -190,7 +192,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     }
 
     private void addFile(ZipArchiveOutputStream zipOut, String template, String fileName) throws IOException {
-    	addFile(zipOut, new ZipArchiveEntry(fileName), openTemplateFile(template));
+        addFile(zipOut, new ZipArchiveEntry(fileName), openTemplateFile(template));
     }
 
     private void addExecutableFile(ZipArchiveOutputStream zipOut, String template, String fileName) throws IOException {
@@ -210,9 +212,10 @@ public class StarterBuilderImpl implements StarterBuilder {
         zipOut.closeArchiveEntry();
     }
 
-    private static void addFile(ZipArchiveOutputStream zipOut, ZipArchiveEntry entry, InputStream in) throws IOException {
+    private static void addFile(ZipArchiveOutputStream zipOut, ZipArchiveEntry entry, InputStream in)
+            throws IOException {
         zipOut.putArchiveEntry(entry);
-    	byte[] bytes = new byte[1024 * 4];
+        byte[] bytes = new byte[1024 * 4];
         int len;
         while ((len = in.read(bytes)) > 0) {
             zipOut.write(bytes, 0, len);
@@ -220,7 +223,8 @@ public class StarterBuilderImpl implements StarterBuilder {
         zipOut.closeArchiveEntry();
     }
 
-    protected void addFileWithPropertyReplacement(ZipArchiveOutputStream zipOut, String templateName, String fileName) throws IOException {
+    protected void addFileWithPropertyReplacement(ZipArchiveOutputStream zipOut, String templateName, String fileName)
+            throws IOException {
         Template template = cfg.getTemplate(templateName);
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
