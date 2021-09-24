@@ -88,8 +88,8 @@
 	],
 	"readme": [
 		{
-			"template": "readme/README.md",
-			"fileName": "README.md"
+			"template": "readme/README.txt",
+			"fileName": "README.txt"
 		}
 	]
 }
