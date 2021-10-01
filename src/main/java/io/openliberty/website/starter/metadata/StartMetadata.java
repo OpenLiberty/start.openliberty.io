@@ -19,15 +19,21 @@ import io.openliberty.website.starter.NLS;
 @ApplicationScoped
 public class StartMetadata {
     private SimpleStringMetadata appName = new SimpleStringMetadata(NLS.getMessage("appName"), "string", "app-name");
-    private SimpleStringMetadata groupName = new SimpleStringMetadata(NLS.getMessage("basePackage"), "string", "com.demo");
-    private EnumStringMetadata javaVersion = new EnumStringMetadata(NLS.getMessage("javaVersion"), "11", Constants.SUPPORTED_JAVA_VERSIONS);
-    private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>(NLS.getMessage("buildSystem"), BuildSystemType.maven, BuildSystemType.values());
-    private EnumStringMetadata jakartaEEVersion = new EnumStringMetadataWithConstraint(NLS.getMessage("jakartaEEVersion"), "8", Constants.JAKARTA_EE_MICROPROFILE_COMPATIBILITIES, Constants.SUPPORTED_JAKARTAEE_VERSIONS);
-    private EnumStringMetadata microProfileVersion = new EnumStringMetadata(NLS.getMessage("microProfileVersion"), "4.0", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
-    
+    private SimpleStringMetadata groupName = new SimpleStringMetadata(NLS.getMessage("basePackage"), "string",
+            "com.demo");
+    private EnumStringMetadata javaVersion = new EnumStringMetadata(NLS.getMessage("javaVersion"), "11",
+            Constants.SUPPORTED_JAVA_VERSIONS);
+    private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>(NLS.getMessage("buildSystem"),
+            BuildSystemType.maven, BuildSystemType.values());
+    private EnumStringMetadata jakartaEEVersion = new EnumStringMetadataWithConstraint(
+            NLS.getMessage("jakartaEEVersion"), "8", Constants.JAKARTA_EE_MICROPROFILE_COMPATIBILITIES,
+            Constants.SUPPORTED_JAKARTAEE_VERSIONS);
+    private EnumStringMetadata microProfileVersion = new EnumStringMetadata(NLS.getMessage("microProfileVersion"),
+            "4.1", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
+
     public void updateDisplayStrings() {
-    	appName.updateString(NLS.getMessage("appName"));
-    	groupName.updateString(NLS.getMessage("basePackage"));
+        appName.updateString(NLS.getMessage("appName"));
+        groupName.updateString(NLS.getMessage("basePackage"));
         javaVersion.updateString(NLS.getMessage("javaVersion"));
         buildSystem.updateString(NLS.getMessage("buildSystem"));
         jakartaEEVersion.updateString(NLS.getMessage("jakartaEEVersion"));
@@ -35,15 +41,32 @@ public class StartMetadata {
     }
 
     @JsonbProperty("a")
-    public SimpleStringMetadata getAppName() { return appName; }
+    public SimpleStringMetadata getAppName() {
+        return appName;
+    }
+
     @JsonbProperty("g")
-    public SimpleStringMetadata getGroupName() { return groupName; }
+    public SimpleStringMetadata getGroupName() {
+        return groupName;
+    }
+
     @JsonbProperty("b")
-    public EnumMetadata<BuildSystemType> getBuildSystem() { return buildSystem; }
+    public EnumMetadata<BuildSystemType> getBuildSystem() {
+        return buildSystem;
+    }
+
     @JsonbProperty("j")
-    public EnumStringMetadata getJavaVersion() { return javaVersion; }
+    public EnumStringMetadata getJavaVersion() {
+        return javaVersion;
+    }
+
     @JsonbProperty("e")
-    public EnumStringMetadata getJakartaEEVersion() { return jakartaEEVersion; }
+    public EnumStringMetadata getJakartaEEVersion() {
+        return jakartaEEVersion;
+    }
+
     @JsonbProperty("m")
-    public EnumStringMetadata getMicroProfileVersion() { return microProfileVersion; }
+    public EnumStringMetadata getMicroProfileVersion() {
+        return microProfileVersion;
+    }
 }
