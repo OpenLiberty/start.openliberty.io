@@ -15,6 +15,9 @@
     <!-- Automatically expand WAR files and EAR files -->
     <applicationManager autoExpand="true"/>
 
+    <!-- Configures the server the web application on a specified context root -->
+    <webApplication contextRoot="/${appName}" location="${appName}.war" />
+
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 </server>
