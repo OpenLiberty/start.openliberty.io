@@ -20,9 +20,9 @@ public class Constants {
     public static final String[] SUPPORTED_MICROPROFILE_VERSIONS = new String[] { "None", "1.4", "2.2", "3.3", "4.1", "5.0" };
 
     public static final JsonObject JAKARTA_EE_MICROPROFILE_COMPATIBILITIES = Json.createObjectBuilder()
-            .add("None", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None")))
-            .add("7", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("1.4")))
-            .add("8", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("2.2").add("3.3").add("4.1")))
-            .add("9", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("5.0")))
+            .add("None", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("1.4").add("2.2").add("3.3").add("4.1").add("5.0")))
+            .add("7", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("1.4")))
+            .add("8", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("2.2").add("3.3").add("4.1")))
+            .add("9", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("5.0")))
             .build();
 }

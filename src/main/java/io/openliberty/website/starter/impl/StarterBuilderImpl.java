@@ -111,8 +111,8 @@ public class StarterBuilderImpl implements StarterBuilder {
         else if("9".equals(jakartaEEVersion)) {
             properties.put("jakartaEEGroupId", "jakarta.platform");
             properties.put("jakartaEEArtifactId", "jakarta.jakartaee-api");
-            properties.put("jakartaEEVersion", "9.0.0");
-            properties.put("jakartaEEFeature", "jakartaee-9.0");
+            properties.put("jakartaEEVersion", "9.1.0");
+            properties.put("jakartaEEFeature", "jakartaee-9.1");
         }
         else {
             properties.put("jakartaEEGroupId", "jakarta.platform");
