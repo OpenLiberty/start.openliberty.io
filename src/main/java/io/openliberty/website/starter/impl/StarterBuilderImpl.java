@@ -96,6 +96,8 @@ public class StarterBuilderImpl implements StarterBuilder {
     public final StarterBuilder jakartaEEVersion(String jakartaEEVersion) {
         this.jakartaEEVersion = jakartaEEVersion;
 
+        properties.put("jakartaEEBasePackageName", "javax");
+
         if ("7".equals(jakartaEEVersion)) {
             properties.put("jakartaEEGroupId", "javax");
             properties.put("jakartaEEArtifactId", "javaee-api");
@@ -113,6 +115,7 @@ public class StarterBuilderImpl implements StarterBuilder {
             properties.put("jakartaEEArtifactId", "jakarta.jakartaee-api");
             properties.put("jakartaEEVersion", "9.1.0");
             properties.put("jakartaEEFeature", "jakartaee-9.1");
+            properties.put("jakartaEEBasePackageName", "jakarta");
         }
 
         return this;
