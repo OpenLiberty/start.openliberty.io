@@ -141,6 +141,7 @@ public class StarterBuilderImpl implements StarterBuilder {
 
     @Override
     public final StarterBuilder buildType(String buildSystem) {
+        properties.put("buildType", buildSystem.toLowerCase());
         if ("maven" == buildSystem) {
             properties.put("buildPath", "target/");
         } else if ("gradle" == buildSystem) {

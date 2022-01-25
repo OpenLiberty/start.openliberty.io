@@ -11,6 +11,7 @@
 package io.openliberty.website.starter;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -79,6 +80,7 @@ public class GradleStarterBuilderTest {
             throws UnsupportedEncodingException {
         String serverXml = new String(mockZip.getCapturedFile("src/main/liberty/config/server.xml"), "utf-8");
         assertTrue(serverXml.contains("<feature>" + featureName + "</feature>"), "The feature: " + featureName + " was expected in the server.xml: \r\n" + serverXml);
+        assertFalse(serverXml.contains("<webApplication>"), "There should not be a webApplication defined in server.xml: \r\n" + serverXml);
     }
 
 }
