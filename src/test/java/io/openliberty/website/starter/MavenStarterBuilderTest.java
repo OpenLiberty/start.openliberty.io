@@ -56,6 +56,7 @@ public class MavenStarterBuilderTest {
             throws UnsupportedEncodingException {
         String serverXml = new String(mockZip.getCapturedFile("src/main/liberty/config/server.xml"), "utf-8");
         assertTrue(serverXml.contains("<feature>" + featureName + "</feature>"), "The feature: " + featureName + " was expected in the server.xml: \r\n" + serverXml);
+        assertTrue(serverXml.contains("<webApplication contextRoot=\"/test\" location=\"test.war\" />"), "The webApplication was expected in the server.xml: \r\n" + serverXml);
     }
 
     private void assertDependency(MockZipOutputStream mockZip, String groupId, String artifactId, String version)
