@@ -16,12 +16,15 @@
     </properties>
 
     <dependencies>
+        <#if jakartaEEVersion != "None">
         <dependency>
             <groupId>${jakartaEEGroupId}</groupId>
             <artifactId>${jakartaEEArtifactId}</artifactId>
             <version>${jakartaEEVersion}</version>
             <scope>provided</scope>
         </dependency>
+        </#if>
+         <#if microProfilePomVersion != "None">
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
@@ -29,6 +32,7 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
+        </#if>
     </dependencies>
 
     <build>

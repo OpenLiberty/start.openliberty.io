@@ -26,8 +26,8 @@ repositories {
 
 dependencies {
     // provided dependencies
-    providedCompile '${jakartaEEGroupId}:${jakartaEEArtifactId}:${jakartaEEVersion}'
-    providedCompile 'org.eclipse.microprofile:microprofile:${microProfileVersion}'
+    providedCompile '<#if jakartaEEVersion != "None">${jakartaEEGroupId}:${jakartaEEArtifactId}:${jakartaEEVersion}</#if>'
+    providedCompile '<#if microProfileVersion != "None">org.eclipse.microprofile:microprofile:${microProfileVersion}</#if>'
 
 }
 
