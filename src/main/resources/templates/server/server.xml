@@ -3,8 +3,8 @@
 
     <!-- Enable features -->
     <featureManager>
-        <feature>${jakartaEEFeature}</feature>
-        <feature>microProfile-${microProfileVersion}</feature>
+         <#if jakartaEEFeature != "None"><feature>${jakartaEEFeature}</feature></#if>
+        <#if microProfileVersion != "None"><feature>microProfile-${microProfileVersion}</feature></#if>
     </featureManager>
 
     <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
