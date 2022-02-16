@@ -7,14 +7,13 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Describe your idea for new feature to add to the Liberty Starter**  
+A clear and concise description of your idea. 
+What new capabilities would the feature enable or what problem would it solve? 
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Describe why the new feature is important**  
+A clear and concise description of the value of and use case for your suggestion. 
+For example, "As a developer/admin/etc. I want to be able to x so that I can y.."
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
+**Any additional context**  
 Add any other context or screenshots about the feature request here.
