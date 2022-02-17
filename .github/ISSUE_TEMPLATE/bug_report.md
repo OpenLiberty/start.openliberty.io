@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report bugs that were included in a released version of Open Liberty
+about: Report bugs found in Open Liberty Starter
 title: ''
 labels: "release bug"
 assignees: ''
