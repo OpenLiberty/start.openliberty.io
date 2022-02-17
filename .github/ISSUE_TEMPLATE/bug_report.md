@@ -2,7 +2,7 @@
 name: Bug report
 about: Report bugs found in Open Liberty Starter
 title: ''
-labels: "release bug"
+labels: "bug"
 assignees: ''
 
 ---
