@@ -30,7 +30,7 @@
 
     <cors
 		domain="/api/start"
-		allowedOrigins="https://start.openliberty.io,https://start-beta.openliberty.io"  
+		allowedOrigins="https://staging-openlibertyio.mybluemix.net"  
 		allowedHeaders="Accept, Accept-Encoding, Content-Type, X-Requested-With" 
 		allowedMethods="GET,POST"
 		exposeHeaders=""
