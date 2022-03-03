@@ -30,7 +30,7 @@
 
     <cors
 		domain="/"
-		allowedOrigins="start.openlibertyio, start-beta.openliberty.io"  
+		allowedOrigins="https://start.openliberty.io, https://start-beta.openliberty.io"  
 		allowedHeaders="Accept, Accept-Encoding, Content-Type, X-Requested-With" 
 		allowedMethods="GET,POST"
 		exposeHeaders=""
