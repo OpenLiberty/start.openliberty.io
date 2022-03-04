@@ -29,8 +29,8 @@
     <webApplication contextRoot="/" id="start" location="openliberty-starter-1.0-SNAPSHOT.war"/>
 
     <cors
-		domain="/"
-		allowedOrigins="*"  
+		domain="/api/start"
+		allowedOrigins="https://www.openliberty.io,https://openliberty.io,https://draft-openlibertyio.mybluemix.net,https://staging-openlibertyio.mybluemix.net,https://ui-draft-openlibertyio.mybluemix.net,https://draft-ui-openlibertyio.mybluemix.net,https://ui-staging-openlibertyio.mybluemix.net,https://staging-ui-openlibertyio.mybluemix.net"
 		allowedHeaders="Accept, Accept-Encoding, Content-Type, X-Requested-With" 
 		allowedMethods="GET,POST"
 		exposeHeaders=""
