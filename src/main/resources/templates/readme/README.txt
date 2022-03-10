@@ -14,29 +14,9 @@ will make it easier to create your application image on top of the Open Liberty 
    installation directory, and run `mvnw liberty:run`. This will install all required dependencies and 
    start the default server. When complete, you will see the necessary features installed and the message 
    "server is ready to run a smarter planet."
-
-  A starter project using Maven is generated for you with the following files:
-  * mvnw
-  * mvnw.cmd
-  * pom.xml
-  * src/main/java/com/demo/rest/RestApplication.java
-  * src/main/liberty/config/server.xml
-  * Dockerfile
-  * .dockerignore
-
 3) If you selected Gradle as your build tool, then open a command line session, navigate to the installation 
    directory, and run `gradlew libertyStart` to start the default server. When complete, you will see the 
    necessary features installed from the installFeature task and the message "server is ready to run a smarter planet."
-
-  A starter project using Gradle is generated for you with the following files:
-  * build.gradle
-  * gradlew.bat
-  * gradlew
-  * settings.gradle
-  * src/main/java/com/demo/rest/RestApplication.java
-  * src/main/liberty/config/server.xml
-  * Dockerfile
-  * .dockerignore
 
 For information on developing your application in dev mode using either Maven or Gradle, see the dev mode documentation 
 (https://openliberty.io/docs/latest/development-mode.html).
