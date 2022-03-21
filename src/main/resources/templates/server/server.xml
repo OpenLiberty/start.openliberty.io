@@ -3,7 +3,7 @@
 
     <!-- Enable features -->
     <featureManager>
-         <#if jakartaEEFeature != "None"><feature>${jakartaEEFeature}</feature></#if>
+        <#if jakartaEEFeature != "None"><feature>${jakartaEEFeature}</feature></#if>
         <#if microProfileVersion != "None"><feature>microProfile-${microProfileVersion}</feature></#if>
     </featureManager>
 
