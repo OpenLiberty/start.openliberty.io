@@ -159,6 +159,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     @Override
     public final boolean build(ZipArchiveOutputStream zipOut) {
         try {
+            addDirectory(zipOut, properties.get("basePackagePath"));
             for (String templateName : requestedTemplates) {
                 List<TemplateMetadata> templateFiles = templates.get(templateName);
                 for (TemplateMetadata template : templateFiles) {
