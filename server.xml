@@ -30,7 +30,7 @@
 
     <cors
 		domain="/api/start"
-		allowedOrigins="https://www.openliberty.io,https://openliberty.io,https://draft-openlibertyio.mybluemix.net,https://staging-openlibertyio.mybluemix.net,https://ui-draft-openlibertyio.mybluemix.net,https://draft-ui-openlibertyio.mybluemix.net,https://ui-staging-openlibertyio.mybluemix.net,https://staging-ui-openlibertyio.mybluemix.net,https://demo1-openlibertyio.mybluemix.net/,https://us-south.openliberty.io,https://us-east.openliberty.io,https://eu-gb.openliberty.io,https://eu-de.openliberty.io,https://au-syd.openliberty.io"
+		allowedOrigins="https://www.openliberty.io,https://openliberty.io,https://draft-openlibertyio.mybluemix.net,https://staging-openlibertyio.mybluemix.net,https://ui-draft-openlibertyio.mybluemix.net,https://draft-ui-openlibertyio.mybluemix.net,https://ui-staging-openlibertyio.mybluemix.net,https://staging-ui-openlibertyio.mybluemix.net,https://demo1-openlibertyio.mybluemix.net,https://demo2-openlibertyio.mybluemix.net,https://us-south.openliberty.io,https://us-east.openliberty.io,https://eu-gb.openliberty.io,https://eu-de.openliberty.io,https://au-syd.openliberty.io"
 		allowedHeaders="Accept, Accept-Encoding, Content-Type, X-Requested-With" 
 		allowedMethods="GET,POST"
 		exposeHeaders=""
