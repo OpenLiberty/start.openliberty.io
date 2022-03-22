@@ -1,9 +1,39 @@
-<server>
-	<featureManager>
-		<feature>jaxrs-2.1</feature>
-		<feature>cdi-2.0</feature>
-		<feature>jsonb-1.0</feature>
-		<feature>beanValidation-2.0</feature>
-		<feature>el-3.0</feature>
-	</featureManager>
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>jsp-2.3</feature>
+        <feature>beanValidation-2.0</feature>
+        <feature>transportSecurity-1.0</feature>
+        
+        <!-- Additional features -->
+        <feature>jaxrs-2.1</feature>
+        <feature>cdi-2.0</feature>
+        <feature>jsonb-1.0</feature>
+        <feature>beanValidation-2.0</feature>
+        <feature>el-3.0</feature>
+    </featureManager>
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  httpPort="9080"
+                  httpsPort="9443" />
+
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+    <!-- Default SSL configuration enables trust for default certificates from the Java runtime --> 
+    <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
+
+    <webApplication contextRoot="/" id="start" location="openliberty-starter-1.0-SNAPSHOT.war"/>
+
+    <cors
+        domain="/api/start"
+        allowedOrigins="https://www.openliberty.io,https://openliberty.io,https://draft-openlibertyio.mybluemix.net,https://staging-openlibertyio.mybluemix.net,https://ui-draft-openlibertyio.mybluemix.net,https://draft-ui-openlibertyio.mybluemix.net,https://ui-staging-openlibertyio.mybluemix.net,https://staging-ui-openlibertyio.mybluemix.net,https://demo1-openlibertyio.mybluemix.net,https://demo2-openlibertyio.mybluemix.net,https://us-south.openliberty.io,https://us-east.openliberty.io,https://eu-gb.openliberty.io,https://eu-de.openliberty.io,https://au-syd.openliberty.io"
+        allowedHeaders="Accept, Accept-Encoding, Content-Type, X-Requested-With" 
+        allowedMethods="GET,POST"
+        exposeHeaders=""
+        allowCredentials="true"
+        maxAge="3600"/>
 </server>
