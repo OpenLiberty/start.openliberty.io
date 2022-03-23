@@ -1,12 +1,5 @@
 # Open Liberty Starter
 
-## How to update the starter cloud instance:
-1) Download the server.zip from this repo, unzip it, and add it as a server to your wlp instance.
-1) Run `mvn -B package` in this repo to build a new .war file with your changes.
-1) Move the starter .war file to the apps directory of the server.
-1) Run `./server package starter --include=usr` to package the server usr directory.
-1) Commit the new starter.zip to this repo.
-
 ## How to deliver code and test
 1) `git checkout main && git pull`
 1) `git checkout -b feature-branch-name`
