@@ -89,7 +89,8 @@
 	"readme": [
 		{
 			"template": "readme/README.txt",
-			"fileName": "README.txt"
+			"fileName": "README.txt",
+			"process": true
 		}
 	]
 }
