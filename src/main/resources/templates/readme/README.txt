@@ -18,7 +18,7 @@ will make it easier to create your application image on top of the Open Liberty 
 </#if>
 <#if buildType == "gradle">
 2) If you selected Gradle as your build tool, then open a command line session, navigate to the installation 
-   directory, and run `gradlew libertyStart` to start the default server. When complete, you will see the 
+   directory, and run `gradlew libertyDev` to start the default server. When complete, you will see the 
    necessary features installed from the installFeature task and the message "server is ready to run a smarter planet."
 </#if>
 
