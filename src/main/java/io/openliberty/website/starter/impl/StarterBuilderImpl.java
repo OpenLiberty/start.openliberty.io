@@ -147,6 +147,9 @@ public class StarterBuilderImpl implements StarterBuilder {
 
     @Override
     public final StarterBuilder buildType(String buildSystem) {
+        String capitalizedBuildType = 
+            buildSystem.substring(0, 1).toUpperCase() + buildSystem.substring(1);
+        properties.put("buildTypeForReadme", capitalizedBuildType); // Used in README.txt
         properties.put("buildType", buildSystem.toLowerCase());
         if ("maven" == buildSystem) {
             properties.put("buildPath", "target/");
