@@ -1,2 +1,3 @@
 ${buildPath}
 !${buildPath}*.war
+!/target/liberty/wlp/usr/shared/resources/*
