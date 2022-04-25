@@ -40,7 +40,7 @@ public class GradleStarterBuilderTest {
                 .jakartaEEVersion("7.0").microProfileVersion("3.3").buildType("gradle").build(mockZip);
 
         assertFilesPresent(mockZip);
-        assertDependency(mockZip, "javax", "javaee-api", "7.0.0");
+        assertDependency(mockZip, "javax", "javaee-api", "7.0");
         assertDependency(mockZip, "org.eclipse.microprofile", "microprofile", "3.3");
         assertServerFeature(mockZip, "javaee-7.0");
         assertProjectName(mockZip, "test");
