@@ -20,7 +20,7 @@ dependencies {
     // provided dependencies
     <#if jakartaEEVersion != "None">providedCompile '${jakartaEEGroupId}:${jakartaEEArtifactId}:${jakartaEEVersion}' </#if>
     <#if microProfileVersion != "None">providedCompile 'org.eclipse.microprofile:microprofile:${microProfileVersion}' </#if>
-    <#if jakartaEEVersion == "None" && microProfileVersion == "5.0">implementation 'javax.ws.rs:javax.ws.rs-api:2.0' </#if>
+
 }
 
 clean.dependsOn 'libertyStop'
