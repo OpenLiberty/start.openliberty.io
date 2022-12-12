@@ -11,7 +11,7 @@ USER 1001
 # Stage 2: Place application on a liberty server
 # TODO: Invest in using a kernel build and use the feature manager to install 
 # needed Liberty features
-FROM icr.io/appcafe/open-liberty:22.0.0.9-full-java8-openj9-ubi
+FROM icr.io/appcafe/open-liberty:22.0.0.11-full-java8-openj9-ubi
 
 ARG VERSION=1.0
 ARG REVISION=SNAPSHOT
