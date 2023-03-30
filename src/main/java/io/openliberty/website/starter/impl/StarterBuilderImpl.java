@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 IBM Corporation and others.
+ * Copyright (c) 2023 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -115,6 +115,13 @@ public class StarterBuilderImpl implements StarterBuilder {
             properties.put("jakartaEEArtifactId", "jakarta.jakartaee-api");
             properties.put("jakartaEEVersion", "9.1.0");
             properties.put("jakartaEEFeature", "jakartaee-9.1");
+            properties.put("jakartaEEBasePackageName", "jakarta");
+        }
+        else if("10".equals(jakartaEEVersion)){
+            properties.put("jakartaEEGroupId", "jakarta.platform");
+            properties.put("jakartaEEArtifactId", "jakarta.jakartaee-api");
+            properties.put("jakartaEEVersion", "10.0.0");
+            properties.put("jakartaEEFeature", "jakartaee-10.0");
             properties.put("jakartaEEBasePackageName", "jakarta");
         }
         else {
