@@ -11,7 +11,7 @@ module.exports = {
   },
   viewportWidth: 1280,
   e2e: {
-    supportFile: '/__w/github-projects/github-projects/src/test/cypressjs/cypress/support/e2e.js',
-    specPattern: '/__w/github-projects/github-projects/src/test/cypressjs/cypress/e2e/*.cy.js',
+    supportFile: '/__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/support/e2e.js',
+    specPattern: '/__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/*.cy.js',
     },
 }

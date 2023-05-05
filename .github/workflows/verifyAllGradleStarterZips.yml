@@ -18,53 +18,53 @@ jobs:
         container: cypress/included:12.5.1
         steps: 
           - uses: actions/checkout@v3.3.0
-          - run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}"  --config-file /__w/github-projects/github-projects/src/test/cypressjs/cypress.config.js --spec /__w/github-projects/github-projects/src/test/cypressjs/cypress/e2e/downloadAllOLGradleStarterZips.cy.js
+          - run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLGradleStarterZips.cy.js
           
           - uses: actions/upload-artifact@v3
             if: failure()
             with:
                name: cypress-screenshots
-               path: /__w/github-projects/github-projects/cypress/screenshots/downloadAllOLGradleStarterZips.cy.js
+               path: /__w/start.openliberty.io/start.openliberty.io/cypress/screenshots/downloadAllOLGradleStarterZips.cy.js
 
           - uses: actions/upload-artifact@v3
             if: failure()
             with:
                 name: cypress-videos
-                path: /__w/github-projects/github-projects/cypress/videos/downloadAllOLGradleStarterZips.cy.js.mp4
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/videos/downloadAllOLGradleStarterZips.cy.js.mp4
          
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp5
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp5.zip  
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp5.zip  
                 if-no-files-found: warn
 
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp14
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp14.zip 
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp14.zip 
                 if-no-files-found: warn
                 
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp22
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip  
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip  
                 if-no-files-found: warn
         
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp33
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp33.zip  
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp33.zip  
                 if-no-files-found: warn
                
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp41
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp41.zip 
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp41.zip 
                 if-no-files-found: warn
                 
                 
@@ -72,70 +72,70 @@ jobs:
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee7-mpNone
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee7-mpNone.zip  
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee7-mpNone.zip  
                 if-no-files-found: warn
                 
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee7-mp14
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee7-mp14.zip  
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee7-mp14.zip  
                 if-no-files-found: warn
               
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee8-mpNone
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mpNone.zip
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mpNone.zip
                 if-no-files-found: warn
                 
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee8-mp22
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp22.zip  
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp22.zip  
                 if-no-files-found: warn
                
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee8-mp33
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp33.zip
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp33.zip
                 if-no-files-found: warn               
 
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee8-mp41
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp41.zip   
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp41.zip   
                 if-no-files-found: warn               
 
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee91-mpNone
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee91-mpNone.zip
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee91-mpNone.zip
                 if-no-files-found: warn
 
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee91-mp5
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee91-mp5.zip
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee91-mp5.zip
                 if-no-files-found: warn
                
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee10-mpNone
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mpNone.zip
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mpNone.zip
                 if-no-files-found: warn
         
           - uses: actions/upload-artifact@v3
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee10-mp6
-                path: /__w/github-projects/github-projects/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mp6.zip
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mp6.zip
                 if-no-files-found: warn
 
 
