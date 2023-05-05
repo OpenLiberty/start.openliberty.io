@@ -146,6 +146,11 @@ Cypress.Commands.add('downloadZipFile', (appname, jktVer, mpVer, gOrM) => {
     if (mpVer) {
         cy.log('mpVer ' + mpVer);
         cy.get('#Starter_MicroProfile_Version').select(mpVer);
+        // because this is broken right now - we have to go back and reselect None
+        if (jktVer == "None") {
+            cy.log('jktVer had to be reselected now');
+            cy.get('#Starter_Jakarta_Version').select(jktVer);  
+        }
     }
     cy.get("#starter_submit").click({force: true});
 
