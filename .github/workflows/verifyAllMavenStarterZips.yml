@@ -1,4 +1,4 @@
-name: Test All Gradle Starter Zips
+name: Test All Maven Starter Zips
 on:
   workflow_dispatch:
     inputs:
