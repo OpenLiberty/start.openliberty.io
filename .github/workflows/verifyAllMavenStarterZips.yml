@@ -18,19 +18,19 @@ jobs:
         container: cypress/included:12.5.1
         steps: 
           - uses: actions/checkout@v3.3.0
-          - run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLGradleStarterZips.cy.js
+          - run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLMavenStarterZips.cy.js
           
           - uses: actions/upload-artifact@v3
             if: failure()
             with:
                name: cypress-screenshots
-               path: /__w/start.openliberty.io/start.openliberty.io/cypress/screenshots/downloadAllOLGradleStarterZips.cy.js
+               path: /__w/start.openliberty.io/start.openliberty.io/cypress/screenshots/downloadAllOLMavenStarterZips.cy.js
 
           - uses: actions/upload-artifact@v3
             if: failure()
             with:
                 name: cypress-videos
-                path: /__w/start.openliberty.io/start.openliberty.io/cypress/videos/downloadAllOLGradleStarterZips.cy.js.mp4
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/videos/downloadAllOLMavenStarterZips.cy.js.mp4
          
           - uses: actions/upload-artifact@v3
             if: success()
@@ -50,7 +50,7 @@ jobs:
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp22
-                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip 
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip  
                 if-no-files-found: warn
         
           - uses: actions/upload-artifact@v3
@@ -154,7 +154,7 @@ jobs:
            - shell: bash
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp5.zip  
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp5.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp5.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp5.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp5.html | grep -q "1"; then
@@ -164,8 +164,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-eeNone-mp5
-                path: g-failure-${{ inputs.java_version }}-eeNone-mp5.txt  
+                name: m-failure-${{ inputs.java_version }}-eeNone-mp5
+                path: m-failure-${{ inputs.java_version }}-eeNone-mp5.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -192,7 +192,7 @@ jobs:
            - shell: bash
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp14.zip  
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp14.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp14.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp14.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp14.html | grep -q "1"; then
@@ -202,8 +202,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-eeNone-mp14
-                path: g-failure-${{ inputs.java_version }}-eeNone-mp14.txt  
+                name: m-failure-${{ inputs.java_version }}-eeNone-mp14
+                path: m-failure-${{ inputs.java_version }}-eeNone-mp14.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -230,7 +230,7 @@ jobs:
            - shell: bash
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip  
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp22.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp22.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp22.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp22.html | grep -q "1"; then
@@ -240,8 +240,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-eeNone-mp22
-                path: g-failure-${{ inputs.java_version }}-eeNone-mp22.txt  
+                name: m-failure-${{ inputs.java_version }}-eeNone-mp22
+                path: m-failure-${{ inputs.java_version }}-eeNone-mp22.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -268,7 +268,7 @@ jobs:
            - shell: bash
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp33.zip  
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp33.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp33.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp33.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp33.html | grep -q "1"; then
@@ -278,8 +278,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-eeNone-mp33
-                path: g-failure-${{ inputs.java_version }}-eeNone-mp33.txt  
+                name: m-failure-${{ inputs.java_version }}-eeNone-mp33
+                path: m-failure-${{ inputs.java_version }}-eeNone-mp33.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -306,7 +306,7 @@ jobs:
            - shell: bash
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp41.zip  
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp41.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp41.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp41.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp41.html | grep -q "1"; then
@@ -316,8 +316,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-eeNone-mp41
-                path: g-failure-${{ inputs.java_version }}-eeNone-mp41.txt  
+                name: m-failure-${{ inputs.java_version }}-eeNone-mp41
+                path: m-failure-${{ inputs.java_version }}-eeNone-mp41.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -345,7 +345,7 @@ jobs:
            - shell: bash
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-ee7-mpNone.zip  
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee7-mpNone.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee7-mpNone.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee7-mpNone.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee7-mpNone.html | grep -q "1"; then
@@ -355,8 +355,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee7-mpNone
-                path: g-failure-${{ inputs.java_version }}-ee7-mpNone.txt  
+                name: m-failure-${{ inputs.java_version }}-ee7-mpNone
+                path: m-failure-${{ inputs.java_version }}-ee7-mpNone.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -383,7 +383,7 @@ jobs:
            - shell: bash
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-ee7-mp14.zip 
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee7-mp14.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee7-mp14.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee7-mp14.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee7-mp14.html | grep -q "1"; then
@@ -393,8 +393,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee7-mp14
-                path: g-failure-${{ inputs.java_version }}-ee7-mp14.txt  
+                name: m-failure-${{ inputs.java_version }}-ee7-mp14
+                path: m-failure-${{ inputs.java_version }}-ee7-mp14.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -422,7 +422,7 @@ jobs:
            - shell: bash
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee8-mpNone.zip
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee8-mpNone.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee8-mpNone.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mpNone.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mpNone.html | grep -q "1"; then
@@ -432,8 +432,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee8-mpNone
-                path: g-failure-${{ inputs.java_version }}-ee8-mpNone.txt  
+                name: m-failure-${{ inputs.java_version }}-ee8-mpNone
+                path: m-failure-${{ inputs.java_version }}-ee8-mpNone.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -460,7 +460,7 @@ jobs:
            - shell: bash
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp22.zip
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee8-mp22.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee8-mp22.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp22.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp22.html | grep -q "1"; then
@@ -470,8 +470,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee8-mp22
-                path: g-failure-${{ inputs.java_version }}-ee8-mp22.txt  
+                name: m-failure-${{ inputs.java_version }}-ee8-mp22
+                path: m-failure-${{ inputs.java_version }}-ee8-mp22.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -498,7 +498,7 @@ jobs:
            - shell: bash
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp33.zip
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee8-mp33.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee8-mp33.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp33.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp33.html | grep -q "1"; then
@@ -508,8 +508,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee8-mp33
-                path: g-failure-${{ inputs.java_version }}-ee8-mp33.txt  
+                name: m-failure-${{ inputs.java_version }}-ee8-mp33
+                path: m-failure-${{ inputs.java_version }}-ee8-mp33.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -536,7 +536,7 @@ jobs:
            - shell: bash
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp41.zip
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee8-mp41.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee8-mp41.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp41.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp41.html | grep -q "1"; then
@@ -546,8 +546,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee8-mp41
-                path: g-failure-${{ inputs.java_version }}-ee8-mp41.txt  
+                name: m-failure-${{ inputs.java_version }}-ee8-mp41
+                path: m-failure-${{ inputs.java_version }}-ee8-mp41.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -574,7 +574,7 @@ jobs:
            - shell: bash
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee91-mpNone.zip
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee91-mpNone.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee91-mpNone.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee91-mpNone.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee91-mpNone.html | grep -q "1"; then
@@ -584,8 +584,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee91-mpNone
-                path: g-failure-${{ inputs.java_version }}-ee91-mpNone.txt  
+                name: m-failure-${{ inputs.java_version }}-ee91-mpNone
+                path: m-failure-${{ inputs.java_version }}-ee91-mpNone.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -613,7 +613,7 @@ jobs:
            - shell: bash
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee91-mp5.zip
-                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee91-mp5.txt 2>&1 &
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee91-mp5.txt 2>&1 &
                 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee91-mp5.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee91-mp5.html | grep -q "1"; then
@@ -623,8 +623,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee91-mp5
-                path: g-failure-${{ inputs.java_version }}-ee91-mp5.txt  
+                name: m-failure-${{ inputs.java_version }}-ee91-mp5
+                path: m-failure-${{ inputs.java_version }}-ee91-mp5.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -652,7 +652,7 @@ jobs:
              run: |
                 if [${{ inputs.java_version }} != 8]; then
                    unzip  appzip-jdk${{ inputs.java_version }}-ee10-mpNone.zip
-                   ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee10-mpNone.txt 2>&1 &
+                   ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee10-mpNone.txt 2>&1 &
                    bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                    curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee10-mpNone.html
                    if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee10-mpNone.html | grep -q "1"; then
@@ -665,8 +665,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee10-mpNone
-                path: g-failure-${{ inputs.java_version }}-ee10-mpNone.txt  
+                name: m-failure-${{ inputs.java_version }}-ee10-mpNone
+                path: m-failure-${{ inputs.java_version }}-ee10-mpNone.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
@@ -694,7 +694,7 @@ jobs:
              run: |
                 if [${{ inputs.java_version }} != 8]; then
                    unzip  appzip-jdk${{ inputs.java_version }}-ee10-mp6.zip
-                   ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee10-mp6.txt 2>&1 &
+                   ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee10-mp6.txt 2>&1 &
                    bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
                    curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee10-mp6.html
                    if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee10-mp6.html | grep -q "1"; then
@@ -707,8 +707,8 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-ee10-mp6
-                path: g-failure-${{ inputs.java_version }}-ee10-mp6.txt  
+                name: m-failure-${{ inputs.java_version }}-ee10-mp6
+                path: m-failure-${{ inputs.java_version }}-ee10-mp6.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
