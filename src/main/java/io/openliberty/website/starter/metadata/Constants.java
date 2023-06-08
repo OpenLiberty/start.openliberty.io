@@ -24,9 +24,9 @@ public class Constants {
 
     public static final JsonObject JAKARTA_EE_MICROPROFILE_COMPATIBILITIES = Json.createObjectBuilder()
             .add("None", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("1.4").add("2.2").add("3.3").add("4.1").add("5.0").add("6.0")))
-            .add("7", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("1.4")))
-            .add("8", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("2.2").add("3.3").add("4.1")))
+            .add("7.0", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("1.4")))
+            .add("8.0", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("2.2").add("3.3").add("4.1")))
             .add("9.1", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("5.0")))
-            .add("10", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("6.0")))
+            .add("10.0", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("6.0")))
             .build();
 }
