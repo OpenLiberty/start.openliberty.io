@@ -35,6 +35,14 @@ jobs:
           - uses: actions/upload-artifact@v3
             if: success()
             with:
+                name: appzip-jdk${{ inputs.java_version }}-eeNone-mp6
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp6.zip  
+               # if: ${{ inputs.java_version }} != '8' 
+                if-no-files-found: warn
+
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp5
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp5.zip  
                 if-no-files-found: warn
@@ -129,6 +137,7 @@ jobs:
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee10-mpNone
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mpNone.zip
+             #   if: ${{ inputs.java_version }} != '8' 
                 if-no-files-found: warn
         
           - uses: actions/upload-artifact@v3
@@ -136,8 +145,47 @@ jobs:
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee10-mp6
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mp6.zip
+               # if: ${{ inputs.java_version }} != '8' 
                 if-no-files-found: warn
 
+ unzip-build-start-verify-eeNone-mp6:
+     #    if: ${{ inputs.java_version }} != '8'
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-eeNone-mp6
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp6.zip  
+                ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp6.txt 2>&1 &
+                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp6.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp6.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp6.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: m-failure-${{ inputs.java_version }}-eeNone-mp6
+                path: m-failure-${{ inputs.java_version }}-eeNone-mp6.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-eeNone-mp6
+                path: bad-html-${{ inputs.java_version }}-eeNone-mp6.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-eeNone-mp6
+                path: success-jdk${{ inputs.java_version }}-eeNone-mp6.txt
 
     unzip-build-start-verify-eeNone-mp5:
         runs-on: ubuntu-latest
@@ -637,6 +685,7 @@ jobs:
                 path: success-jdk${{ inputs.java_version }}-ee91-mp5.txt
                 
     unzip-build-start-verify-ee10-mpNone:
+       # if: ${{ inputs.java_version }} != '8'
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
         steps:
@@ -679,6 +728,7 @@ jobs:
                 path: success-jdk${{ inputs.java_version }}-ee10-mpNone.txt
 
     unzip-build-start-verify-ee10-mp6:
+      #  if: ${{ inputs.java_version }} != '8'
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
         steps:

@@ -15,11 +15,12 @@ const convertNum2Str = {
         '8': '8',
         '11': '11',
         '17': '17',
-        '10': '10',
+        '10.0': '10',
         '9.1': '91',
-        '7': '7',
-        '6': '6',
-        '5': '5',
+        '8.0': '8',
+        '7.0': '7',
+        '6.0': '6',
+        '5.0': '5',
         '4.1': '41',
         '3.3': '33',
         '2.2': '22',
@@ -32,11 +33,11 @@ const convertNum2Str = {
 
 let jakarta_mp_versions = [
         {
-          jakarta: "10",
+          jakarta: "10.0",
           mp: "6.0"
         },
         {
-          jakarta: "10",
+          jakarta: "10.0",
           mp: "None"
         },
         {
@@ -48,27 +49,27 @@ let jakarta_mp_versions = [
           mp: "None"
         },
         {
-          jakarta: "8",
+          jakarta: "8.0",
           mp: "4.1"
         },
         {
-          jakarta: "8",
+          jakarta: "8.0",
           mp: "3.3"
         },
         {
-          jakarta: "8",
+          jakarta: "8.0",
           mp: "2.2"
         },
         {
-          jakarta: "8",
+          jakarta: "8.0",
           mp: "None"
         },
         {
-          jakarta: "7",
+          jakarta: "7.0",
           mp: "1.4"
         },
         {
-          jakarta: "7",
+          jakarta: "7.0",
           mp: "None"
         },
         {
@@ -107,7 +108,7 @@ Cypress.Commands.add('downloadZipFiles',(gOrM) => {
             cy.log(`jakarta version ` + jktVer);
             const mpVer = version.mp;
             cy.log(`mp version ` + mpVer);
-          
+           
             const appname = 'appzip-jdk' + convertNum2Str[Cypress.env('JDK_VERSION')] + '-ee' + convertNum2Str[jktVer] + '-mp' + convertNum2Str[mpVer];
             cy.log(`appname ` + appname);
             cy.downloadZipFile(appname, jktVer, mpVer, gOrM); 
@@ -137,7 +138,7 @@ Cypress.Commands.add('downloadZipFile', (appname, jktVer, mpVer, gOrM) => {
 
     // select jdk version, jakarta version, mp version
     cy.get('#Starter_Java_Version',{ timeout:10000 }).select(convertNum2Str[Cypress.env('JDK_VERSION')]);
- 
+
     if (jktVer) {
         cy.log('jktVer ' + jktVer);
         cy.get('#Starter_Jakarta_Version').select(jktVer);
@@ -145,31 +146,32 @@ Cypress.Commands.add('downloadZipFile', (appname, jktVer, mpVer, gOrM) => {
     if (mpVer) {
         cy.log('mpVer ' + mpVer);
         cy.get('#Starter_MicroProfile_Version').select(mpVer);
-        // because this is broken right now - we have to go back and reselect None
-        if (jktVer == "None") {
-            cy.log('jktVer had to be reselected now');
-            cy.get('#Starter_Jakarta_Version').select(jktVer);  
-        }
     }
-    cy.get("#starter_submit").click({force: true});
 
-    // for some unknown reason have to add the wait along with click force true to close the modal
-    cy.wait(10000);
-    cy.get('.modal-dialog',{ timeout:10000 }).should('be.visible');
-    if (gOrM == 'g') {    
-         cy.get('#cmd_to_run').contains('gradlew libertyDev');
+    if ((Cypress.env('JDK_VERSION') == '8') && ((jktVer == '10.0') || (mpVer == '6.0'))) {
+        // this is not a supported combination so should have swapped 8 for 11
+        cy.log('unsupported combination');    
+        cy.get('#Starter_Java_Version option:selected').invoke('text').should('eq', '11');     
     } else {
-            cy.get('#cmd_to_run').contains('mvnw liberty:dev');
-    }        
-    cy.get('#gen_proj_popup_button').click({force: true}).then(() => {
-       // need to make this synchronous because it can do the move and keep going in the loop before
-       // the click for the popup happens
-            
-       cy.readFile(path.join(downloadsFolder, `app-name.zip`)).should("exist");
-    
-       // rename app-name.zip to ${appname}.zip
-       cy.log(`mv app-name.zip to ${downloadsFolder}/${appname}`);
-       cy.exec(`mv ${downloadsFolder}/app-name.zip ${downloadsFolder}/${appname}.zip`).its('stderr').should('be.empty'); 
-    });  
+        cy.get("#starter_submit").click({force: true});
 
+       // for some unknown reason have to add the wait along with click force true to close the modal
+       cy.wait(10000);
+       cy.get('.modal-dialog',{ timeout:10000 }).should('be.visible');
+       if (gOrM == 'g') {    
+          cy.get('#cmd_to_run').contains('gradlew libertyDev');
+       } else {
+          cy.get('#cmd_to_run').contains('mvnw liberty:dev');
+       }        
+       cy.get('#gen_proj_popup_button').click({force: true}).then(() => {
+          // need to make this synchronous because it can do the move and keep going in the loop before
+          // the click for the popup happens
+            
+          cy.readFile(path.join(downloadsFolder, `app-name.zip`)).should("exist");
+    
+          // rename app-name.zip to ${appname}.zip
+          cy.log(`mv app-name.zip to ${downloadsFolder}/${appname}`);
+          cy.exec(`mv ${downloadsFolder}/app-name.zip ${downloadsFolder}/${appname}.zip`).its('stderr').should('be.empty'); 
+       });  
+    }
 });
