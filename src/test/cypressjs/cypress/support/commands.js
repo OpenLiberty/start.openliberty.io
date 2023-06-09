@@ -15,7 +15,7 @@ const convertNum2Str = {
         '8': '8',
         '11': '11',
         '17': '17',
-        '10': '10',
+        '10.0': '10',
         '9.1': '91',
         '8.0': '8',
         '7.0': '7',
@@ -33,11 +33,11 @@ const convertNum2Str = {
 
 let jakarta_mp_versions = [
         {
-          jakarta: "10",
+          jakarta: "10.0",
           mp: "6.0"
         },
         {
-          jakarta: "10",
+          jakarta: "10.0",
           mp: "None"
         },
         {
@@ -146,31 +146,32 @@ Cypress.Commands.add('downloadZipFile', (appname, jktVer, mpVer, gOrM) => {
     if (mpVer) {
         cy.log('mpVer ' + mpVer);
         cy.get('#Starter_MicroProfile_Version').select(mpVer);
-        // because this is broken right now - we have to go back and reselect None
-        if (jktVer == "None") {
-            cy.log('jktVer had to be reselected now');
-            cy.get('#Starter_Jakarta_Version').select(jktVer);  
-        }
     }
-    cy.get("#starter_submit").click({force: true});
-
-    // for some unknown reason have to add the wait along with click force true to close the modal
-    cy.wait(10000);
-    cy.get('.modal-dialog',{ timeout:10000 }).should('be.visible');
-    if (gOrM == 'g') {    
-         cy.get('#cmd_to_run').contains('gradlew libertyDev');
-    } else {
-            cy.get('#cmd_to_run').contains('mvnw liberty:dev');
-    }        
-    cy.get('#gen_proj_popup_button').click({force: true}).then(() => {
-       // need to make this synchronous because it can do the move and keep going in the loop before
-       // the click for the popup happens
-            
-       cy.readFile(path.join(downloadsFolder, `app-name.zip`)).should("exist");
     
-       // rename app-name.zip to ${appname}.zip
-       cy.log(`mv app-name.zip to ${downloadsFolder}/${appname}`);
-       cy.exec(`mv ${downloadsFolder}/app-name.zip ${downloadsFolder}/${appname}.zip`).its('stderr').should('be.empty'); 
-    });  
+    if ((Cypress.env('JDK_VERSION') == '8') && ((jktVer == '10.0') || (mpVer == '6.0'))) {
+      // this is not a supported combination so should have swapped 8 for 11
+      cy.log('unsupported combination');    
+      cy.get('#Starter_Java_Version option:selected').invoke('text').should('eq', '11');     
+    } else {
+      cy.get("#starter_submit").click({force: true});
 
+      // for some unknown reason have to add the wait along with click force true to close the modal
+      cy.wait(10000);
+      cy.get('.modal-dialog',{ timeout:10000 }).should('be.visible');
+      if (gOrM == 'g') {    
+         cy.get('#cmd_to_run').contains('gradlew libertyDev');
+      } else {
+         cy.get('#cmd_to_run').contains('mvnw liberty:dev');
+      }        
+      cy.get('#gen_proj_popup_button').click({force: true}).then(() => {
+         // need to make this synchronous because it can do the move and keep going in the loop before
+         // the click for the popup happens
+          
+         cy.readFile(path.join(downloadsFolder, `app-name.zip`)).should("exist");
+  
+         // rename app-name.zip to ${appname}.zip
+         cy.log(`mv app-name.zip to ${downloadsFolder}/${appname}`);
+         cy.exec(`mv ${downloadsFolder}/app-name.zip ${downloadsFolder}/${appname}.zip`).its('stderr').should('be.empty'); 
+      });  
+    }
 });
