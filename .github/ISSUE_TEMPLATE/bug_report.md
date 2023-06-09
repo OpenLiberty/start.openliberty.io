@@ -23,7 +23,7 @@ A clear and concise description of what you expected to happen.
     - [ ] Maven
     - [ ] Gradle
  - Java SE Version [e.g. 8, 11, 17]
- - Java EE/Jakarta EE Version [e.g. None, 8.0, 9.1, 10]
+ - Java EE/Jakarta EE Version [e.g. None, 8.0, 9.1, 10.0]
  - MicroProfile Version [e.g. None, 4.1, 5.0, 6.0]
 
 **Additional context**  
