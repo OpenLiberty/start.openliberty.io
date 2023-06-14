@@ -26,7 +26,7 @@ public class StartMetadata {
     private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>(NLS.getMessage("buildSystem"),
             BuildSystemType.maven, BuildSystemType.values());
     private EnumStringMetadata jakartaEEVersion = new EnumStringMetadataWithConstraint(
-            NLS.getMessage("jakartaEEVersion"), "10", Constants.JAKARTA_EE_MICROPROFILE_COMPATIBILITIES,
+            NLS.getMessage("jakartaEEVersion"), "10.0", Constants.JAKARTA_EE_MICROPROFILE_COMPATIBILITIES,
             Constants.SUPPORTED_JAKARTAEE_VERSIONS);
     private EnumStringMetadata microProfileVersion = new EnumStringMetadata(NLS.getMessage("microProfileVersion"),
             "6.0", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
