@@ -161,7 +161,7 @@ jobs:
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp6.zip  
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp6.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp6.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp6.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp6.txt
@@ -199,7 +199,7 @@ jobs:
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp5.zip  
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp5.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp5.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp5.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp5.txt
@@ -237,7 +237,7 @@ jobs:
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp14.zip  
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp14.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp14.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp14.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp14.txt
@@ -275,7 +275,7 @@ jobs:
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip  
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp22.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp22.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp22.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp22.txt
@@ -313,7 +313,7 @@ jobs:
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp33.zip  
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp33.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp33.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp33.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp33.txt
@@ -351,7 +351,7 @@ jobs:
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp41.zip  
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-eeNone-mp41.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp41.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp41.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp41.txt
@@ -390,7 +390,7 @@ jobs:
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-ee7-mpNone.zip  
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee7-mpNone.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee7-mpNone.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee7-mpNone.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee7-mpNone.txt
@@ -428,7 +428,7 @@ jobs:
              run: |
                 unzip appzip-jdk${{ inputs.java_version }}-ee7-mp14.zip 
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee7-mp14.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee7-mp14.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee7-mp14.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee7-mp14.txt
@@ -467,7 +467,7 @@ jobs:
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee8-mpNone.zip
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee8-mpNone.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mpNone.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mpNone.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mpNone.txt
@@ -505,7 +505,7 @@ jobs:
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp22.zip
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee8-mp22.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp22.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp22.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp22.txt
@@ -543,7 +543,7 @@ jobs:
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp33.zip
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee8-mp33.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp33.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp33.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp33.txt
@@ -581,7 +581,7 @@ jobs:
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp41.zip
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee8-mp41.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp41.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp41.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp41.txt
@@ -619,7 +619,7 @@ jobs:
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee91-mpNone.zip
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee91-mpNone.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee91-mpNone.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee91-mpNone.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee91-mpNone.txt
@@ -658,7 +658,7 @@ jobs:
              run: |
                 unzip  appzip-jdk${{ inputs.java_version }}-ee91-mp5.zip
                 ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee91-mp5.txt 2>&1 &
-                bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                 curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee91-mp5.html
                 if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee91-mp5.html | grep -q "1"; then
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee91-mp5.txt
@@ -697,7 +697,7 @@ jobs:
                 if [${{ inputs.java_version }} != 8]; then
                    unzip  appzip-jdk${{ inputs.java_version }}-ee10-mpNone.zip
                    ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee10-mpNone.txt 2>&1 &
-                   bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                   bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                    curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee10-mpNone.html
                    if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee10-mpNone.html | grep -q "1"; then
                       echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee10-mpNone.txt
@@ -739,7 +739,7 @@ jobs:
                 if [${{ inputs.java_version }} != 8]; then
                    unzip  appzip-jdk${{ inputs.java_version }}-ee10-mp6.zip
                    ./mvnw liberty:dev > m-failure-${{ inputs.java_version }}-ee10-mp6.txt 2>&1 &
-                   bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200" ]]; do sleep 5; done'
+                   bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
                    curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee10-mp6.html
                    if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee10-mp6.html | grep -q "1"; then
                       echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee10-mp6.txt
