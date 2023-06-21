@@ -135,9 +135,6 @@ Cypress.Commands.add('downloadZipFile', (appname, jktVer, mpVer, gOrM) => {
     } else {
         cy.get('#build_system_maven',{ timeout:10000 }).click(); 
     }
-
-    // select jdk version, jakarta version, mp version
-    cy.get('#Starter_Java_Version',{ timeout:10000 }).select(convertNum2Str[Cypress.env('JDK_VERSION')]);
  
     if (jktVer) {
         cy.log('jktVer ' + jktVer);
@@ -147,6 +144,9 @@ Cypress.Commands.add('downloadZipFile', (appname, jktVer, mpVer, gOrM) => {
         cy.log('mpVer ' + mpVer);
         cy.get('#Starter_MicroProfile_Version').select(mpVer);
     }
+    
+    // select jdk version, jakarta version, mp version
+    cy.get('#Starter_Java_Version',{ timeout:10000 }).select(convertNum2Str[Cypress.env('JDK_VERSION')]);
     
     if ((Cypress.env('JDK_VERSION') == '8') && ((jktVer == '10.0') || (mpVer == '6.0'))) {
       // this is not a supported combination so should have swapped 8 for 11
