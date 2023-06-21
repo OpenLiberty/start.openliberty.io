@@ -169,18 +169,18 @@ jobs:
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: g-failure-${{ inputs.java_version }}-eeNone-mp5
-                path: g-failure-${{ inputs.java_version }}-eeNone-mp5.txt  
+                name: g-failure-${{ inputs.java_version }}-eeNone-mp6
+                path: g-failure-${{ inputs.java_version }}-eeNone-mp6.txt  
            - uses: actions/upload-artifact@v3
              if: failure()
              with:
-                name: bad-html-${{ inputs.java_version }}-eeNone-mp5
-                path: bad-html-${{ inputs.java_version }}-eeNone-mp5.html 
+                name: bad-html-${{ inputs.java_version }}-eeNone-mp6
+                path: bad-html-${{ inputs.java_version }}-eeNone-mp6.html 
            - uses: actions/upload-artifact@v3
              if: success()
              with:
-                name: success-jdk${{ inputs.java_version }}-eeNone-mp5
-                path: success-jdk${{ inputs.java_version }}-eeNone-mp5.txt
+                name: success-jdk${{ inputs.java_version }}-eeNone-mp6
+                path: success-jdk${{ inputs.java_version }}-eeNone-mp6.txt
 
     unzip-build-start-verify-eeNone-mp5:
         runs-on: ubuntu-latest
