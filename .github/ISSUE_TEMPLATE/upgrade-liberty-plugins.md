@@ -8,8 +8,6 @@ assignees: ''
 ---
 # Upgrade to the latest Liberty Maven and Gradle Plug-ins Releases
 
-***Make sure to also update the `Add to an existing application` snippets on the start page via the [website code](https://github.com/OpenLiberty/openliberty.io)**
-
 **Steps**
 1. Get the latest versions of the Liberty Plug-ins
   - https://github.com/OpenLiberty/ci.maven/releases
