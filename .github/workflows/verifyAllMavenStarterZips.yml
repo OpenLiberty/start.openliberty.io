@@ -5,13 +5,12 @@ on:
       java_version:
         description: 'Version of Semeru Java to use'
         required: true
-        default: '17'
+        default: '11'
         type: choice
         options:
         - '8'
         - '11'
         - '17'
-        - '21'
   
 jobs:
     use-cypress-to-download-zip:
