@@ -12,11 +12,12 @@ image.
 
 1) Once you download the starter project, unpackage the .zip file on your machine.
 <#if buildType == "maven">
-2) Open a command line session, navigate to the installation directory, and run `./mvnw liberty:dev (unix/macOS) or mvnw liberty:dev (windows)`.
+2) Open a command line session, navigate to the installation directory, and run `mvnw liberty:dev`. 
+   This will install all required dependencies and start the default server. When complete, you will
    see the necessary features installed and the message "server is ready to run a smarter planet."
 </#if>
 <#if buildType == "gradle">
-2) Open a command line session, navigate to the installation directory, and run `./gradlew libertyDev (unix/macOS) or gradlew libertyDev (windows)`
+2) Open a command line session, navigate to the installation directory, and run `gradlew libertyDev`
    to start the default server. When complete, you will see the necessary features installed from 
    the installFeature task and the message "server is ready to run a smarter planet."
 </#if>
