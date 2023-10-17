@@ -1,0 +1,764 @@
+name: Test All Gradle Starter Zips
+on:
+  workflow_dispatch:
+    inputs:
+      java_version:
+        description: 'Version of Semeru Java to use'
+        required: true
+        default: '11'
+        type: choice
+        options:
+        - '8'
+        - '11'
+        - '17'
+  
+jobs:
+    use-cypress-to-download-zip:
+        runs-on: ubuntu-latest
+        container: cypress/included:12.5.1
+        steps: 
+          - uses: actions/checkout@v3.3.0
+          - run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLGradleStarterZips.cy.js
+          
+          - uses: actions/upload-artifact@v3
+            if: failure()
+            with:
+               name: cypress-screenshots
+               path: /__w/start.openliberty.io/start.openliberty.io/cypress/screenshots/downloadAllOLGradleStarterZips.cy.js
+
+          - uses: actions/upload-artifact@v3
+            if: failure()
+            with:
+                name: cypress-videos
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/videos/downloadAllOLGradleStarterZips.cy.js.mp4
+
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-eeNone-mp6
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp6.zip  
+                if-no-files-found: warn
+         
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-eeNone-mp5
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp5.zip  
+                if-no-files-found: warn
+
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-eeNone-mp14
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp14.zip 
+                if-no-files-found: warn
+                
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-eeNone-mp22
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip  
+                if-no-files-found: warn
+        
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-eeNone-mp33
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp33.zip  
+                if-no-files-found: warn
+               
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-eeNone-mp41
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp41.zip 
+                if-no-files-found: warn
+                      
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee7-mpNone
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee7-mpNone.zip  
+                if-no-files-found: warn
+                
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee7-mp14
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee7-mp14.zip  
+                if-no-files-found: warn
+              
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee8-mpNone
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mpNone.zip
+                if-no-files-found: warn
+                
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee8-mp22
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp22.zip  
+                if-no-files-found: warn
+               
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee8-mp33
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp33.zip
+                if-no-files-found: warn               
+
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee8-mp41
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp41.zip   
+                if-no-files-found: warn               
+
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee91-mpNone
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee91-mpNone.zip
+                if-no-files-found: warn
+
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee91-mp5
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee91-mp5.zip
+                if-no-files-found: warn
+               
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee10-mpNone
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mpNone.zip
+                if-no-files-found: warn
+        
+          - uses: actions/upload-artifact@v3
+            if: success()
+            with:
+                name: appzip-jdk${{ inputs.java_version }}-ee10-mp6
+                path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mp6.zip
+                if-no-files-found: warn
+
+    unzip-build-start-verify-eeNone-mp6:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-eeNone-mp6
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp6.zip  
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp6.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp6.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp6.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp6.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-eeNone-mp6
+                path: g-failure-${{ inputs.java_version }}-eeNone-mp6.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-eeNone-mp6
+                path: bad-html-${{ inputs.java_version }}-eeNone-mp6.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-eeNone-mp6
+                path: success-jdk${{ inputs.java_version }}-eeNone-mp6.txt
+
+    unzip-build-start-verify-eeNone-mp5:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-eeNone-mp5
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp5.zip  
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp5.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp5.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp5.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp5.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-eeNone-mp5
+                path: g-failure-${{ inputs.java_version }}-eeNone-mp5.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-eeNone-mp5
+                path: bad-html-${{ inputs.java_version }}-eeNone-mp5.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-eeNone-mp5
+                path: success-jdk${{ inputs.java_version }}-eeNone-mp5.txt
+
+    unzip-build-start-verify-eeNone-mp14:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-eeNone-mp14
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp14.zip  
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp14.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp14.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp14.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp14.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-eeNone-mp14
+                path: g-failure-${{ inputs.java_version }}-eeNone-mp14.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-eeNone-mp14
+                path: bad-html-${{ inputs.java_version }}-eeNone-mp14.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-eeNone-mp14
+                path: success-jdk${{ inputs.java_version }}-eeNone-mp14.txt
+ 
+    unzip-build-start-verify-eeNone-mp22:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK 
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-eeNone-mp22
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip  
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp22.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp22.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp22.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp22.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-eeNone-mp22
+                path: g-failure-${{ inputs.java_version }}-eeNone-mp22.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-eeNone-mp22
+                path: bad-html-${{ inputs.java_version }}-eeNone-mp22.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-eeNone-mp22
+                path: success-jdk${{ inputs.java_version }}-eeNone-mp22.txt
+
+    unzip-build-start-verify-eeNone-mp33:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-eeNone-mp33
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp33.zip  
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp33.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp33.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp33.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp33.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-eeNone-mp33
+                path: g-failure-${{ inputs.java_version }}-eeNone-mp33.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-eeNone-mp33
+                path: bad-html-${{ inputs.java_version }}-eeNone-mp33.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-eeNone-mp33
+                path: success-jdk${{ inputs.java_version }}-eeNone-mp33.txt
+                
+    unzip-build-start-verify-eeNone-mp41:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-eeNone-mp41
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-eeNone-mp41.zip  
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-eeNone-mp41.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-eeNone-mp41.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-eeNone-mp41.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp41.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-eeNone-mp41
+                path: g-failure-${{ inputs.java_version }}-eeNone-mp41.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-eeNone-mp41
+                path: bad-html-${{ inputs.java_version }}-eeNone-mp41.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-eeNone-mp41
+                path: success-jdk${{ inputs.java_version }}-eeNone-mp41.txt
+
+
+    unzip-build-start-verify-ee7-mpNone:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee7-mpNone
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-ee7-mpNone.zip  
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee7-mpNone.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee7-mpNone.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee7-mpNone.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee7-mpNone.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee7-mpNone
+                path: g-failure-${{ inputs.java_version }}-ee7-mpNone.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee7-mpNone
+                path: bad-html-${{ inputs.java_version }}-ee7-mpNone.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee7-mpNone
+                path: success-jdk${{ inputs.java_version }}-ee7-mpNone.txt
+
+    unzip-build-start-verify-ee7-mp14:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee7-mp14
+           - shell: bash
+             run: |
+                unzip appzip-jdk${{ inputs.java_version }}-ee7-mp14.zip 
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee7-mp14.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee7-mp14.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee7-mp14.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee7-mp14.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee7-mp14
+                path: g-failure-${{ inputs.java_version }}-ee7-mp14.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee7-mp14
+                path: bad-html-${{ inputs.java_version }}-ee7-mp14.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee7-mp14
+                path: success-jdk${{ inputs.java_version }}-ee7-mp14.txt
+
+                 
+    unzip-build-start-verify-ee8-mpNone:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee8-mpNone
+           - shell: bash
+             run: |
+                unzip  appzip-jdk${{ inputs.java_version }}-ee8-mpNone.zip
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee8-mpNone.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mpNone.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mpNone.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mpNone.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee8-mpNone
+                path: g-failure-${{ inputs.java_version }}-ee8-mpNone.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee8-mpNone
+                path: bad-html-${{ inputs.java_version }}-ee8-mpNone.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee8-mpNone
+                path: success-jdk${{ inputs.java_version }}-ee8-mpNone.txt
+
+    unzip-build-start-verify-ee8-mp22:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee8-mp22
+           - shell: bash
+             run: |
+                unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp22.zip
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee8-mp22.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp22.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp22.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp22.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee8-mp22
+                path: g-failure-${{ inputs.java_version }}-ee8-mp22.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee8-mp22
+                path: bad-html-${{ inputs.java_version }}-ee8-mp22.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee8-mp22
+                path: success-jdk${{ inputs.java_version }}-ee8-mp22.txt
+                
+    unzip-build-start-verify-ee8-mp33:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee8-mp33
+           - shell: bash
+             run: |
+                unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp33.zip
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee8-mp33.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp33.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp33.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp33.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee8-mp33
+                path: g-failure-${{ inputs.java_version }}-ee8-mp33.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee8-mp33
+                path: bad-html-${{ inputs.java_version }}-ee8-mp33.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee8-mp33
+                path: success-jdk${{ inputs.java_version }}-ee8-mp33.txt
+                
+    unzip-build-start-verify-ee8-mp41:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee8-mp41
+           - shell: bash
+             run: |
+                unzip  appzip-jdk${{ inputs.java_version }}-ee8-mp41.zip
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee8-mp41.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee8-mp41.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee8-mp41.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp41.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee8-mp41
+                path: g-failure-${{ inputs.java_version }}-ee8-mp41.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee8-mp41
+                path: bad-html-${{ inputs.java_version }}-ee8-mp41.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee8-mp41
+                path: success-jdk${{ inputs.java_version }}-ee8-mp41.txt
+
+    unzip-build-start-verify-ee91-mpNone:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee91-mpNone
+           - shell: bash
+             run: |
+                unzip  appzip-jdk${{ inputs.java_version }}-ee91-mpNone.zip
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee91-mpNone.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee91-mpNone.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee91-mpNone.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee91-mpNone.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee91-mpNone
+                path: g-failure-${{ inputs.java_version }}-ee91-mpNone.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee91-mpNone
+                path: bad-html-${{ inputs.java_version }}-ee91-mpNone.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee91-mpNone
+                path: success-jdk${{ inputs.java_version }}-ee91-mpNone.txt
+
+
+    unzip-build-start-verify-ee91-mp5:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee91-mp5
+           - shell: bash
+             run: |
+                unzip  appzip-jdk${{ inputs.java_version }}-ee91-mp5.zip
+                ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee91-mp5.txt 2>&1 &
+                bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee91-mp5.html
+                if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee91-mp5.html | grep -q "1"; then
+                    echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee91-mp5.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee91-mp5
+                path: g-failure-${{ inputs.java_version }}-ee91-mp5.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee91-mp5
+                path: bad-html-${{ inputs.java_version }}-ee91-mp5.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee91-mp5
+                path: success-jdk${{ inputs.java_version }}-ee91-mp5.txt
+                
+    unzip-build-start-verify-ee10-mpNone:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee10-mpNone
+           - shell: bash
+             run: |
+                if [${{ inputs.java_version }} != 8]; then
+                   unzip  appzip-jdk${{ inputs.java_version }}-ee10-mpNone.zip
+                   ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee10-mpNone.txt 2>&1 &
+                   bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                   curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee10-mpNone.html
+                   if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee10-mpNone.html | grep -q "1"; then
+                      echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee10-mpNone.txt
+                   fi 
+                else
+                    echo "Java 8 Not Supported Here - Not Tested" > success-jdk${{ inputs.java_version }}-ee10-mpNone.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee10-mpNone
+                path: g-failure-${{ inputs.java_version }}-ee10-mpNone.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee10-mpNone
+                path: bad-html-${{ inputs.java_version }}-ee10-mpNone.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee10-mpNone
+                path: success-jdk${{ inputs.java_version }}-ee10-mpNone.txt
+
+    unzip-build-start-verify-ee10-mp6:
+        runs-on: ubuntu-latest
+        needs: use-cypress-to-download-zip
+        steps:
+           - name: Set up JDK
+             uses: actions/setup-java@v3
+             with:
+               java-version: ${{ inputs.java_version }}
+               distribution: 'semeru'
+           - uses: actions/download-artifact@v3
+             with:
+                  name: appzip-jdk${{ inputs.java_version }}-ee10-mp6
+           - shell: bash
+             run: |
+                if [${{ inputs.java_version }} != 8]; then
+                   unzip  appzip-jdk${{ inputs.java_version }}-ee10-mp6.zip
+                   ./gradlew libertyDev --serverStartTimeout=240 > g-failure-${{ inputs.java_version }}-ee10-mp6.txt 2>&1 &
+                   bash -c 'x=1; while [[( "$(curl --connect-timeout 1.0 -fS -o /dev/null -w ''%{http_code}'' localhost:9080)" != "200") && ($x -le 25) ]]; do sleep 10 $(( x++ )); done'
+                   curl localhost:9080 -o bad-html-${{ inputs.java_version }}-ee10-mp6.html
+                   if grep -c "WELCOME_MESSAGE" bad-html-${{ inputs.java_version }}-ee10-mp6.html | grep -q "1"; then
+                      echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee10-mp6.txt
+                   fi
+                else
+                   echo "Java 8 Not Supported Here - Not Tested" > success-jdk${{ inputs.java_version }}-ee10-mp6.txt
+                fi
+                
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: g-failure-${{ inputs.java_version }}-ee10-mp6
+                path: g-failure-${{ inputs.java_version }}-ee10-mp6.txt  
+           - uses: actions/upload-artifact@v3
+             if: failure()
+             with:
+                name: bad-html-${{ inputs.java_version }}-ee10-mp6
+                path: bad-html-${{ inputs.java_version }}-ee10-mp6.html 
+           - uses: actions/upload-artifact@v3
+             if: success()
+             with:
+                name: success-jdk${{ inputs.java_version }}-ee10-mp6
+                path: success-jdk${{ inputs.java_version }}-ee10-mp6.txt
