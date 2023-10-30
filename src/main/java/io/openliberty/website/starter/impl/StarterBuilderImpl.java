@@ -66,7 +66,7 @@ public class StarterBuilderImpl implements StarterBuilder {
         requestedTemplates.add("server");
         requestedTemplates.add("docker");
         requestedTemplates.add("rest");
-        requestedTemplates.add("readme");
+        requestedTemplates.add("readme");        
     }
 
     @Override
@@ -137,6 +137,10 @@ public class StarterBuilderImpl implements StarterBuilder {
     @Override
     public final StarterBuilder microProfileVersion(String microProfileVersion) {
         this.microProfileVersion = microProfileVersion;
+
+        if(microProfileVersion != "None"){
+            requestedTemplates.add("microprofile");
+        }
 
         if ("4.0".equals(microProfileVersion)) {
             properties.put("microProfilePomVersion", "4.0.1");

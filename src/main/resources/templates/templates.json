@@ -58,7 +58,7 @@
 		{
 			"template": "maven/gitignore",
 			"fileName": ".gitignore"
-		}
+		}		
 	],
 	"docker": [
 		{
@@ -91,6 +91,12 @@
 			"template": "readme/README.txt",
 			"fileName": "README.txt",
 			"process": true
+		}
+	],
+	"microprofile": [
+		{
+			"template": "microprofile/microprofile-config.properties",
+			"fileName": "src/main/resources/META-INF/microprofile-config.properties"
 		}
 	]
 }
