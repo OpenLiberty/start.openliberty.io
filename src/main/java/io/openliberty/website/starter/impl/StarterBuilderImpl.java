@@ -138,7 +138,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     public final StarterBuilder microProfileVersion(String microProfileVersion) {
         this.microProfileVersion = microProfileVersion;
 
-        if(microProfileVersion != "None"){
+        if(!microProfileVersion.equals("None")){
             requestedTemplates.add("microprofile");
         }
 
