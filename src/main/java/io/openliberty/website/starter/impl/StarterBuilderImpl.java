@@ -109,7 +109,7 @@ public class StarterBuilderImpl implements StarterBuilder {
             properties.put("jakartaEEArtifactId", "jakarta.jakartaee-api");
             properties.put("jakartaEEVersion", "8.0.0");
             properties.put("jakartaEEFeature", "jakartaee-8.0");
-        } 
+        }
         else if("9.1".equals(jakartaEEVersion)){
             properties.put("jakartaEEGroupId", "jakarta.platform");
             properties.put("jakartaEEArtifactId", "jakarta.jakartaee-api");
@@ -138,6 +138,10 @@ public class StarterBuilderImpl implements StarterBuilder {
     public final StarterBuilder microProfileVersion(String microProfileVersion) {
         this.microProfileVersion = microProfileVersion;
 
+        if(!microProfileVersion.equals("None")){
+            requestedTemplates.add("microprofile");
+        }
+
         if ("4.0".equals(microProfileVersion)) {
             properties.put("microProfilePomVersion", "4.0.1");
         } else {
@@ -161,7 +165,7 @@ public class StarterBuilderImpl implements StarterBuilder {
 
     @Override
     public final StarterBuilder buildType(String buildSystem) {
-        String capitalizedBuildType = 
+        String capitalizedBuildType =
             buildSystem.substring(0, 1).toUpperCase() + buildSystem.substring(1);
         properties.put("buildTypeForReadme", capitalizedBuildType); // Used in README.txt
         properties.put("buildType", buildSystem.toLowerCase());
