@@ -23,7 +23,7 @@ public class GradleStarterBuilderTest {
     @Test
     public void testJakartaEE8() throws UnsupportedEncodingException, IOException, XmlPullParserException {
         MockZipOutputStream mockZip = MockZipOutputStream.create().capture("build.gradle").capture("src/main/liberty/config/server.xml").capture("settings.gradle");
-        BuildSystemType.gradle.create().appName("test").groupName("io.openliberty.demo").javaVersion("11")
+        BuildSystemType.gradle.create().appName("test").groupName("io.openliberty.demo").javaVersion("17")
                 .jakartaEEVersion("8.0").microProfileVersion("3.3").buildType("gradle").build(mockZip);
 
         assertFilesPresent(mockZip);
@@ -36,7 +36,7 @@ public class GradleStarterBuilderTest {
     @Test
     public void testJavaEE7() throws UnsupportedEncodingException, IOException, XmlPullParserException {
         MockZipOutputStream mockZip = MockZipOutputStream.create().capture("build.gradle").capture("src/main/liberty/config/server.xml").capture("settings.gradle");
-        BuildSystemType.gradle.create().appName("test").groupName("io.openliberty.demo").javaVersion("11")
+        BuildSystemType.gradle.create().appName("test").groupName("io.openliberty.demo").javaVersion("17")
                 .jakartaEEVersion("7.0").microProfileVersion("3.3").buildType("gradle").build(mockZip);
 
         assertFilesPresent(mockZip);

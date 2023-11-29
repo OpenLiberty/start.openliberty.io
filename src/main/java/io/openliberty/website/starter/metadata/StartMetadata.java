@@ -21,7 +21,7 @@ public class StartMetadata {
     private SimpleStringMetadata appName = new SimpleStringMetadata(NLS.getMessage("appName"), "string", "app-name");
     private SimpleStringMetadata groupName = new SimpleStringMetadata(NLS.getMessage("basePackage"), "string",
             "com.demo");
-    private EnumStringMetadata javaVersion = new EnumStringMetadata(NLS.getMessage("javaVersion"), "11",
+    private EnumStringMetadata javaVersion = new EnumStringMetadata(NLS.getMessage("javaVersion"), "17",
             Constants.SUPPORTED_JAVA_VERSIONS);
     private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>(NLS.getMessage("buildSystem"),
             BuildSystemType.maven, BuildSystemType.values());
