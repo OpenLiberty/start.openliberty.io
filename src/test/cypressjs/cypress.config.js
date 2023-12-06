@@ -7,7 +7,7 @@ module.exports = {
   },
   env: {
     default_website_url: 'https://staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud',
-    default_jdk: '11',
+    default_jdk: '17',
   },
   viewportWidth: 1280,
   e2e: {
