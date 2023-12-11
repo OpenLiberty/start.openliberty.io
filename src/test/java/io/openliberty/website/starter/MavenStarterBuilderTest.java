@@ -30,7 +30,7 @@ public class MavenStarterBuilderTest {
     @Test
     public void testJakartaEE8() throws UnsupportedEncodingException, IOException, XmlPullParserException {
         MockZipOutputStream mockZip = MockZipOutputStream.create().capture("pom.xml").capture("src/main/liberty/config/server.xml");
-        BuildSystemType.maven.create().appName("test").groupName("io.openliberty.demo").javaVersion("11")
+        BuildSystemType.maven.create().appName("test").groupName("io.openliberty.demo").javaVersion("17")
                 .jakartaEEVersion("8.0").microProfileVersion("3.3").buildType("maven").build(mockZip);
 
         assertFilesPresent(mockZip);
@@ -42,7 +42,7 @@ public class MavenStarterBuilderTest {
     @Test
     public void testJavaEE7() throws UnsupportedEncodingException, IOException, XmlPullParserException {
         MockZipOutputStream mockZip = MockZipOutputStream.create().capture("pom.xml").capture("src/main/liberty/config/server.xml");
-        BuildSystemType.maven.create().appName("test").groupName("io.openliberty.demo").javaVersion("11")
+        BuildSystemType.maven.create().appName("test").groupName("io.openliberty.demo").javaVersion("17")
                 .jakartaEEVersion("7.0").microProfileVersion("3.3").buildType("maven").build(mockZip);
 
         assertFilesPresent(mockZip);
