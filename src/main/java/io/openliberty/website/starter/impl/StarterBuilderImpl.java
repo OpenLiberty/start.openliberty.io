@@ -148,10 +148,10 @@ public class StarterBuilderImpl implements StarterBuilder {
             properties.put("microProfilePomVersion", microProfileVersion);
         }
         properties.put("microProfileVersion", microProfileVersion);
-        // handle the case when Jakarta=None,MP=5.0 or 6.0
+        // handle the case when Jakarta=None,MP=5.0 or 6.1
         // jakartaEEBasePackageName should be jakarta
         if ("None".equals(jakartaEEVersion) &&
-            ("5.0".equals(microProfileVersion) || "6.0".equals(microProfileVersion))) {
+            ("5.0".equals(microProfileVersion) || "6.0".equals(microProfileVersion) || "6.1".equals(microProfileVersion))) {
             properties.put("jakartaEEBasePackageName", "jakarta");
         }
         return this;
