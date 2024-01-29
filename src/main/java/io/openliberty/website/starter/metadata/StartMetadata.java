@@ -29,7 +29,7 @@ public class StartMetadata {
             NLS.getMessage("jakartaEEVersion"), "10.0", Constants.JAKARTA_EE_MICROPROFILE_COMPATIBILITIES,
             Constants.SUPPORTED_JAKARTAEE_VERSIONS);
     private EnumStringMetadata microProfileVersion = new EnumStringMetadata(NLS.getMessage("microProfileVersion"),
-            "6.0", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
+            "6.1", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
 
     public void updateDisplayStrings() {
         appName.updateString(NLS.getMessage("appName"));
