@@ -15,7 +15,7 @@ import javax.json.JsonObject;
 
 public class Constants {
 
-    public static final String[] SUPPORTED_JAVA_VERSIONS = new String[] { "8", "11", "17", "21" };
+    public static final String[] SUPPORTED_JAVA_VERSIONS = new String[] { "8", "11", "17" };
 
     public static final String[] SUPPORTED_JAKARTAEE_VERSIONS = new String[] { "None", "7.0", "8.0", "9.1", "10.0" };
 
