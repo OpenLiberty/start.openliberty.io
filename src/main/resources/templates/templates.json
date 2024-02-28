@@ -62,7 +62,7 @@
 	],
 	"docker": [
 		{
-			"template": "docker/Dockerfile",
+			"template": "docker/Dockerfile.ftlh",
 			"fileName": "Dockerfile",
 			"process": true
 		},
