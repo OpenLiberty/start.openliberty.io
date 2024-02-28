@@ -1,8 +1,17 @@
+
+
 # Contributing to start.openliberty.io
 
 Anyone can contribute to the start.openliberty.io project and we welcome your contributions!
 
-## Contributor License Agreement
+ - [Legal](#legal)
+ - [Raising issues](#raising-issues)
+ - [Setup Guide](#setup-guide)
+ - [How to deliver your changes](#how-to-deliver-code-and-test-on-staging-environment)
+
+
+## Legal
+### Contributor License Agreement
 
 In order for us to accept pull requests, you must declare that you wrote the code or, at least, have the right to contribute it to the repo under the open source licence of the project in the repo. It's dead easy...
 
@@ -57,3 +66,34 @@ By making a contribution to this project, I certify that:
 
 If you are an IBMer, please contact us directly as the contribution process is
 slightly different.
+
+
+## Raising issues
+
+Please raise any bug reports on the [issue tracker](https://github.com/OpenLiberty/start.openliberty.io/issues). Be sure to search the list to see if your issue has already been raised.
+
+A good bug report makes it easy for us to understand what you were trying to do and what went wrong. Provide as much context as possible so we can try to recreate the issue.
+
+## Setup Guide
+### How to run locally in dev mode
+1) Clone the repository
+2) Run `cd start.openliberty.io`
+3) Run `mvn liberty:dev` 
+4) Then you can test all endpoints at `https://localhost:9443/api/`   
+
+### Running/Debugging using Liberty Tools 
+1) [Using Liberty Tools for IntelliJ](https://github.com/OpenLiberty/liberty-tools-intellij/blob/main/docs/user-guide.md)
+2) [Using Liberty Tools for Eclipse](https://github.com/OpenLiberty/liberty-tools-eclipse/blob/main/docs/user-guide.md)
+3) [Using Liberty Tools for Visual Studio Code](https://github.com/OpenLiberty/liberty-tools-vscode/blob/HEAD/docs/user-guide.md)
+
+### How to run tests
+1) Run `mvn liberty:dev -DhotTests`
+
+## How to deliver code and test on staging environment
+1) `git checkout main && git pull`
+2) `git checkout -b feature-branch-name`
+3) Push new commits to the feature branch
+4) When done developing and testing locally, create a pull request to merge feature branch to `staging`
+5) When pull request is merged into `staging`, wait for https://starter-staging.rh9j6zz75er.us-east.codeengine.appdomain.cloud/api/start/info to refresh with merged code
+6) Visit https://ui-staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud/start/ to test the APIs from https://starter-staging.rh9j6zz75er.us-east.codeengine.appdomain.cloud/
+7) When ready for production, [open a pull request](https://github.com/OpenLiberty/start.openliberty.io/compare/main...staging) to merge `staging` to `main`

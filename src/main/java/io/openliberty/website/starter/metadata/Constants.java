@@ -15,18 +15,18 @@ import javax.json.JsonObject;
 
 public class Constants {
 
-    public static final String[] SUPPORTED_JAVA_VERSIONS = new String[] { "8", "11", "17", "21" };
+    public static final String[] SUPPORTED_JAVA_VERSIONS = new String[] { "8", "11", "17" };
 
     public static final String[] SUPPORTED_JAKARTAEE_VERSIONS = new String[] { "None", "7.0", "8.0", "9.1", "10.0" };
 
     public static final String[] SUPPORTED_MICROPROFILE_VERSIONS = 
-        new String[] { "None", "1.4", "2.2", "3.3", "4.1", "5.0", "6.0" };
+        new String[] { "None", "1.4", "2.2", "3.3", "4.1", "5.0", "6.0", "6.1" };
 
     public static final JsonObject JAKARTA_EE_MICROPROFILE_COMPATIBILITIES = Json.createObjectBuilder()
-            .add("None", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("1.4").add("2.2").add("3.3").add("4.1").add("5.0").add("6.0")))
+            .add("None", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("1.4").add("2.2").add("3.3").add("4.1").add("5.0").add("6.0").add("6.1")))
             .add("7.0", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("1.4")))
             .add("8.0", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("2.2").add("3.3").add("4.1")))
             .add("9.1", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("5.0")))
-            .add("10.0", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("6.0")))
+            .add("10.0", Json.createObjectBuilder().add("m", Json.createArrayBuilder().add("None").add("6.0").add("6.1")))
             .build();
 }

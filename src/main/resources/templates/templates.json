@@ -92,6 +92,12 @@
 			"fileName": "README.txt",
 			"process": true
 		}
+	],
+	"microprofile": [
+		{
+			"template": "microprofile/microprofile-config.properties",
+			"fileName": "src/main/resources/META-INF/microprofile-config.properties"
+		}
 	]
 }
 

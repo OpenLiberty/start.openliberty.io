@@ -15,11 +15,11 @@ const convertNum2Str = {
   '8': '8',
   '11': '11',
   '17': '17',
-  '21': '21',
   '10.0': '10',
   '9.1': '91',
   '8.0': '8',
   '7.0': '7',
+  '6.1': '61',
   '6.0': '6',
   '5.0': '5',
   '4.1': '41',
@@ -33,10 +33,14 @@ const convertNum2Str = {
 // keep in mind not all java versions work with all of these for ex. ee10, mp6 cannot use java 8
 
 let jakarta_mp_versions = [
-        {
-          jakarta: "10.0",
-          mp: "6.0"
-        },
+  {
+    jakarta: "10.0",
+    mp: "6.1"
+  },
+  {
+    jakarta: "10.0",
+    mp: "6.0"
+  },
   {
     jakarta: "10.0",
     mp: "None"
@@ -72,6 +76,10 @@ let jakarta_mp_versions = [
   {
     jakarta: "7.0",
     mp: "None"
+  },
+  {
+    jakarta: "None",
+    mp: "6.1"
   },
   {
     jakarta: "None",
@@ -148,7 +156,7 @@ if (mpVer) {
 // select java last because occasionally it's not getting the right version if it's first
 cy.get('#Starter_Java_Version',{ timeout:10000 }).select(convertNum2Str[Cypress.env('JDK_VERSION')]);
 
-if ((Cypress.env('JDK_VERSION') == '8') && ((jktVer == '10.0') || (mpVer == '6.0'))) {
+if ((Cypress.env('JDK_VERSION') == '8') && ((jktVer == '10.0') || (mpVer == '6.1') || (mpVer == '6.0'))) {
 // this is not a supported combination so should have swapped 8 for 11
 cy.log('unsupported combination');    
 cy.get('#Starter_Java_Version option:selected').invoke('text').should('eq', '11');     

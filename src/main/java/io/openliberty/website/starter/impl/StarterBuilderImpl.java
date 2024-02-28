@@ -117,7 +117,7 @@ public class StarterBuilderImpl implements StarterBuilder {
             properties.put("jakartaEEArtifactId", "jakarta.jakartaee-api");
             properties.put("jakartaEEVersion", "8.0.0");
             properties.put("jakartaEEFeature", "jakartaee-8.0");
-        } 
+        }
         else if("9.1".equals(jakartaEEVersion)){
             properties.put("jakartaEEGroupId", "jakarta.platform");
             properties.put("jakartaEEArtifactId", "jakarta.jakartaee-api");
@@ -146,16 +146,20 @@ public class StarterBuilderImpl implements StarterBuilder {
     public final StarterBuilder microProfileVersion(String microProfileVersion) {
         this.microProfileVersion = microProfileVersion;
 
+        if(!microProfileVersion.equals("None")){
+            requestedTemplates.add("microprofile");
+        }
+
         if ("4.0".equals(microProfileVersion)) {
             properties.put("microProfilePomVersion", "4.0.1");
         } else {
             properties.put("microProfilePomVersion", microProfileVersion);
         }
         properties.put("microProfileVersion", microProfileVersion);
-        // handle the case when Jakarta=None,MP=5.0 or 6.0
+        // handle the case when Jakarta=None,MP=5.0 or 6.1
         // jakartaEEBasePackageName should be jakarta
         if ("None".equals(jakartaEEVersion) &&
-            ("5.0".equals(microProfileVersion) || "6.0".equals(microProfileVersion))) {
+            ("5.0".equals(microProfileVersion) || "6.0".equals(microProfileVersion) || "6.1".equals(microProfileVersion))) {
             properties.put("jakartaEEBasePackageName", "jakarta");
         }
         return this;
@@ -169,7 +173,7 @@ public class StarterBuilderImpl implements StarterBuilder {
 
     @Override
     public final StarterBuilder buildType(String buildSystem) {
-        String capitalizedBuildType = 
+        String capitalizedBuildType =
             buildSystem.substring(0, 1).toUpperCase() + buildSystem.substring(1);
         properties.put("buildTypeForReadme", capitalizedBuildType); // Used in README.txt
         properties.put("buildType", buildSystem.toLowerCase());
