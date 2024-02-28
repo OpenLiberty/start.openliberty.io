@@ -23,8 +23,6 @@ public interface StarterBuilder {
     StarterBuilder jakartaEEVersion(String jakartaEEVersion);
 
     StarterBuilder microProfileVersion(String microProfileVersion);
-
-    StarterBuilder minimalImage(String minimalImage);
     
     StarterBuilder template(String templateName);
 
