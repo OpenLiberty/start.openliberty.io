@@ -39,6 +39,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     protected String javaVersion;
     protected String jakartaEEVersion;
     protected String microProfileVersion;
+    protected String minimalImage;
 
     protected Map<String, String> properties = new HashMap<>();
 
@@ -89,6 +90,13 @@ public class StarterBuilderImpl implements StarterBuilder {
     public final StarterBuilder javaVersion(String javaVersion) {
         this.javaVersion = javaVersion;
         properties.put("javaVersion", javaVersion);
+        return this;
+    }
+
+    @Override
+    public final StarterBuilder minimalImage(String minimalImage) {
+        this.minimalImage = minimalImage;
+        properties.put("minimalImage", minimalImage);
         return this;
     }
 

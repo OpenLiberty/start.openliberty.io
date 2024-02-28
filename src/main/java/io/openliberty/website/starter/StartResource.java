@@ -94,8 +94,14 @@ public class StartResource extends Application {
 		ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
 		ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
 
+		String min = "";
+
+		if(javaVersion.equals("21")){
+			min="-minimal";
+		}
+
 		boolean result = buildSystem.create().appName(appName).groupName(groupId).javaVersion(javaVersion)
-				.jakartaEEVersion(jakartaEEVersion).microProfileVersion(microProfileVersion)
+				.jakartaEEVersion(jakartaEEVersion).microProfileVersion(microProfileVersion).minimalImage(min)
 				.buildType(buildSystem.toString()).build(zipOut);
 
 		zipOut.close();
