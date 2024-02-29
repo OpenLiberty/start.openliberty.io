@@ -139,6 +139,7 @@ cy.log('jdkVer ' + jdkVer);
 const downloadsFolder = Cypress.config('downloadsFolder');
 const path = require("path");
 
+cy.wait(10000);
 // select gradle or maven
 if (gOrM == 'g') {
   cy.get('#build_system_gradle',{ timeout:10000 }).click();
