@@ -15,6 +15,7 @@ const convertNum2Str = {
   '8': '8',
   '11': '11',
   '17': '17',
+  '21': '21',
   '10.0': '10',
   '9.1': '91',
   '8.0': '8',
@@ -138,6 +139,7 @@ cy.log('jdkVer ' + jdkVer);
 const downloadsFolder = Cypress.config('downloadsFolder');
 const path = require("path");
 
+cy.wait(10000);
 // select gradle or maven
 if (gOrM == 'g') {
   cy.get('#build_system_gradle',{ timeout:10000 }).click();
