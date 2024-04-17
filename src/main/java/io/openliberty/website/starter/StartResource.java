@@ -41,6 +41,15 @@ import io.openliberty.website.starter.validation.JakartaEEVersion;
 import io.openliberty.website.starter.validation.JavaVersion;
 import io.openliberty.website.starter.validation.MicroProfileVersion;
 
+
+//me added
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import org.json.JSONArray;
+
 @ApplicationPath("/api")
 @Path("/")
 @RequestScoped
@@ -76,6 +85,19 @@ public class StartResource extends Application {
 			e.printStackTrace();
 		}
 	}
+
+	//me added function
+	private String parseJsonObject(JSONObject jsonObject) {
+        // Example: Extracting a nested JSONObject
+        JSONObject response = jsonObject.getJSONObject("response");
+        JSONArray docs = response.getJSONArray("docs");
+        //System.out.println("docs " + docs);
+        JSONObject doc=docs.getJSONObject(0);
+        //System.out.println("doc " + doc);
+        String mavenVersion = doc.getString("v");
+        System.out.println("!!!!!!!!!!!!!version " + mavenVersion +"!!!!!!!!!!!!!!!!!!!");
+		return mavenVersion;
+    }
 
 	@GET
 	@Produces("application/zip")
@@ -115,7 +137,54 @@ public class StartResource extends Application {
 	@Path("start/info")
 	public Response getInfo(@Context HttpServletRequest req) {
 		System.out.println("Get info");
+
 		updateNLSStrings(req.getLocale());
 		return Response.ok(metadataJson).build();
 	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+    @Path("start/mavenversion")
+    public Response getNameFromJson() {
+		// System.out.println("Get info");
+		// updateNLSStrings(req.getLocale());
+		// return Response.ok(metadataJson).build();
+        String jsonUrl = "https://search.maven.org/solrsearch/select?q=g:io.openliberty.tools+AND+a:liberty-maven-plugin&core=gav&rows=20&wt=json";
+        
+        try {
+            URL url = new URL(jsonUrl);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            JSONObject jsonObject = new JSONObject(response.toString());
+
+            // Parse the JSONObject
+            String mavenVersion=parseJsonObject(jsonObject);
+			con.disconnect();
+			return Response.ok(new JSONObject()
+                               .put("status", "success")
+                               .put("name", mavenVersion)
+                               .toString())
+                          .build();  
+			//return Response.ok("Hello World").build();   
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+						.entity(new JSONObject()
+								.put("status", "error")
+								.put("message", "Failed to fetch name")
+								.toString())
+						.build();
+		}
+	}	
+
 }
