@@ -41,6 +41,13 @@ import io.openliberty.website.starter.validation.JakartaEEVersion;
 import io.openliberty.website.starter.validation.JavaVersion;
 import io.openliberty.website.starter.validation.MicroProfileVersion;
 
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import org.json.JSONArray;
+
 @ApplicationPath("/api")
 @Path("/")
 @RequestScoped
@@ -76,6 +83,31 @@ public class StartResource extends Application {
 			e.printStackTrace();
 		}
 	}
+
+	public String getJsonData(String jsonUrl) throws Exception{
+        URL url = new URL(jsonUrl);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        con.disconnect();
+		return parseJsonObject(new JSONObject(response.toString()));
+    }
+
+    private String parseJsonObject(JSONObject jsonObject) {
+        JSONObject response = jsonObject.getJSONObject("response");
+        JSONArray docs = response.getJSONArray("docs");
+        JSONObject doc=docs.getJSONObject(0);
+        String pluginVersion = doc.getString("v");
+        return pluginVersion;
+    }
 
 	@GET
 	@Produces("application/zip")
@@ -118,4 +150,29 @@ public class StartResource extends Application {
 		updateNLSStrings(req.getLocale());
 		return Response.ok(metadataJson).build();
 	}
+
+	String mavenUrl="https://search.maven.org/solrsearch/select?q=g:io.openliberty.tools+AND+a:liberty-maven-plugin&core=gav&rows=20&wt=json";
+    String gradleUrl="https://search.maven.org/solrsearch/select?q=g:io.openliberty.tools+AND+a:liberty-gradle-plugin&core=gav&rows=20&wt=json";
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("start/plugin-versions")
+    public Response getVersionFromJson() {
+        try {
+            String mavenVersion=getJsonData(mavenUrl);
+            String gradleVersion=getJsonData(gradleUrl);
+			return Response.ok(new JSONObject()
+                               .put("mavenVersion", mavenVersion)
+                               .put("gradleVersion", gradleVersion)
+                               .toString())
+                          .build();     
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                        .entity(new JSONObject()
+                                .put("status", "error")
+                                .put("message", "Failed to fetch plugin versions")
+                                .toString())
+                        .build();
+        }
+    }
 }
