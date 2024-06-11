@@ -37,12 +37,12 @@ public class GradleStarterBuilderTest {
     public void testJavaEE7() throws UnsupportedEncodingException, IOException, XmlPullParserException {
         MockZipOutputStream mockZip = MockZipOutputStream.create().capture("build.gradle").capture("src/main/liberty/config/server.xml").capture("settings.gradle");
         BuildSystemType.gradle.create().appName("test").groupName("io.openliberty.demo").javaVersion("17")
-                .jakartaEEVersion("7.0").microProfileVersion("3.3").buildType("gradle").build(mockZip);
+                .jakartaEEVersion("7.0.0").microProfileVersion("3.3").buildType("gradle").build(mockZip);
 
         assertFilesPresent(mockZip);
-        assertDependency(mockZip, "javax", "javaee-api", "7.0");
+        assertDependency(mockZip, "javax", "javaee-api", "7.0.0");
         assertDependency(mockZip, "org.eclipse.microprofile", "microprofile", "3.3");
-        assertServerFeature(mockZip, "javaee-7.0");
+        assertServerFeature(mockZip, "javaee-7.0.0");
         assertProjectName(mockZip, "test");
     }
 

@@ -19,7 +19,7 @@ const convertNum2Str = {
   '10.0': '10',
   '9.1': '91',
   '8.0': '8',
-  '7.0': '7',
+  '7.0.0': '7',
   '6.1': '61',
   '6.0': '6',
   '5.0': '5',
@@ -71,11 +71,11 @@ let jakarta_mp_versions = [
     mp: "None"
   },
   {
-    jakarta: "7.0",
+    jakarta: "7.0.0",
     mp: "1.4"
   },
   {
-    jakarta: "7.0",
+    jakarta: "7.0,0",
     mp: "None"
   },
   {
