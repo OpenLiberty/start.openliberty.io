@@ -151,7 +151,7 @@ public class StarterBuilderImpl implements StarterBuilder {
         // handle the case when Jakarta=None,MP=5.0 or 6.1
         // jakartaEEBasePackageName should be jakarta
         if ("None".equals(jakartaEEVersion) &&
-            ("5.0".equals(microProfileVersion) || "6.0".equals(microProfileVersion) || "6.1".equals(microProfileVersion))) {
+            ("5.0".equals(microProfileVersion) || "6.0".equals(microProfileVersion) || "6.1".equals(microProfileVersion) || "7.0".equals(microProfileVersion))) {
             properties.put("jakartaEEBasePackageName", "jakarta");
         }
         return this;
