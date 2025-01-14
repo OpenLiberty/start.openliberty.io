@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 
 public class MockZipOutputStream extends ZipArchiveOutputStream {
@@ -34,7 +34,7 @@ public class MockZipOutputStream extends ZipArchiveOutputStream {
     }
 
     @Override
-    public void putArchiveEntry(ArchiveEntry e) {
+    public void putArchiveEntry(ZipArchiveEntry e) {
         String name = e.getName();
         fileNames.add(name);
         if (filesToCapture.contains(name)) {
