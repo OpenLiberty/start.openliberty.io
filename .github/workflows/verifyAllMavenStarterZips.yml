@@ -21,54 +21,54 @@ jobs:
           - uses: actions/checkout@v3.3.0
           - run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLMavenStarterZips.cy.js
           
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: failure()
             with:
                name: cypress-screenshots
                path: /__w/start.openliberty.io/start.openliberty.io/cypress/screenshots/downloadAllOLMavenStarterZips.cy.js
 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: failure()
             with:
                 name: cypress-videos
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/videos/downloadAllOLMavenStarterZips.cy.js.mp4
 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp6
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp6.zip  
                 if-no-files-found: warn
          
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp5
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp5.zip  
                 if-no-files-found: warn
 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp14
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp14.zip 
                 if-no-files-found: warn
                 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp22
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp22.zip  
                 if-no-files-found: warn
         
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp33
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-eeNone-mp33.zip  
                 if-no-files-found: warn
                
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-eeNone-mp41
@@ -76,70 +76,70 @@ jobs:
                 if-no-files-found: warn
                 
                 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee7-mpNone
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee7-mpNone.zip  
                 if-no-files-found: warn
                 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee7-mp14
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee7-mp14.zip  
                 if-no-files-found: warn
               
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee8-mpNone
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mpNone.zip
                 if-no-files-found: warn
                 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee8-mp22
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp22.zip  
                 if-no-files-found: warn
                
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee8-mp33
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp33.zip
                 if-no-files-found: warn               
 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee8-mp41
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee8-mp41.zip   
                 if-no-files-found: warn               
 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee91-mpNone
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee91-mpNone.zip
                 if-no-files-found: warn
 
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee91-mp5
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee91-mp5.zip
                 if-no-files-found: warn
                
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee10-mpNone
                 path: /__w/start.openliberty.io/start.openliberty.io/cypress/downloads/appzip-jdk${{ inputs.java_version }}-ee10-mpNone.zip
                 if-no-files-found: warn
         
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             if: success()
             with:
                 name: appzip-jdk${{ inputs.java_version }}-ee10-mp6
@@ -155,7 +155,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-eeNone-mp6
            - shell: bash
@@ -168,17 +168,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp6.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-eeNone-mp6
                 path: m-failure-${{ inputs.java_version }}-eeNone-mp6.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-eeNone-mp6
                 path: bad-html-${{ inputs.java_version }}-eeNone-mp6.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-eeNone-mp6
@@ -193,7 +193,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-eeNone-mp5
            - shell: bash
@@ -206,17 +206,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp5.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-eeNone-mp5
                 path: m-failure-${{ inputs.java_version }}-eeNone-mp5.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-eeNone-mp5
                 path: bad-html-${{ inputs.java_version }}-eeNone-mp5.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-eeNone-mp5
@@ -231,7 +231,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-eeNone-mp14
            - shell: bash
@@ -244,17 +244,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp14.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-eeNone-mp14
                 path: m-failure-${{ inputs.java_version }}-eeNone-mp14.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-eeNone-mp14
                 path: bad-html-${{ inputs.java_version }}-eeNone-mp14.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-eeNone-mp14
@@ -269,7 +269,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-eeNone-mp22
            - shell: bash
@@ -282,17 +282,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp22.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-eeNone-mp22
                 path: m-failure-${{ inputs.java_version }}-eeNone-mp22.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-eeNone-mp22
                 path: bad-html-${{ inputs.java_version }}-eeNone-mp22.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-eeNone-mp22
@@ -307,7 +307,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-eeNone-mp33
            - shell: bash
@@ -320,17 +320,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp33.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-eeNone-mp33
                 path: m-failure-${{ inputs.java_version }}-eeNone-mp33.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-eeNone-mp33
                 path: bad-html-${{ inputs.java_version }}-eeNone-mp33.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-eeNone-mp33
@@ -345,7 +345,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-eeNone-mp41
            - shell: bash
@@ -358,17 +358,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-eeNone-mp41.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-eeNone-mp41
                 path: m-failure-${{ inputs.java_version }}-eeNone-mp41.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-eeNone-mp41
                 path: bad-html-${{ inputs.java_version }}-eeNone-mp41.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-eeNone-mp41
@@ -384,7 +384,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee7-mpNone
            - shell: bash
@@ -397,17 +397,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee7-mpNone.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee7-mpNone
                 path: m-failure-${{ inputs.java_version }}-ee7-mpNone.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee7-mpNone
                 path: bad-html-${{ inputs.java_version }}-ee7-mpNone.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee7-mpNone
@@ -422,7 +422,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee7-mp14
            - shell: bash
@@ -435,17 +435,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee7-mp14.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee7-mp14
                 path: m-failure-${{ inputs.java_version }}-ee7-mp14.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee7-mp14
                 path: bad-html-${{ inputs.java_version }}-ee7-mp14.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee7-mp14
@@ -461,7 +461,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee8-mpNone
            - shell: bash
@@ -474,17 +474,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mpNone.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee8-mpNone
                 path: m-failure-${{ inputs.java_version }}-ee8-mpNone.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee8-mpNone
                 path: bad-html-${{ inputs.java_version }}-ee8-mpNone.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee8-mpNone
@@ -499,7 +499,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee8-mp22
            - shell: bash
@@ -512,17 +512,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp22.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee8-mp22
                 path: m-failure-${{ inputs.java_version }}-ee8-mp22.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee8-mp22
                 path: bad-html-${{ inputs.java_version }}-ee8-mp22.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee8-mp22
@@ -537,7 +537,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee8-mp33
            - shell: bash
@@ -550,17 +550,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp33.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee8-mp33
                 path: m-failure-${{ inputs.java_version }}-ee8-mp33.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee8-mp33
                 path: bad-html-${{ inputs.java_version }}-ee8-mp33.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee8-mp33
@@ -575,7 +575,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee8-mp41
            - shell: bash
@@ -588,17 +588,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee8-mp41.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee8-mp41
                 path: m-failure-${{ inputs.java_version }}-ee8-mp41.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee8-mp41
                 path: bad-html-${{ inputs.java_version }}-ee8-mp41.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee8-mp41
@@ -613,7 +613,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee91-mpNone
            - shell: bash
@@ -626,17 +626,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee91-mpNone.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee91-mpNone
                 path: m-failure-${{ inputs.java_version }}-ee91-mpNone.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee91-mpNone
                 path: bad-html-${{ inputs.java_version }}-ee91-mpNone.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee91-mpNone
@@ -652,7 +652,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee91-mp5
            - shell: bash
@@ -665,17 +665,17 @@ jobs:
                     echo "Splash page found - SUCCESS" > success-jdk${{ inputs.java_version }}-ee91-mp5.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee91-mp5
                 path: m-failure-${{ inputs.java_version }}-ee91-mp5.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee91-mp5
                 path: bad-html-${{ inputs.java_version }}-ee91-mp5.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee91-mp5
@@ -690,7 +690,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee10-mpNone
            - shell: bash
@@ -707,17 +707,17 @@ jobs:
                     echo "Java 8 Not Supported Here - Not Tested" > success-jdk${{ inputs.java_version }}-ee10-mpNone.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee10-mpNone
                 path: m-failure-${{ inputs.java_version }}-ee10-mpNone.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee10-mpNone
                 path: bad-html-${{ inputs.java_version }}-ee10-mpNone.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee10-mpNone
@@ -732,7 +732,7 @@ jobs:
              with:
                java-version: ${{ inputs.java_version }}
                distribution: 'semeru'
-           - uses: actions/download-artifact@v3
+           - uses: actions/download-artifact@v4
              with:
                   name: appzip-jdk${{ inputs.java_version }}-ee10-mp6
            - shell: bash
@@ -749,17 +749,17 @@ jobs:
                    echo "Java 8 Not Supported Here - Not Tested" > success-jdk${{ inputs.java_version }}-ee10-mp6.txt
                 fi
                 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: m-failure-${{ inputs.java_version }}-ee10-mp6
                 path: m-failure-${{ inputs.java_version }}-ee10-mp6.txt  
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: failure()
              with:
                 name: bad-html-${{ inputs.java_version }}-ee10-mp6
                 path: bad-html-${{ inputs.java_version }}-ee10-mp6.html 
-           - uses: actions/upload-artifact@v3
+           - uses: actions/upload-artifact@v4
              if: success()
              with:
                 name: success-jdk${{ inputs.java_version }}-ee10-mp6
