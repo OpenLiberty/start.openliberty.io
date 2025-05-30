@@ -73,7 +73,8 @@ public class StartResource extends Application {
 			metadataJson = json.toJson(md);
 		} catch (Exception e) {
 			// ignore this
-			e.printStackTrace();
+			// e.printStackTrace();
+			System.err.println("Error in NLS String");
 		}
 	}
 
@@ -103,7 +104,7 @@ public class StartResource extends Application {
 		if (result) {
 			return Response.ok(bytesOut.toByteArray())
 					.header("Content-Disposition", "attachment; filename=\"" + appName + ".zip\"")
-					.header("Content-Transfer-Encoding", "binary").build();
+					.header("Content-Transfer-Encoding", "binary").header("X-Content-Type-Options", "nosniff").build();
 		} else {
 			
 			return Response.status(500).build();
