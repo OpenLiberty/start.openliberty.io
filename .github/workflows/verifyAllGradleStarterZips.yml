@@ -148,6 +148,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp6:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
+        if: inputs.java_version != '8'
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -683,6 +684,7 @@ jobs:
     unzip-build-start-verify-ee10-mpNone:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
+        if: inputs.java_version != '8'
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -725,6 +727,7 @@ jobs:
     unzip-build-start-verify-ee10-mp6:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
+        if: inputs.java_version != '8'
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
