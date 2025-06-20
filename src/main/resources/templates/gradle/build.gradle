@@ -18,9 +18,12 @@ repositories {
 
 dependencies {
     // provided dependencies
-    <#if jakartaEEVersion != "None">providedCompile '${jakartaEEGroupId}:${jakartaEEArtifactId}:${jakartaEEVersion}' </#if>
-    <#if microProfileVersion != "None">providedCompile 'org.eclipse.microprofile:microprofile:${microProfileVersion}' </#if>
-
+    if (jakartaEEVersion != "None"){
+        providedCompile '${jakartaEEGroupId}:${jakartaEEArtifactId}:${jakartaEEVersion}'
+    }    
+    if (microProfileVersion != "None"){
+        providedCompile 'org.eclipse.microprofile:microprofile:${microProfileVersion}'
+    }    
 }
 
 clean.dependsOn 'libertyStop'
