@@ -1,5 +1,5 @@
 # Stage 1: Build with maven to produce the .war application
-FROM icr.io/appcafe/open-liberty-devfile-stack:22.0.0.1 as build
+FROM icr.io/appcafe/open-liberty-devfile-stack:21.0.0.12 as build
 
 USER root
 COPY src /src
