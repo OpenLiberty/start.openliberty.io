@@ -1,7 +1,7 @@
 {
 	"gradle": [
 		{
-			"template": "gradle/build.gradle",
+			"template": "gradle/build.gradle.ftlh",
 			"fileName": "build.gradle",
 			"process": true
 		},
@@ -15,7 +15,7 @@
 			"fileName": "gradlew.bat"
 		},
 		{
-			"template": "gradle/settings.gradle",
+			"template": "gradle/settings.gradle.ftlh",
 			"fileName": "settings.gradle",
 			"process": true
 		},
@@ -51,7 +51,7 @@
 			"fileName": "mvnw.cmd"
 		},
 		{
-			"template": "maven/pom.xml",
+			"template": "maven/pom.xml.ftlh",
 			"fileName": "pom.xml",
 			"process": true
 		},
