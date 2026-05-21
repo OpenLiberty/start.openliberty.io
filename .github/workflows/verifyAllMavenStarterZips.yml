@@ -18,7 +18,7 @@ jobs:
         runs-on: ubuntu-latest
         container: cypress/included:12.5.1
         steps: 
-          - uses: actions/checkout@v3.3.0
+          - uses: actions/checkout@v4
           - run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLMavenStarterZips.cy.js
           
           - uses: actions/upload-artifact@v4
