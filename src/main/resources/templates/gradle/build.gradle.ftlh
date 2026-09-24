@@ -6,9 +6,12 @@ plugins {
 version '1.0-SNAPSHOT'
 group '${groupName}'
 
-sourceCompatibility = ${javaVersion}
-targetCompatibility = ${javaVersion}
-tasks.withType(JavaCompile) {
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(${javaVersion})
+    }
+}
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
