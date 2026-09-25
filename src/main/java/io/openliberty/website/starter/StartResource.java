@@ -37,6 +37,7 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import io.openliberty.website.starter.metadata.MetadataVisibilityStrategy;
 import io.openliberty.website.starter.metadata.StartMetadata;
+import io.openliberty.website.starter.validation.GradleVersion;
 import io.openliberty.website.starter.validation.JakartaEEVersion;
 import io.openliberty.website.starter.validation.JavaVersion;
 import io.openliberty.website.starter.validation.MicroProfileVersion;
@@ -87,7 +88,8 @@ public class StartResource extends Application {
 			@JavaVersion @QueryParam("j") @Parameter(description = "Java SE Version") String javaVersion,
 			@QueryParam("b") @Parameter(description = "Build System") BuildSystemType buildSystem,
 			@JakartaEEVersion @QueryParam("e") @Parameter(description = "Java EE / Jakarta EE Version") String jakartaEEVersion,
-			@MicroProfileVersion @QueryParam("m") @Parameter(description = "MicroProfile Version") String microProfileVersion)
+			@MicroProfileVersion @QueryParam("m") @Parameter(description = "MicroProfile Version") String microProfileVersion,
+			@GradleVersion @QueryParam("gv") @Parameter(description = "Gradle Version") String gradleVersion)
 			throws IOException {
 
 		updateNLSStrings(req.getLocale());
@@ -97,7 +99,7 @@ public class StartResource extends Application {
 
 		boolean result = buildSystem.create().appName(appName).groupName(groupId).javaVersion(javaVersion)
 				.jakartaEEVersion(jakartaEEVersion).microProfileVersion(microProfileVersion)
-				.buildType(buildSystem.toString()).build(zipOut);
+				.gradleVersion(gradleVersion).buildType(buildSystem.toString()).build(zipOut);
 
 		zipOut.close();
 

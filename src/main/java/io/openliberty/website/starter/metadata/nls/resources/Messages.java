@@ -11,6 +11,7 @@ public class Messages extends java.util.ListResourceBundle
       { "buildSystem", "Build System"},
       { "jakartaEEVersion", "Java EE / Jakarta EE Version"},
       { "javaVersion", "Java SE Version"},
+      { "gradleVersion", "Gradle Version"},
       { "microProfileVersion", "MicroProfile Version"},
       { "templateProcessError", "Failed to process template"},
       { "jakartaEEValidationMessage", "Jakarta EE version requested was ${validatedValue} but must be one of: {permittedValues}"},
