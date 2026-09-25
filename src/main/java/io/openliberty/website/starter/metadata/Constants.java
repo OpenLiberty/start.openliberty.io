@@ -15,7 +15,7 @@ import javax.json.JsonObject;
 
 public class Constants {
 
-    public static final String[] SUPPORTED_JAVA_VERSIONS = new String[] { "8", "11", "17", "21" };
+    public static final String[] SUPPORTED_JAVA_VERSIONS = new String[] { "8", "11", "17", "21", "25" };
 
     public static final String[] SUPPORTED_GRADLE_VERSIONS = new String[] { "8", "9" };
 
@@ -29,12 +29,12 @@ public class Constants {
 
     public static final String[] SUPPORTED_JAKARTAEE_VERSIONS = new String[] { "None", "7.0", "8.0", "9.1", "10.0", "11.0" };
 
-    public static final String[] SUPPORTED_MICROPROFILE_VERSIONS = 
+    public static final String[] SUPPORTED_MICROPROFILE_VERSIONS =
         new String[] { "None", "1.4", "2.2", "3.3", "4.1", "5.0", "6.0", "6.1", "7.0", "7.1" };
 
     public static final JsonObject GRADLE_JAVA_COMPATIBILITIES = Json.createObjectBuilder()
             .add("8", Json.createObjectBuilder().add("j", Json.createArrayBuilder().add("8").add("11").add("17").add("21")))
-            .add("9", Json.createObjectBuilder().add("j", Json.createArrayBuilder().add("17").add("21")))
+            .add("9", Json.createObjectBuilder().add("j", Json.createArrayBuilder().add("17").add("21").add("25")))
             .build();
 
     public static final JsonObject JAKARTA_EE_MICROPROFILE_COMPATIBILITIES = Json.createObjectBuilder()

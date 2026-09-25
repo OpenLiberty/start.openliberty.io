@@ -12,6 +12,7 @@ on:
         - '11'
         - '17'
         - '21'
+        - '25'
       gradle_version:
         description: 'Gradle version to use'
         required: true
@@ -221,7 +222,7 @@ jobs:
     #
     # Gradle version constraints (from Constants.GRADLE_JAVA_COMPATIBILITIES):
     #   Gradle 8: Java 8, 11, 17, 21
-    #   Gradle 9: Java 17, 21  (skip when gradle_version=='9' && java_version is '8' or '11')
+    #   Gradle 9: Java 17, 21, 25  (skip when gradle_version=='9' && java_version is '8' or '11'; skip when gradle_version=='8' && java_version is '25')
     #
     # Jakarta EE constraints (pre-existing):
     #   EE 10:  requires Java 11+  (skip when java_version=='8')
@@ -235,7 +236,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp71:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -274,7 +275,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp7:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -313,7 +314,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp61:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -352,7 +353,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp6:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -394,7 +395,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp5:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -433,7 +434,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp14:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -472,7 +473,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp22:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -511,7 +512,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp33:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -550,7 +551,7 @@ jobs:
     unzip-build-start-verify-eeNone-mp41:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -589,7 +590,7 @@ jobs:
     unzip-build-start-verify-ee7-mpNone:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -628,7 +629,7 @@ jobs:
     unzip-build-start-verify-ee7-mp14:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -667,7 +668,7 @@ jobs:
     unzip-build-start-verify-ee8-mpNone:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -706,7 +707,7 @@ jobs:
     unzip-build-start-verify-ee8-mp22:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -745,7 +746,7 @@ jobs:
     unzip-build-start-verify-ee8-mp33:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -784,7 +785,7 @@ jobs:
     unzip-build-start-verify-ee8-mp41:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -823,7 +824,7 @@ jobs:
     unzip-build-start-verify-ee91-mpNone:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -862,7 +863,7 @@ jobs:
     unzip-build-start-verify-ee91-mp5:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11'))"
+        if: "!(inputs.gradle_version == '9' && (inputs.java_version == '8' || inputs.java_version == '11')) && !(inputs.gradle_version == '8' && inputs.java_version == '25')"
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -903,7 +904,7 @@ jobs:
     unzip-build-start-verify-ee10-mpNone:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -942,7 +943,7 @@ jobs:
     unzip-build-start-verify-ee10-mp6:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -981,7 +982,7 @@ jobs:
     unzip-build-start-verify-ee10-mp61:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -1020,7 +1021,7 @@ jobs:
     unzip-build-start-verify-ee10-mp7:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -1059,7 +1060,7 @@ jobs:
     unzip-build-start-verify-ee10-mp71:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11')
+        if: inputs.java_version != '8' && !(inputs.gradle_version == '9' && inputs.java_version == '11') && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -1100,7 +1101,7 @@ jobs:
     unzip-build-start-verify-ee11-mpNone:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && inputs.java_version != '11'
+        if: inputs.java_version != '8' && inputs.java_version != '11' && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -1139,7 +1140,7 @@ jobs:
     unzip-build-start-verify-ee11-mp7:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && inputs.java_version != '11'
+        if: inputs.java_version != '8' && inputs.java_version != '11' && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
@@ -1178,7 +1179,7 @@ jobs:
     unzip-build-start-verify-ee11-mp71:
         runs-on: ubuntu-latest
         needs: use-cypress-to-download-zip
-        if: inputs.java_version != '8' && inputs.java_version != '11'
+        if: inputs.java_version != '8' && inputs.java_version != '11' && !(inputs.gradle_version == '8' && inputs.java_version == '25')
         steps:
            - name: Set up JDK
              uses: actions/setup-java@v3
