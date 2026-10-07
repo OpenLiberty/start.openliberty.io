@@ -24,8 +24,9 @@
 			"fileName": "gradle/wrapper/gradle-wrapper.jar"
 		},
 		{
-			"template": "gradle/gradle-wrapper.properties",
-			"fileName": "gradle/wrapper/gradle-wrapper.properties"
+			"template": "gradle/gradle-wrapper.properties.ftlh",
+			"fileName": "gradle/wrapper/gradle-wrapper.properties",
+			"process": true
 		},
 		{
 			"template": "gradle/gitignore",

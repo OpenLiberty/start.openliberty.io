@@ -31,6 +31,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import io.openliberty.website.starter.NLS;
 import io.openliberty.website.starter.StarterBuilder;
+import io.openliberty.website.starter.metadata.Constants;
 import io.openliberty.website.starter.metadata.TemplateMetadata;
 
 public class StarterBuilderImpl implements StarterBuilder {
@@ -39,6 +40,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     protected String javaVersion;
     protected String jakartaEEVersion;
     protected String microProfileVersion;
+    protected String gradleVersion;
 
     protected Map<String, String> properties = new HashMap<>();
 
@@ -160,6 +162,19 @@ public class StarterBuilderImpl implements StarterBuilder {
         if ("None".equals(jakartaEEVersion) &&
             ("5.0".equals(microProfileVersion) || "6.0".equals(microProfileVersion) || "6.1".equals(microProfileVersion) || "7.0".equals(microProfileVersion) || "7.1".equals(microProfileVersion))) {
             properties.put("jakartaEEBasePackageName", "jakarta");
+        }
+        return this;
+    }
+
+    @Override
+    public final StarterBuilder gradleVersion(String gradleVersion) {
+        this.gradleVersion = gradleVersion;
+        if ("8".equals(gradleVersion)) {
+            properties.put("gradleVersion", Constants.GRADLE_8_VERSION);
+            properties.put("libertyGradlePluginVersion", Constants.LIBERTY_GRADLE_PLUGIN_3_VERSION);
+        } else if ("9".equals(gradleVersion)) {
+            properties.put("gradleVersion", Constants.GRADLE_9_VERSION);
+            properties.put("libertyGradlePluginVersion", Constants.LIBERTY_GRADLE_PLUGIN_4_VERSION);
         }
         return this;
     }
