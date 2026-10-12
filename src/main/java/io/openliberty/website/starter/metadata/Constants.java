@@ -17,6 +17,8 @@ public class Constants {
 
     public static final String[] SUPPORTED_JAVA_VERSIONS = new String[] { "8", "11", "17", "21", "25" };
 
+    public static final String[] SUPPORTED_JAVA_VERSIONS_V1 = new String[] { "8", "11", "17", "21" };
+
     public static final String[] SUPPORTED_GRADLE_VERSIONS = new String[] { "8", "9" };
 
     public static final String GRADLE_8_VERSION = "8.14.5";

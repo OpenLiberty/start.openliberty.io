@@ -13,14 +13,14 @@ package io.openliberty.website.starter.validation.validator;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
-import io.openliberty.website.starter.metadata.StartMetadata;
+import io.openliberty.website.starter.v2.V2StartMetadata;
 import io.openliberty.website.starter.validation.GradleVersion;
 
 @Dependent
 public class GradleVersionValidator extends AbstractEnumValidator<GradleVersion, String> {
 
     @Inject
-    private StartMetadata metaData;
+    private V2StartMetadata metaData;
 
     public void initialize(GradleVersion constraintAnnotation) {
         super.init(constraintAnnotation.message(), metaData.getGradleVersion().values);

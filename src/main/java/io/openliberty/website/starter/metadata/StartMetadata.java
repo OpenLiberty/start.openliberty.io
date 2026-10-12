@@ -22,7 +22,7 @@ public class StartMetadata {
     private SimpleStringMetadata groupName = new SimpleStringMetadata(NLS.getMessage("basePackage"), "string",
             "com.demo");
     private EnumStringMetadata javaVersion = new EnumStringMetadata(NLS.getMessage("javaVersion"), "21",
-            Constants.SUPPORTED_JAVA_VERSIONS);
+            Constants.SUPPORTED_JAVA_VERSIONS_V1);
     private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>(NLS.getMessage("buildSystem"),
             BuildSystemType.maven, BuildSystemType.values());
     private EnumStringMetadata jakartaEEVersion = new EnumStringMetadataWithConstraint(
@@ -30,8 +30,6 @@ public class StartMetadata {
             Constants.SUPPORTED_JAKARTAEE_VERSIONS);
     private EnumStringMetadata microProfileVersion = new EnumStringMetadata(NLS.getMessage("microProfileVersion"),
             "7.1", Constants.SUPPORTED_MICROPROFILE_VERSIONS);
-    private EnumStringMetadata gradleVersion = new EnumStringMetadataWithConstraint(NLS.getMessage("gradleVersion"),
-            "9", Constants.GRADLE_JAVA_COMPATIBILITIES, Constants.SUPPORTED_GRADLE_VERSIONS);
 
     public void updateDisplayStrings() {
         appName.updateString(NLS.getMessage("appName"));
@@ -40,7 +38,6 @@ public class StartMetadata {
         buildSystem.updateString(NLS.getMessage("buildSystem"));
         jakartaEEVersion.updateString(NLS.getMessage("jakartaEEVersion"));
         microProfileVersion.updateString(NLS.getMessage("microProfileVersion"));
-        gradleVersion.updateString(NLS.getMessage("gradleVersion"));
     }
 
     @JsonbProperty("a")
@@ -71,10 +68,5 @@ public class StartMetadata {
     @JsonbProperty("m")
     public EnumStringMetadata getMicroProfileVersion() {
         return microProfileVersion;
-    }
-
-    @JsonbProperty("gv")
-    public EnumStringMetadata getGradleVersion() {
-        return gradleVersion;
     }
 }
