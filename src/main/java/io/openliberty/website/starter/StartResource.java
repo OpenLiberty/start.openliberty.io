@@ -95,9 +95,11 @@ public class StartResource extends Application {
 		ByteArrayOutputStream bytesOut = new ByteArrayOutputStream();
 		ZipArchiveOutputStream zipOut = new ZipArchiveOutputStream(bytesOut);
 
+		// v1 API (/api/start) is frozen at Gradle 8 — no gv param is accepted here.
+		// Gradle version selection is only available via the v2 API (/api/v2/start).
 		boolean result = buildSystem.create().appName(appName).groupName(groupId).javaVersion(javaVersion)
 				.jakartaEEVersion(jakartaEEVersion).microProfileVersion(microProfileVersion)
-				.buildType(buildSystem.toString()).build(zipOut);
+				.gradleVersion("8").buildType(buildSystem.toString()).build(zipOut);
 
 		zipOut.close();
 

@@ -167,15 +167,14 @@ public class StarterBuilderImpl implements StarterBuilder {
     }
 
     @Override
-    public final StarterBuilder gradleVersion(String gradleVersion) {
+     public final StarterBuilder gradleVersion(String gradleVersion) {
         this.gradleVersion = gradleVersion;
-        if ("9".equals(gradleVersion)) {
-            properties.put("gradleVersion", Constants.GRADLE_9_VERSION);
-            properties.put("libertyGradlePluginVersion", Constants.LIBERTY_GRADLE_PLUGIN_4_VERSION);
-        } else {
-            // "8" or null/absent (e.g. v1 default endpoint) — default to Gradle 8
+        if ("8".equals(gradleVersion)) {
             properties.put("gradleVersion", Constants.GRADLE_8_VERSION);
             properties.put("libertyGradlePluginVersion", Constants.LIBERTY_GRADLE_PLUGIN_3_VERSION);
+        } else if ("9".equals(gradleVersion)) {
+            properties.put("gradleVersion", Constants.GRADLE_9_VERSION);
+            properties.put("libertyGradlePluginVersion", Constants.LIBERTY_GRADLE_PLUGIN_4_VERSION);
         }
         return this;
     }
