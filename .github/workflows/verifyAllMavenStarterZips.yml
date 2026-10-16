@@ -12,6 +12,7 @@ on:
         - '11'
         - '17'
         - '21'
+        - '25'
   
 jobs:
     use-cypress-to-download-zip:
