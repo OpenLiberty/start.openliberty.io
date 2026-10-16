@@ -12,6 +12,8 @@ package io.openliberty.website.starter.validation.validator;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintValidatorContext;
 
 import io.openliberty.website.starter.v2.V2StartMetadata;
 import io.openliberty.website.starter.validation.GradleVersion;
@@ -22,7 +24,22 @@ public class GradleVersionValidator extends AbstractEnumValidator<GradleVersion,
     @Inject
     private V2StartMetadata metaData;
 
+    @Inject
+    private HttpServletRequest request;
+
     public void initialize(GradleVersion constraintAnnotation) {
         super.init(constraintAnnotation.message(), metaData.getGradleVersion().values);
+    }
+
+    // gv is required when b=gradle; absent/empty is valid for Maven builds.
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        if (request != null && "gradle".equalsIgnoreCase(request.getParameter("b"))) {
+            return super.isValid(value, context);
+        }
+        if (value == null || value.isEmpty()) {
+            return true;
+        }
+        return super.isValid(value, context);
     }
 }
