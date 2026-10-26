@@ -22,6 +22,7 @@ public class Messages_fr extends java.util.ListResourceBundle
       { "buildSystem", "Système de construction"},
       { "jakartaEEVersion", "Version Java EE / Jakarta EE"},
       { "javaVersion", "Version Java SE"},
+      { "gradleVersion", "Version Gradle"},
       { "microProfileVersion", "Version MicroProfile"},
       { "templateProcessError", "Échec du traitement du modèle"}
    };

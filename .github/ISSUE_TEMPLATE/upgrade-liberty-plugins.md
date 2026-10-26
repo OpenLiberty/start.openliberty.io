@@ -28,7 +28,7 @@ assignees: ''
     ```
 
 4. Update the Liberty Gradle Plug-in version
-  - https://github.com/OpenLiberty/start.openliberty.io/blob/main/src/main/resources/templates/gradle/build.gradle
+  - https://github.com/OpenLiberty/start.openliberty.io/blob/main/src/main/resources/templates/gradle/build.gradle.ftlh
     ```
       plugins {
           id 'war'

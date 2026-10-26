@@ -1,12 +1,16 @@
 // Common methods called from the scripts to select the java, jakarta(ee) and microprofile levels
-// and dowload the created zip files for all of them 
+// and dowload the created zip files for all of them
 // It will build either the gradle or maven version of the zipfile based on the passed in
 // parameter to downloadZipFiles
 
 // NOTE - Right now, all possible combinations are allowed by the ui so we go ahead and create the
-// invalid zip files for java 8 with EE 10 or mp 6 but the github actions that will try to 
+// invalid zip files for java 8 with EE 10 or mp 6 but the github actions that will try to
 // test the zips files skip these - when the ui is fixed to prevent those combinations, this
 // code will need to change
+
+// NOTE - Similarly, Gradle 9 requires Java 17 or later. Invalid combinations (gradle 9 + java 8/11)
+// are still downloaded here (the UI may auto-correct), but the GitHub Actions verification jobs
+// skip them based on the gradle_version + java_version constraints.
 
 
 
@@ -16,6 +20,7 @@ const convertNum2Str = {
   '11': '11',
   '17': '17',
   '21': '21',
+  '25': '25',
   '11.0': '11',
   '10.0': '10',
   '9.1': '91',
@@ -150,9 +155,9 @@ for (let i = 0; i < jakarta_mp_versions.length; i++) {
       const mpVer = version.mp;
       cy.log(`mp version ` + mpVer);
     
-      const appname = 'appzip-jdk' + convertNum2Str[Cypress.env('JDK_VERSION')] + '-ee' + convertNum2Str[jktVer] + '-mp' + convertNum2Str[mpVer];
+      const appname = 'appzip-jdk' + convertNum2Str[Cypress.env('JDK_VERSION')] + '-gradle' + Cypress.env('GRADLE_VERSION') + '-ee' + convertNum2Str[jktVer] + '-mp' + convertNum2Str[mpVer];
       cy.log(`appname ` + appname);
-      cy.downloadZipFile(appname, jktVer, mpVer, gOrM); 
+      cy.downloadZipFile(appname, jktVer, mpVer, gOrM);
 }
 });
 
@@ -167,6 +172,8 @@ Cypress.Commands.add('downloadZipFile', (appname, jktVer, mpVer, gOrM) => {
 cy.log('appname ' + appname);
 var jdkVer = Cypress.env('JDK_VERSION');
 cy.log('jdkVer ' + jdkVer);
+var gradleVer = Cypress.env('GRADLE_VERSION');
+cy.log('gradleVer ' + gradleVer);
 const downloadsFolder = Cypress.config('downloadsFolder');
 const path = require("path");
 
@@ -174,8 +181,12 @@ cy.wait(10000);
 // select gradle or maven
 if (gOrM == 'g') {
   cy.get('#build_system_gradle',{ timeout:10000 }).click();
+  // select gradle version (only present when gradle build system is chosen)
+  if (gradleVer) {
+    cy.get('#Starter_Gradle_Version',{ timeout:10000 }).select(gradleVer);
+  }
 } else {
-  cy.get('#build_system_maven',{ timeout:10000 }).click(); 
+  cy.get('#build_system_maven',{ timeout:10000 }).click();
 }
 // select jdk version, jakarta version, mp version
 if (jktVer) {

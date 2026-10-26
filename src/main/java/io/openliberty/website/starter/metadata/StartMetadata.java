@@ -22,7 +22,7 @@ public class StartMetadata {
     private SimpleStringMetadata groupName = new SimpleStringMetadata(NLS.getMessage("basePackage"), "string",
             "com.demo");
     private EnumStringMetadata javaVersion = new EnumStringMetadata(NLS.getMessage("javaVersion"), "21",
-            Constants.SUPPORTED_JAVA_VERSIONS);
+            Constants.SUPPORTED_JAVA_VERSIONS_V1);
     private EnumMetadata<BuildSystemType> buildSystem = new EnumMetadata<BuildSystemType>(NLS.getMessage("buildSystem"),
             BuildSystemType.maven, BuildSystemType.values());
     private EnumStringMetadata jakartaEEVersion = new EnumStringMetadataWithConstraint(

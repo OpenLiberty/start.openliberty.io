@@ -24,7 +24,8 @@ public class GradleStarterBuilderTest {
     public void testJakartaEE8() throws UnsupportedEncodingException, IOException, XmlPullParserException {
         MockZipOutputStream mockZip = MockZipOutputStream.create().capture("build.gradle").capture("src/main/liberty/config/server.xml").capture("settings.gradle");
         BuildSystemType.gradle.create().appName("test").groupName("io.openliberty.demo").javaVersion("17")
-                .jakartaEEVersion("8.0").microProfileVersion("3.3").buildType("gradle").build(mockZip);
+                .jakartaEEVersion("8.0").microProfileVersion("3.3").gradleVersion("8")
+                .buildType("gradle").build(mockZip);
 
         assertFilesPresent(mockZip);
         assertDependency(mockZip, "jakarta.platform", "jakarta.jakartaee-api", "8.0.0");
@@ -37,13 +38,48 @@ public class GradleStarterBuilderTest {
     public void testJavaEE7() throws UnsupportedEncodingException, IOException, XmlPullParserException {
         MockZipOutputStream mockZip = MockZipOutputStream.create().capture("build.gradle").capture("src/main/liberty/config/server.xml").capture("settings.gradle");
         BuildSystemType.gradle.create().appName("test").groupName("io.openliberty.demo").javaVersion("17")
-                .jakartaEEVersion("7.0").microProfileVersion("3.3").buildType("gradle").build(mockZip);
+                .jakartaEEVersion("7.0").microProfileVersion("3.3").gradleVersion("8")
+                .buildType("gradle").build(mockZip);
 
         assertFilesPresent(mockZip);
         assertDependency(mockZip, "javax", "javaee-api", "7.0");
         assertDependency(mockZip, "org.eclipse.microprofile", "microprofile", "3.3");
         assertServerFeature(mockZip, "javaee-7.0");
         assertProjectName(mockZip, "test");
+    }
+
+    @Test
+    public void testGradle8Versions() throws UnsupportedEncodingException {
+        MockZipOutputStream mockZip = buildWithGradleVersion("8");
+
+        assertGeneratedVersions(mockZip, "8.14.5", "3.10.0");
+    }
+
+    @Test
+    public void testGradle9Versions() throws UnsupportedEncodingException {
+        MockZipOutputStream mockZip = buildWithGradleVersion("9");
+
+        assertGeneratedVersions(mockZip, "9.7.1", "4.0.2");
+    }
+
+    private MockZipOutputStream buildWithGradleVersion(String gradleVersion) {
+        MockZipOutputStream mockZip = MockZipOutputStream.create().capture("build.gradle")
+                .capture("gradle/wrapper/gradle-wrapper.properties");
+        BuildSystemType.gradle.create().appName("test").groupName("io.openliberty.demo").javaVersion("17")
+                .jakartaEEVersion("11.0").microProfileVersion("7.1").gradleVersion(gradleVersion)
+                .buildType("gradle").build(mockZip);
+        return mockZip;
+    }
+
+    private void assertGeneratedVersions(MockZipOutputStream mockZip, String gradleVersion,
+            String libertyGradlePluginVersion) throws UnsupportedEncodingException {
+        String wrapperProperties = new String(
+                mockZip.getCapturedFile("gradle/wrapper/gradle-wrapper.properties"), "utf-8");
+        String buildGradle = new String(mockZip.getCapturedFile("build.gradle"), "utf-8");
+
+        assertTrue(wrapperProperties.contains("gradle-" + gradleVersion + "-bin.zip"));
+        assertTrue(buildGradle.contains("io.openliberty.tools.gradle.Liberty' version '"
+                + libertyGradlePluginVersion + "'"));
     }
 
     private void assertProjectName(MockZipOutputStream mockZip, String appName)
