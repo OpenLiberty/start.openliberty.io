@@ -70,24 +70,19 @@ Omit `GH_PAT` (or leave it empty) for unauthenticated calls to public repos on `
 Determine the config file path using this priority order:
 
 1. **Explicit path in the user's prompt** — if the user's message contains a file path (relative
-   or absolute, e.g. `./gh-sync.js`, `./sync.json`, `~/configs/prod.js`), use that path.
+   or absolute, e.g. `./gh-sync.js`, `~/configs/prod.js`), use that path.
    Resolve a relative path against the current workspace folder.
-2. **Workspace default** — check for `gh-sync.js` (or `gh-sync.json`) in the current workspace folder:
-   `<workspaceFolder>/gh-sync.js` or `<workspaceFolder>/gh-sync.json`.
+2. **Workspace default** — check for `gh-sync.js` in the current workspace folder:
+   `<workspaceFolder>/gh-sync.js`.
 3. **No config** — if neither is found, proceed without config (all fields collected interactively).
 
 ### 0b — Read and apply the config
 
 Read the resolved path:
 
-For JavaScript config files (`.js`, e.g. `gh-sync.js` exporting `module.exports`):
+For JavaScript config files (`gh-sync.js` exporting `module.exports`):
 ```sh
-node -e 'console.log(JSON.stringify(require("<resolved-config-path>")))' 2>/dev/null
-```
-
-For JSON config files (`.json`):
-```sh
-cat <resolved-config-path> 2>/dev/null
+node -e 'Object.assign(global, process.env); console.log(JSON.stringify(require(require("path").resolve("<resolved-config-path>"))))' 2>/dev/null
 ```
 
 If the file exists and yields a valid config object, pre-fill every field it contains.
