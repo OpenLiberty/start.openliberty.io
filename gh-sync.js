@@ -3,7 +3,7 @@ module.exports = {
   "sourceOwner":  "OpenLiberty",
   "sourceRepo":   "start.openliberty.io",
   "sourceBranch": "main",
-  "sourcePat":    `${GIT_PAT}`,
+  "sourcePat":    "",
   "targetHost":   "github.ibm.com",
   "targetOwner":  "websphere",
   "targetRepo":   "start.openliberty.io-MEND",
