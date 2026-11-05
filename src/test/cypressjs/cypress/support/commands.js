@@ -155,7 +155,7 @@ for (let i = 0; i < jakarta_mp_versions.length; i++) {
       const mpVer = version.mp;
       cy.log(`mp version ` + mpVer);
     
-      const appname = 'appzip-jdk' + convertNum2Str[Cypress.env('JDK_VERSION')] + '-gradle' + Cypress.env('GRADLE_VERSION') + '-ee' + convertNum2Str[jktVer] + '-mp' + convertNum2Str[mpVer];
+      const appname = 'appzip-jdk' + convertNum2Str[Cypress.env('JDK_VERSION')] + (gOrM == 'g' ? '-gradle' + Cypress.env('GRADLE_VERSION') : '') + '-ee' + convertNum2Str[jktVer] + '-mp' + convertNum2Str[mpVer];
       cy.log(`appname ` + appname);
       cy.downloadZipFile(appname, jktVer, mpVer, gOrM);
 }
@@ -248,7 +248,7 @@ Cypress.Commands.add('downloadZipFilesV1', (gOrM) => {
   for (let i = 0; i < jakarta_mp_versions.length; i++) {
     const jktVer = jakarta_mp_versions[i].jakarta;
     const mpVer = jakarta_mp_versions[i].mp;
-    const appname = 'appzip-jdk' + convertNum2Str[Cypress.env('JDK_VERSION')] + '-gradle' + Cypress.env('GRADLE_VERSION') + '-ee' + convertNum2Str[jktVer] + '-mp' + convertNum2Str[mpVer];
+    const appname = 'appzip-jdk' + convertNum2Str[Cypress.env('JDK_VERSION')] + (gOrM == 'g' ? '-gradle' + Cypress.env('GRADLE_VERSION') : '') + '-ee' + convertNum2Str[jktVer] + '-mp' + convertNum2Str[mpVer];
     cy.log(`v1 appname ` + appname);
     cy.downloadZipFileV1(appname, jktVer, mpVer, gOrM);
   }
