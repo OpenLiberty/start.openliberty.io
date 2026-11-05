@@ -58,8 +58,14 @@ public class GradleStarterBuilderTest {
     @Test
     public void testGradle9Versions() throws UnsupportedEncodingException {
         MockZipOutputStream mockZip = buildWithGradleVersion("9");
+        String buildGradle = new String(mockZip.getCapturedFile("build.gradle"), "utf-8");
+        String wrapperProperties = new String(
+                mockZip.getCapturedFile("gradle/wrapper/gradle-wrapper.properties"), "utf-8");
 
-        assertGeneratedVersions(mockZip, "9.7.1", "4.0.2");
+        assertTrue(wrapperProperties.contains("gradle-9.7.1-bin.zip"));
+        // plugin version is fetched dynamically (falls back to the constant), so just check it is a 4.x+ version
+        assertTrue(buildGradle.matches("(?s).*io\\.openliberty\\.tools\\.gradle\\.Liberty' version '([4-9]|[1-9][0-9])\\.\\d+(\\.\\d+)?'.*"),
+                "build.gradle should use a 4.0.0+ Liberty Gradle plugin version: " + buildGradle);
     }
 
     private MockZipOutputStream buildWithGradleVersion(String gradleVersion) {
