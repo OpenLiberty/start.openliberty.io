@@ -7,6 +7,9 @@ module.exports = {
   },
   env: {
     default_website_url: 'https://staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud',
+    // Backend (REST API) host used by the v1 API tests, which call /api/start directly instead of using the UI.
+    // Taken from CONTRIBUTING.md - update it if the staging backend URL changes.
+    default_api_url: 'https://starter-staging.rh9j6zz75er.us-east.codeengine.appdomain.cloud',
     default_jdk: '17',
   },
   viewportWidth: 1280,

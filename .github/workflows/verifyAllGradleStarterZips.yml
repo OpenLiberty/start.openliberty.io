@@ -21,6 +21,14 @@ on:
         options:
         - '8'
         - '9'
+      api_version:
+        description: 'Starter API version to test (v2 = through the UI, v1 = direct calls to /api/start; v1 only supports Gradle 8 and Java 8-21)'
+        required: true
+        default: 'v2'
+        type: choice
+        options:
+        - 'v2'
+        - 'v1'
   
 jobs:
     use-cypress-to-download-zip:
@@ -28,19 +36,33 @@ jobs:
         container: cypress/included:12.5.1
         steps: 
           - uses: actions/checkout@v3.3.0
-          - run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}",GRADLE_VERSION="${{ inputs.gradle_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLGradleStarterZips.cy.js
+          - name: Reject combinations the v1 API does not support
+            if: inputs.api_version == 'v1' && (inputs.gradle_version == '9' || inputs.java_version == '25')
+            run: |
+              echo "The v1 API is frozen at Gradle 8 and does not support Java 25. Choose gradle_version 8 and a Java version of 8, 11, 17 or 21, or choose api_version v2."
+              exit 1
+          - name: Download zips through the UI (v2 API)
+            if: inputs.api_version == 'v2'
+            run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}",GRADLE_VERSION="${{ inputs.gradle_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLGradleStarterZips.cy.js
+          - name: Download zips by calling the v1 API directly
+            if: inputs.api_version == 'v1'
+            run: cypress run --browser chrome --env JDK_VERSION="${{ inputs.java_version }}",GRADLE_VERSION="${{ inputs.gradle_version }}"  --config-file /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress.config.js --spec /__w/start.openliberty.io/start.openliberty.io/src/test/cypressjs/cypress/e2e/downloadAllOLGradleStarterZipsV1.cy.js
           
           - uses: actions/upload-artifact@v4
             if: failure()
             with:
                name: cypress-screenshots
-               path: /__w/start.openliberty.io/start.openliberty.io/cypress/screenshots/downloadAllOLGradleStarterZips.cy.js
+               path: |
+                 /__w/start.openliberty.io/start.openliberty.io/cypress/screenshots/downloadAllOLGradleStarterZips.cy.js
+                 /__w/start.openliberty.io/start.openliberty.io/cypress/screenshots/downloadAllOLGradleStarterZipsV1.cy.js
 
           - uses: actions/upload-artifact@v4
             if: failure()
             with:
                 name: cypress-videos
-                path: /__w/start.openliberty.io/start.openliberty.io/cypress/videos/downloadAllOLGradleStarterZips.cy.js.mp4
+                path: |
+                  /__w/start.openliberty.io/start.openliberty.io/cypress/videos/downloadAllOLGradleStarterZips.cy.js.mp4
+                  /__w/start.openliberty.io/start.openliberty.io/cypress/videos/downloadAllOLGradleStarterZipsV1.cy.js.mp4
 
           - uses: actions/upload-artifact@v4
             if: success()

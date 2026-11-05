@@ -232,3 +232,60 @@ cy.get('#gen_proj_popup_button').click({force: true}).then(() => {
 });  
 }
 });
+
+// ---------------------------------------------------------------------------------------------
+// v1 API support
+// The UI on the staging site only uses the v2 API, so the v1 API (/api/start) is tested by calling
+// it directly with cy.request instead of clicking through the UI.
+// v1 is frozen at Gradle 8 and supports Java 8, 11, 17 and 21 only.
+// The zips are written to the downloads folder using the same file names as the UI based flow so the
+// GitHub Actions unzip/build/verify jobs can use them unchanged.
+// ---------------------------------------------------------------------------------------------
+
+// Methods that call the v1 API for every jakarta / mp combination
+// gOrM - values are g or m for gradle or maven
+Cypress.Commands.add('downloadZipFilesV1', (gOrM) => {
+  for (let i = 0; i < jakarta_mp_versions.length; i++) {
+    const jktVer = jakarta_mp_versions[i].jakarta;
+    const mpVer = jakarta_mp_versions[i].mp;
+    const appname = 'appzip-jdk' + convertNum2Str[Cypress.env('JDK_VERSION')] + '-gradle' + Cypress.env('GRADLE_VERSION') + '-ee' + convertNum2Str[jktVer] + '-mp' + convertNum2Str[mpVer];
+    cy.log(`v1 appname ` + appname);
+    cy.downloadZipFileV1(appname, jktVer, mpVer, gOrM);
+  }
+});
+
+// Calls GET <api_url>/api/start and saves the zip as ${appname}.zip in the downloads folder
+Cypress.Commands.add('downloadZipFileV1', (appname, jktVer, mpVer, gOrM) => {
+  const jdkVer = Cypress.env('JDK_VERSION');
+  const downloadsFolder = Cypress.config('downloadsFolder');
+  const path = require("path");
+
+  // Same unsupported combinations as the UI flow - skip them, the github actions skip them too
+  if (((jdkVer == '8') || (jdkVer == '11')) && (jktVer == '11.0')) {
+    cy.log('unsupported combination');
+    return;
+  }
+  if ((jdkVer == '8') && ((jktVer == '10.0') || (mpVer == '7.1') || (mpVer == '7.0') || (mpVer == '6.1') || (mpVer == '6.0'))) {
+    cy.log('unsupported combination');
+    return;
+  }
+
+  cy.request({
+    url: Cypress.env('default_api_url') + '/api/start',
+    qs: {
+      a: 'app-name',
+      g: 'com.demo',
+      j: jdkVer,
+      b: (gOrM == 'g') ? 'gradle' : 'maven',
+      e: jktVer,
+      m: mpVer
+    },
+    encoding: 'binary'
+  }).then((res) => {
+    expect(res.status).to.eq(200);
+    expect(res.headers['content-type']).to.contain('application/zip');
+    expect(res.headers['content-disposition']).to.contain('app-name.zip');
+    cy.writeFile(path.join(downloadsFolder, `${appname}.zip`), res.body, 'binary');
+  });
+});
+
