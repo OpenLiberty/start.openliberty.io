@@ -1,14 +1,17 @@
 plugins {
     id 'war'
-    id 'io.openliberty.tools.gradle.Liberty' version '3.9.5'
+    id 'io.openliberty.tools.gradle.Liberty' version '${libertyGradlePluginVersion}'
 }
 
 version '1.0-SNAPSHOT'
 group '${groupName}'
 
-sourceCompatibility = ${javaVersion}
-targetCompatibility = ${javaVersion}
-tasks.withType(JavaCompile) {
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(${javaVersion})
+    }
+}
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
