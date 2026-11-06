@@ -15,11 +15,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.json.Json;
+import javax.json.JsonReader;
 import javax.json.bind.JsonbBuilder;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
@@ -31,6 +35,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import io.openliberty.website.starter.NLS;
 import io.openliberty.website.starter.StarterBuilder;
+import io.openliberty.website.starter.metadata.Constants;
 import io.openliberty.website.starter.metadata.TemplateMetadata;
 
 public class StarterBuilderImpl implements StarterBuilder {
@@ -39,6 +44,7 @@ public class StarterBuilderImpl implements StarterBuilder {
     protected String javaVersion;
     protected String jakartaEEVersion;
     protected String microProfileVersion;
+    protected String gradleVersion;
 
     protected Map<String, String> properties = new HashMap<>();
 
@@ -162,6 +168,47 @@ public class StarterBuilderImpl implements StarterBuilder {
             properties.put("jakartaEEBasePackageName", "jakarta");
         }
         return this;
+    }
+
+    @Override
+     public final StarterBuilder gradleVersion(String gradleVersion) {
+        this.gradleVersion = gradleVersion;
+        if ("8".equals(gradleVersion)) {
+            properties.put("gradleVersion", Constants.GRADLE_8_VERSION);
+            properties.put("libertyGradlePluginVersion", Constants.LIBERTY_GRADLE_PLUGIN_3_VERSION);
+        } else if ("9".equals(gradleVersion)) {
+            properties.put("gradleVersion", Constants.GRADLE_9_VERSION);
+            properties.put("libertyGradlePluginVersion", fetchLatestLibertyGradlePluginVersion());
+        }
+        return this;
+    }
+
+    /**
+     * Calls the openliberty.io plugin-versions API (the same one used by the
+     * "Add to an existing application" snippet) and returns its gradleVersion.
+     * Falls back to the hardcoded constant if the call fails.
+     */
+    private static String fetchLatestLibertyGradlePluginVersion() {
+        HttpURLConnection conn = null;
+        try {
+            conn = (HttpURLConnection) new URL("https://openliberty.io/api/start/plugin-versions").openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+            conn.setRequestProperty("Accept", "application/json");
+            try (JsonReader reader = Json.createReader(conn.getInputStream())) {
+                String version = reader.readObject().getString("gradleVersion", "").trim();
+                if (!version.isEmpty()) {
+                    return version;
+                }
+            }
+        } catch (Exception e) {
+            // fall through to the hardcoded default
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+        return Constants.LIBERTY_GRADLE_PLUGIN_4_VERSION;
     }
 
     @Override

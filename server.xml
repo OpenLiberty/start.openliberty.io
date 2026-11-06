@@ -29,11 +29,20 @@
     <webApplication contextRoot="/" id="start" location="openliberty-starter-1.0-SNAPSHOT.war"/>
 
     <cors
-		domain="/api/start"
-		allowedOrigins="https://www.openliberty.io,https://openliberty.io,https://draft-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://ui-draft-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://ui-staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://demo1-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://demo2-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://us-south.openliberty.io,https://us-east.openliberty.io,https://eu-gb.openliberty.io,https://eu-de.openliberty.io,https://au-syd.openliberty.io"
-		allowedHeaders="Accept, Accept-Encoding, Content-Type, X-Requested-With" 
-		allowedMethods="GET,POST"
-		exposeHeaders=""
-		allowCredentials="true"
-		maxAge="3600"/>
+  domain="/api/start"
+  allowedOrigins="https://www.openliberty.io,https://openliberty.io,https://draft-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://ui-draft-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://ui-staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://demo1-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://demo2-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://us-south.openliberty.io,https://us-east.openliberty.io,https://eu-gb.openliberty.io,https://eu-de.openliberty.io,https://au-syd.openliberty.io"
+  allowedHeaders="Accept, Accept-Encoding, Content-Type, X-Requested-With"
+  allowedMethods="GET,POST"
+  exposeHeaders=""
+  allowCredentials="true"
+  maxAge="3600"/>
+
+    <cors
+  domain="/api/v2/start"
+  allowedOrigins="https://www.openliberty.io,https://openliberty.io,https://draft-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://ui-draft-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://ui-staging-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://demo1-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://demo2-openlibertyio.mqj6zf7jocq.us-south.codeengine.appdomain.cloud,https://us-south.openliberty.io,https://us-east.openliberty.io,https://eu-gb.openliberty.io,https://eu-de.openliberty.io,https://au-syd.openliberty.io"
+  allowedHeaders="Accept, Accept-Encoding, Content-Type, X-Requested-With"
+  allowedMethods="GET,POST"
+  exposeHeaders=""
+  allowCredentials="true"
+  maxAge="3600"/>
 </server>
